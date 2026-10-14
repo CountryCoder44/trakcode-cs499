@@ -72,7 +72,7 @@ describe('spending bought questions', () => {
     expect((await TrakPackPurchase.findById(pack._id))!.remaining).toBe(0);
   });
 
-  it('puts the question back in the pack if the running total had none', async () => {
+  it('leaves the pack untouched if the running total had none', async () => {
     const u = await learner();
     const pack = await buy(u._id, 5);
     await User.updateOne({ _id: u._id }, { $set: { bonusTrakQuestions: 0 } });

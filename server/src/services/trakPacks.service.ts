@@ -18,19 +18,22 @@ const DAY = 24 * 60 * 60 * 1000;
 export async function takeBoughtQuestion(
   userId: string
 ): Promise<{ taken: boolean; packPurchaseId: Types.ObjectId | null }> {
+  // The running total is the gate, so it's claimed first. Claiming a pack
+  // first raced: with several messages at once, one could pass the total
+  // check after another had already emptied the pack, and the loser then
+  // "returned" a unit it had taken, leaving a pack and the total out of step.
+  // Only a request that won the total ever touches a pack, so the number of
+  // pack units taken always equals the number of questions spent.
+  const total = await User.updateOne(
+    { _id: userId, bonusTrakQuestions: { $gt: 0 } },
+    { $inc: { bonusTrakQuestions: -1 } }
+  );
+  if (total.modifiedCount === 0) return { taken: false, packPurchaseId: null };
   const pack = await TrakPackPurchase.findOneAndUpdate(
     { userId, remaining: { $gt: 0 } },
     { $inc: { remaining: -1 } },
     { sort: { createdAt: 1 }, new: true }
   );
-  const total = await User.updateOne(
-    { _id: userId, bonusTrakQuestions: { $gt: 0 } },
-    { $inc: { bonusTrakQuestions: -1 } }
-  );
-  if (total.modifiedCount === 0) {
-    if (pack) await TrakPackPurchase.updateOne({ _id: pack._id }, { $inc: { remaining: 1 } });
-    return { taken: false, packPurchaseId: null };
-  }
   // A question with no pack behind it (only possible if a total was ever
   // adjusted by hand) still counts; it just isn't tied to a pack.
   return { taken: true, packPurchaseId: pack?._id ?? null };
