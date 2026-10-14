@@ -1,0 +1,3 @@
+Assign, open bracket red comma blue comma red comma green close bracket, to, colors.
+Assign, colors dot count open perren red close perren, to, red count, and, colors dot index open perren red close perren, to, first red.
+Print, Red count colon 2, and, First red colon 0, with f strings.

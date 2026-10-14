@@ -1,0 +1,3 @@
+Assign, open brace read comma comment close brace, to, basic, and, open brace comment comma edit close brace, to, extra.
+Assign their union to, combined, then print, sorted open perren combined close perren, and the combined count.
+Use the, pipe, operator.

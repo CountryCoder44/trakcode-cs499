@@ -1,0 +1,3 @@
+Editors can discover more than one interpreter.
+Select the same supported Python 3 installation you verified in the terminal.
+This keeps editor execution consistent with command-line execution.

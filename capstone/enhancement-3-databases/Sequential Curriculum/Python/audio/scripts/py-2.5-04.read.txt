@@ -1,0 +1,3 @@
+int open paren 42 close paren, works and gives 42.
+int open paren 42abc close paren, raises, Value Error, because the text is not a whole number.
+int open paren close paren, does not "extract" digits — the whole string must be a valid integer.

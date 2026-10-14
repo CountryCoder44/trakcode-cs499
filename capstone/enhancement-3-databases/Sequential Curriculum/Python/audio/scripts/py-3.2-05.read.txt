@@ -1,0 +1,3 @@
+times, slash, double slash, and, percent sign, all sit at the same precedence level, so when a few of them show up together, Python just works left to right.
+Addition and subtraction do the same thing at their own, lower level.
+That's why, 20 floor divided by 5 times 2, becomes, 4 times 2, first, then 8.

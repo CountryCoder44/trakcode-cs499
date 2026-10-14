@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-j",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.697,
+ "sentences": [
+  {
+   "text": "\"j\".",
+   "start": 0,
+   "end": 0.697,
+   "segments": [
+    {
+     "text": "\"j\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,2 @@
+Convert every input to int as it is read.
+Do not print input prompts.

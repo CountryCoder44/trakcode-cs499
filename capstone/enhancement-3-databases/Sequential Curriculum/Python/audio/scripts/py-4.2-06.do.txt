@@ -1,0 +1,3 @@
+Assign, compass, to, word.
+Print its last character using a negative index.
+Use, word open bracket minus 1 close bracket; do not use a positive index or print Ess directly.

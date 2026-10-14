@@ -1,0 +1,1 @@
+With, person equals open brace name colon Ada comma age colon 36 comma city colon London close brace, defined, print, person open bracket name close bracket, on line 1, person open bracket age close bracket, on line 2, and, len open paren person close paren, on line 3.

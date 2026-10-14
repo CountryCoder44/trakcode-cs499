@@ -1,0 +1,3 @@
+Each key appears only once in a dictionary.
+Different keys may point to the same value, but one key cannot keep two separate values at the same time.
+The values may also have different types, so a profile can hold a name, age, and Boolean status together.

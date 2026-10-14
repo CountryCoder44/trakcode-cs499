@@ -1,0 +1,4 @@
+Assign, open bracket low comma medium comma high close bracket, to, levels.
+Pop the item at index 1 into, removed.
+Print, Removed colon medium, then print the remaining list.
+Use, pop open perren 1 close perren, and the returned value.

@@ -1,0 +1,3 @@
+An augmented assignment needs an existing value.
+The program tries to update, score, before its starting value is assigned, then applies the penalty as an increase.
+Repair the order and the penalty operator.

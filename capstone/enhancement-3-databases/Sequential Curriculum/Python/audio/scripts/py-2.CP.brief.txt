@@ -1,0 +1,1 @@
+Write a program that reads in a person's name, their current age, and a favorite number, each on its own line, then prints out a four line summary.

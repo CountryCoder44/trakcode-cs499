@@ -1,0 +1,3 @@
+Addition and subtraction at the same precedence level should be evaluated from left to right.
+The current parentheses force a different grouping.
+Repair both expressions without replacing them with finished values.

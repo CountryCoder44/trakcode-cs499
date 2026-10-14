@@ -1,0 +1,2 @@
+The list is correct, but the program prints its variable name as text and measures the word, items, instead of the stored list.
+Repair both output lines without changing the assignment.

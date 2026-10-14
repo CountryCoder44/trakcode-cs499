@@ -1,0 +1,3 @@
+Division gets the same augmented treatment:, divide equals, floor divide equals, and, modulo equals, each behaving just like its plain counterpart.
+divide equals, always leaves you with a, float, even if the division comes out even.
+With nonnegative whole numbers and a positive divisor, floor divide equals, gives you the whole number quotient and, modulo equals, gives you the remainder.

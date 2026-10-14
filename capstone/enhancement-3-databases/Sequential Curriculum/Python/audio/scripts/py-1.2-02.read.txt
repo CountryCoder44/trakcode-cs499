@@ -1,0 +1,3 @@
+Python source files conventionally end in, dot pie, something like, greeting dot pie.
+That extension just tells people and tools what kind of source code the file likely holds.
+And saving a, dot pie, file doesn't automatically run it.

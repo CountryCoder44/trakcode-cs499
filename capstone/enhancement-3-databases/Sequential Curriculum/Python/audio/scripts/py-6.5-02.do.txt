@@ -1,0 +1,2 @@
+Assign, open brace title colon Python comma level colon beginner comma active colon True close brace, to, course.
+Assign, list open perren course dot keys open perren close perren close perren, to, fields, then print, fields, and, Field count colon 3, on separate lines.

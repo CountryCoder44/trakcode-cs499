@@ -1,0 +1,3 @@
+Read three lines, each, key value, — a word and a whole number separated by a space.
+Build one dictionary from all three pairs.
+Print, list open paren d dot keys open paren close paren close paren, on line 1 and, sum open paren d dot values open paren close paren close paren, on line 2.

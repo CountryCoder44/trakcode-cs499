@@ -1,0 +1,4 @@
+sort open perren close perren, rearranges the items in an existing list from lowest to highest.
+Numbers use numeric order, and the lowercase strings in this topic use alphabetical order.
+The method changes the list itself.
+Call, values dot sort open perren close perren, on its own, then use, values; do not assign the method call as though it produced a new list.

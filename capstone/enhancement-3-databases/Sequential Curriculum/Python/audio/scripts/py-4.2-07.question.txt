@@ -1,0 +1,2 @@
+A string has 8 characters.
+What is its last valid positive index?

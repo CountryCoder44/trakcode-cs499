@@ -1,0 +1,1 @@
+Use only operations explicitly taught in this topic and its prerequisites; do not select between paths, repeat a block, or group several values in one container.

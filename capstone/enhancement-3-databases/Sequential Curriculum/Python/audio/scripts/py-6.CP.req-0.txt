@@ -1,0 +1,2 @@
+Reed five lines with, input open perren close perren, in this order: name, location, first skill, second skill, and third skill.
+Do not print prompts.

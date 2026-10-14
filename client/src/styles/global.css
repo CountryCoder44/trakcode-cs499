@@ -1,0 +1,2932 @@
+/* Theme tokens — light is the bare :root default; dark overrides via
+   :root[data-theme="dark"], set by ThemeContext (see src/context/ThemeContext.tsx).
+   The attribute is applied synchronously in index.html before first paint (reading
+   localStorage, falling back to prefers-color-scheme) so there's no flash of the
+   wrong theme. Every color in this file is a token reference — never a raw hex —
+   so both themes stay in sync automatically. */
+:root {
+  /* `only light` tells phone browsers (Chrome's auto-dark, Samsung Internet's
+     dark mode) not to force-darken the light theme; plain `light` still lets
+     them. The dark theme below declares dark. */
+  color-scheme: only light;
+  --bg: #f6f7fb;
+  --bg-elevated: #ffffff;
+  --bg-elevated-2: #eef0f6;
+  --border: #e1e4ec;
+  --course-card-bg: #eef0f4;
+  --highlight: #fde68a;
+  --text: #12141c;
+  --text-dim: #565f74;
+  --text-faint: #656d80; /* >= 4.5:1 on every light background */
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-dim: #eceafd;
+  /* Link text. Same as --accent in light mode; brighter in dark mode so small
+     link text stays readable (>= 4.5:1). */
+  --link: var(--accent);
+  --link-hover: var(--accent-hover);
+  --success: #16a34a;
+  --success-dim: #dcfce7;
+  --danger: #dc2626;
+  --danger-dim: #fee2e2;
+  --warning: #b45309;
+  --warning-dim: #fef3c7;
+
+  --editor-bg: #f6f8fa;
+  --editor-text: #1f2328;
+
+  /* Activity heatmap fill scale — shared empty-cell color, then a red scale
+     for Learn Mode days and a green scale for Practice Mode days (two
+     separate heatmaps, see DashboardPage/PublicProfilePage). */
+  --heat-0: var(--bg-elevated-2);
+  --heat-red-1: rgba(220, 38, 38, 0.28);
+  --heat-red-2: rgba(220, 38, 38, 0.55);
+  --heat-red-3: var(--danger);
+  --heat-green-1: rgba(22, 163, 74, 0.28);
+  --heat-green-2: rgba(22, 163, 74, 0.55);
+  --heat-green-3: var(--success);
+
+  /* Inline `code` spans in lesson/feedback prose — orange, to read as code
+     rather than quoted text. */
+  --code-inline: #c2410c;
+  --code-inline-bg: rgba(234, 88, 12, 0.1);
+
+  /* Ambient page background — two soft corner glows over a visible grid.
+     --bg-grid controls the grid line opacity only; tune here to go
+     bolder/subtler without touching the background-image rule itself. */
+  --bg-glow-1: rgba(79, 70, 229, 0.07);
+  --bg-glow-2: rgba(14, 165, 233, 0.05);
+  --bg-grid: rgba(18, 20, 28, 0.07);
+  --card-shadow: 0 1px 2px rgba(18, 20, 28, 0.04), 0 6px 20px rgba(18, 20, 28, 0.04);
+
+  /* CursorGlow's own tint — separate from --bg-glow-1 because the purple
+     corner glow reads too faint against the light background specifically;
+     orange stays visible. Dark mode keeps the purple (see below), it was
+     never the problem there. */
+  --cursor-glow-color: rgba(234, 88, 12, 0.16);
+
+
+  --radius: 10px;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', Consolas, 'Courier New', monospace;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0b0e14;
+  --bg-elevated: #131722;
+  --bg-elevated-2: #1a2030;
+  --border: #262d3f;
+  --course-card-bg: #1f2433;
+  --highlight: rgba(250, 204, 21, 0.32);
+  --text: #e6e9f0;
+  --text-dim: #9aa3b8;
+  --text-faint: #7d869c; /* >= 4.5:1 on every dark background */
+  --accent: #6366f1;
+  --accent-hover: #7476f3;
+  --accent-dim: rgba(99, 102, 241, 0.15);
+  --link: #818cf8;
+  --link-hover: #a5b4fc;
+  --success: #22c55e;
+  --success-dim: rgba(34, 197, 94, 0.15);
+  --danger: #ef4444;
+  --danger-dim: rgba(239, 68, 68, 0.15);
+  --warning: #f59e0b;
+  --warning-dim: rgba(245, 158, 11, 0.15);
+
+  --editor-bg: #0d1117;
+  --editor-text: #e6e9f0;
+
+  --heat-0: var(--bg-elevated-2);
+  --heat-red-1: rgba(239, 68, 68, 0.35);
+  --heat-red-2: rgba(239, 68, 68, 0.6);
+  --heat-red-3: var(--danger);
+  --heat-green-1: rgba(34, 197, 94, 0.35);
+  --heat-green-2: rgba(34, 197, 94, 0.6);
+  --heat-green-3: var(--success);
+
+  --code-inline: #fdba74;
+  --code-inline-bg: rgba(251, 146, 60, 0.14);
+
+  --bg-glow-1: rgba(99, 102, 241, 0.12);
+  --bg-glow-2: rgba(56, 189, 248, 0.07);
+  --bg-grid: rgba(255, 255, 255, 0.065);
+  --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.22);
+
+  --cursor-glow-color: rgba(99, 102, 241, 0.12);
+}
+
+/* The same dark palette, behind the standard OS dark-mode query. index.html
+   always sets data-theme before first paint, so this only applies if that
+   script can't run (and never overrides an explicit light choice). It matters
+   anyway: Samsung Internet only skips its forced "dark mode for websites" on
+   pages that have a prefers-color-scheme dark rule. Keep it in sync with the
+   block above. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #0b0e14;
+    --bg-elevated: #131722;
+    --bg-elevated-2: #1a2030;
+    --border: #262d3f;
+    --course-card-bg: #1f2433;
+    --highlight: rgba(250, 204, 21, 0.32);
+    --text: #e6e9f0;
+    --text-dim: #9aa3b8;
+    --text-faint: #7d869c; /* >= 4.5:1 on every dark background */
+    --accent: #6366f1;
+    --accent-hover: #7476f3;
+    --accent-dim: rgba(99, 102, 241, 0.15);
+    --link: #818cf8;
+    --link-hover: #a5b4fc;
+    --success: #22c55e;
+    --success-dim: rgba(34, 197, 94, 0.15);
+    --danger: #ef4444;
+    --danger-dim: rgba(239, 68, 68, 0.15);
+    --warning: #f59e0b;
+    --warning-dim: rgba(245, 158, 11, 0.15);
+
+    --editor-bg: #0d1117;
+    --editor-text: #e6e9f0;
+
+    --heat-0: var(--bg-elevated-2);
+    --heat-red-1: rgba(239, 68, 68, 0.35);
+    --heat-red-2: rgba(239, 68, 68, 0.6);
+    --heat-red-3: var(--danger);
+    --heat-green-1: rgba(34, 197, 94, 0.35);
+    --heat-green-2: rgba(34, 197, 94, 0.6);
+    --heat-green-3: var(--success);
+
+    --code-inline: #fdba74;
+    --code-inline-bg: rgba(251, 146, 60, 0.14);
+
+    --bg-glow-1: rgba(99, 102, 241, 0.12);
+    --bg-glow-2: rgba(56, 189, 248, 0.07);
+    --bg-grid: rgba(255, 255, 255, 0.065);
+    --card-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.22);
+
+    --cursor-glow-color: rgba(99, 102, 241, 0.12);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(1100px 700px at 8% -12%, var(--bg-glow-1), transparent 60%),
+    radial-gradient(900px 650px at 104% -4%, var(--bg-glow-2), transparent 55%),
+    linear-gradient(var(--bg-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 46px 46px, 46px 46px;
+  background-position: 0 0;
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+/* CursorGlow (src/components/CursorGlow.tsx) — an ambient light that follows
+   the pointer, tinted via --cursor-glow-color (orange in light mode, purple
+   in dark — see the token comment near --bg-glow-1). Positioned via
+   transform (GPU-friendly, and the short transition below gives it a soft
+   trailing feel instead of snapping 1:1 to the cursor) rather than animating
+   the radial-gradient itself, which doesn't interpolate smoothly across
+   browsers. No z-index: it's mounted first in the tree (see main.tsx), so
+   default paint order alone keeps it behind every real element. Starts at
+   opacity 0 and fades in on the first mousemove so it never flashes at a
+   stale (0,0) position before JS runs. */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 240px;
+  margin-left: -120px;
+  margin-top: -120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--cursor-glow-color), transparent 70%);
+  transform: translate(var(--cursor-x, 50vw), var(--cursor-y, 50vh));
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 120ms ease-out, opacity 300ms ease;
+}
+
+/* TrakAvatar (src/components/TrakAvatar.tsx) — a fixed-size emoji swatch,
+   prototype stand-in for a future pre-rendered character image per state. */
+.trak-avatar {
+  width: 112px;
+  height: 112px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  line-height: 1;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated-2);
+}
+/* Large, centered portrait on the onboarding intro. */
+.trak-avatar-hero {
+  width: 200px;
+  height: 200px;
+  font-size: 120px;
+  border-radius: 50%;
+  border-width: 2px;
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  box-shadow: 0 0 0 10px var(--accent-dim);
+}
+
+/* Onboarding: an introduction to Trak (OnboardingPage.tsx). Qualified with
+   .container-narrow because that rule comes later in this file and its
+   `padding: 0 24px` would otherwise wipe out the top/bottom padding. */
+.container-narrow.onboarding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: clamp(48px, 12vh, 128px);
+  padding-bottom: 64px;
+}
+.onboarding-title {
+  margin: 32px 0 8px;
+}
+.onboarding-lede {
+  font-size: 17px;
+  color: var(--text-dim);
+  max-width: 520px;
+  margin: 0 0 32px;
+}
+.onboarding-points {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+}
+.onboarding-point h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.onboarding-point p {
+  margin: 0;
+  color: var(--text-dim);
+}
+.onboarding-cta {
+  margin-top: 32px;
+}
+@media (max-width: 720px) {
+  .container-narrow.onboarding {
+    padding-top: 40px;
+  }
+  .trak-avatar-hero {
+    width: 150px;
+    height: 150px;
+    font-size: 88px;
+  }
+}
+
+a,
+.btn-link {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover,
+.btn-link:hover {
+  color: var(--link-hover);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.5em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+  color: var(--text-dim);
+}
+
+/* Ligatures OFF everywhere code/operators are shown — 'Cascadia Code' (our
+   Windows fallback in --font-mono) renders != / == / <= / -> etc as a single
+   combined glyph by default (e.g. != looks like ≠), which is exactly wrong
+   for a page teaching the literal two-character operator. */
+pre,
+code,
+mark {
+  font-variant-ligatures: none;
+  -webkit-font-feature-settings: 'liga' 0, 'calt' 0;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+}
+pre {
+  font-family: var(--font-mono);
+}
+/* Inline code spans (not code inside a <pre>/editor, which style themselves). */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--code-inline);
+  background: var(--code-inline-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+pre code {
+  color: inherit;
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container-narrow {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Used by workspace routes (Practice Workspace, Learn Lesson, Flash Card) —
+   these host the dockable chat|editor shell and need real width to be
+   usable. Deliberately bounded rather than unconstrained: an uncapped width
+   would stretch panels and line lengths absurdly on ultrawide/4K displays. */
+.container-wide {
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 32px;
+  height: 100%;
+  /* Absolute pixel floor, deliberately redundant with .main-workspace's
+     min-height: percentage/flex-derived heights through this many nested
+     levels have proven unreliable in practice (see the dockable-layout
+     debugging notes) — this guarantees real height regardless of which
+     exact link in the percentage chain is misbehaving. */
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+  text-decoration: none;
+}
+.btn:hover {
+  background: var(--bg-elevated-2);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+.btn-danger {
+  background: transparent;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.btn-danger:hover {
+  background: var(--danger-dim);
+}
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+.btn-block {
+  width: 100%;
+}
+
+/* Social sign-in (SocialAuthButtons.tsx) */
+.social-auth {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.btn-social {
+  gap: 10px;
+  padding: 11px 18px;
+}
+.btn-social svg {
+  flex-shrink: 0;
+}
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--text-faint);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.connected-account {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+.connected-account:first-of-type {
+  border-top: none;
+}
+.connected-account-info {
+  flex: 1;
+  min-width: 0;
+}
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-dim);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.theme-toggle:hover {
+  background: var(--bg-elevated-2);
+  color: var(--text);
+}
+
+/* Cards */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+}
+/* Cards used as clickable choices (Onboarding, Practice Mode picker). Browsers
+   give <button> its own black text and system font instead of inheriting, which
+   made these unreadable in dark mode. */
+button.card {
+  color: var(--text);
+  font: inherit;
+  width: 100%;
+}
+
+/* Forms */
+.field {
+  margin-bottom: 16px;
+}
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.input,
+select.input,
+textarea.input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+textarea.input {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+  resize: vertical;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.badge-success {
+  background: var(--success-dim);
+  color: var(--success);
+}
+.badge-danger {
+  background: var(--danger-dim);
+  color: var(--danger);
+}
+.badge-warning {
+  background: var(--warning-dim);
+  color: var(--warning);
+}
+.badge-neutral {
+  background: var(--bg-elevated-2);
+  color: var(--text-dim);
+}
+.badge-accent {
+  background: var(--accent-dim);
+  color: var(--accent-hover);
+}
+
+/* Tabs — added for AdminPage.tsx's dashboard tabs; same interaction style
+   as .nav-link (dim by default, tinted+bold when active), just laid out as
+   a bottom-bordered strip instead of a top-nav row. */
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+  /* On a phone the row scrolls sideways by itself instead of widening the page. */
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab {
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding: 10px 16px;
+  border-bottom: 2px solid transparent;
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.tab:hover {
+  color: var(--text);
+}
+.tab.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* Tables — first use is AdminPage.tsx's usage/problem-bank/user listings.
+   Deliberately plain (no component library); wrap in a div
+   with overflow-x:auto at the call site for narrow viewports. */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.table th,
+.table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.table th {
+  color: var(--text-faint);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.table tbody tr:hover {
+  background: var(--bg-elevated-2);
+}
+.table tfoot td {
+  border-bottom: none;
+  border-top: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+/* Layout / nav */
+.app-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.topnav {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+.topnav-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 60px;
+}
+.brand {
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-mark {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: var(--accent);
+}
+.nav-links {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.nav-link {
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 500;
+}
+.nav-link:hover {
+  color: var(--text);
+  background: var(--bg-elevated-2);
+}
+.nav-link.active {
+  color: var(--text);
+  background: var(--accent-dim);
+}
+.main {
+  flex: 1;
+  padding: 40px 0 80px;
+}
+
+/* Top bar (TopNav.tsx). Wide screens: one row, links after the logo and
+   actions on the right (.nav-collapse lays its children out in that row).
+   Phones: a menu button opens the same links as a drop-down panel. */
+.topnav {
+  position: relative;
+  z-index: 50;
+}
+.nav-collapse {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+  min-width: 0;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-toggle {
+  display: none;
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+@media (max-width: 720px) {
+  .topnav-inner {
+    padding: 0 16px;
+    gap: 12px;
+  }
+  .topnav .trak-logo {
+    height: 40px !important;
+  }
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-collapse {
+    display: none;
+  }
+  .topnav-open .nav-collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 12px 16px 16px;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  }
+  .topnav-open .nav-links {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .topnav-open .nav-link {
+    padding: 12px;
+    font-size: 16px;
+  }
+  .topnav-open .nav-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .topnav-open .nav-actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .main {
+    padding: 24px 0 56px;
+  }
+  .container,
+  .container-narrow {
+    padding: 0 16px;
+  }
+  .container-wide {
+    padding: 0 12px;
+  }
+}
+/* Public pages (landing, pricing, legal): footer + readable text pages */
+.public-footer {
+  border-top: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+.public-footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+.public-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.public-footer-links a {
+  color: var(--text-dim);
+}
+.public-footer-links a:hover {
+  color: var(--text);
+}
+.info-page {
+  padding-top: 24px;
+  line-height: 1.65;
+}
+.info-page h2 {
+  font-size: 19px;
+  margin-top: 28px;
+}
+.info-page ul {
+  padding-left: 22px;
+}
+.info-draft-note {
+  border: 1px dashed var(--border);
+  background: var(--bg-elevated-2);
+  color: var(--text-dim);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+/* Workspace routes (Practice Workspace, Learn Lesson, Flash Card) fill the
+   remaining viewport height instead of scrolling with the page — the docked
+   panels manage their own internal scroll regions. 61px = .topnav-inner's
+   60px height + its 1px bottom border. */
+.main-workspace {
+  padding: 16px 0;
+  /* Root cause of the "badly scaled" collapse: .main sets `flex: 1`, whose
+     shorthand includes `flex-basis: 0%`. Per spec, once flex-basis is
+     explicitly 0% (not auto), the `height` property is ignored entirely for
+     main-axis sizing — so a plain `height: calc(...)` here was silently
+     doing nothing, and only the min-height floor below was ever taking
+     effect (hence sizing to the floor, not the viewport). Overriding
+     flex-basis directly (not through the ignored height property) is what
+     actually makes this element's initial size calc(100vh - 61px) rather
+     than 0 before flex-grow adds anything further. */
+  flex-basis: calc(100vh - 61px);
+  min-height: 500px;
+  overflow: hidden;
+}
+
+/* Sequential Curriculum topic player: a fixed-height two-column shell where the
+   outline rail and the lesson body each own their own scroll region, so the
+   page itself never scrolls and neither column pushes the other off-screen. */
+.seq-layout {
+  display: grid;
+  grid-template-columns: 264px 1fr;
+  /* the single implicit row must be clamped to the container height, not sized
+     to content, or the columns overflow instead of scrolling */
+  grid-template-rows: minmax(0, 1fr);
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.seq-rail {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+  padding-right: 8px;
+  padding-bottom: 24px;
+}
+.seq-main {
+  min-width: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  min-height: 0;
+  padding-bottom: 48px;
+}
+/* Phones/tablets only: the item list collapses behind a toggle. */
+.seq-outline-toggle {
+  display: none;
+}
+@media (max-width: 900px) {
+  .seq-layout {
+    grid-template-columns: 1fr;
+    /* stacked: rail then lesson, each as tall as its content */
+    grid-template-rows: auto auto;
+    overflow: visible;
+  }
+  .seq-outline-toggle {
+    display: inline-flex;
+    justify-content: center;
+  }
+  .seq-outline {
+    display: none !important;
+  }
+  .seq-outline.seq-outline-open {
+    display: flex !important;
+  }
+  .seq-rail,
+  .seq-main {
+    overflow-y: visible;
+    padding-bottom: 0;
+  }
+}
+
+/* The Sequential Curriculum live code editor (SeqTopicPage.tsx's CodeView),
+   in CodeEditor's `autoHeight` mode — grows to fit the code instead of
+   clipping it inside a fixed-height box. `.seq-main` (the panel around it)
+   already scrolls on its own, so there's nothing extra to wire up here; a
+   `min-height` just keeps a near-empty starter from looking cramped. */
+.seq-code-editor-auto {
+  min-height: 120px;
+}
+
+/* The one action button under a lesson item (Run & check / Submit answer /
+   Check / Next →) — left-justified and a fixed width so it doesn't stretch to
+   the card edge or resize with its label. */
+.seq-action-btn {
+  align-self: flex-start;
+  min-width: 168px;
+}
+@media (max-width: 720px) {
+  /* Trak and "Ask Trak" sit in a row above the item instead of in a column
+     beside it, so the reading text gets the full width. */
+  .seq-item-head {
+    flex-direction: column;
+  }
+  .seq-item-avatar {
+    flex-direction: row !important;
+    align-items: center;
+  }
+  .seq-item-avatar .trak-avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 32px;
+  }
+  .seq-action-btn {
+    align-self: stretch;
+  }
+}
+
+/* The concept question + its answer choices, set apart from the reading text
+   above it. Raised inset panel with an accent edge. */
+.seq-question {
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+/* Console-style output block in the submit result panel. Scoped to
+   `.code-editor.seq-output` so it beats `.code-editor`'s own min-height/padding
+   regardless of source order. */
+.code-editor.seq-output {
+  margin: 0;
+  min-height: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 10px 12px;
+  max-height: 260px;
+  overflow: auto;
+  resize: none;
+}
+
+/* Utility */
+.flex {
+  display: flex;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.gap-2 {
+  gap: 8px;
+}
+.gap-3 {
+  gap: 12px;
+}
+.gap-4 {
+  gap: 16px;
+}
+.items-center {
+  align-items: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.text-dim {
+  color: var(--text-dim);
+}
+.text-faint {
+  color: var(--text-faint);
+}
+.text-center {
+  text-align: center;
+}
+.mt-0 {
+  margin-top: 0;
+}
+.grid {
+  display: grid;
+  gap: 16px;
+}
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 720px) {
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.error-banner {
+  background: var(--danger-dim);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* Billing: the capstone paywall-bypass button, under the checkout button */
+.billing-bypass {
+  margin-top: 16px;
+}
+
+/* Neutral heads-up (Signup page's capstone-copy note) */
+.notice-banner {
+  background: var(--accent-dim);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-faint);
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Heatmap — a real GitHub-style calendar grid: column 1 holds the Mon/Wed/Fri
+   weekday labels, row 1 holds month labels, and cells fall into Sunday-start
+   calendar weeks (not arbitrary 7-day chunks) via explicit grid placement
+   from Heatmap.tsx. */
+.heatmap {
+  display: grid;
+  grid-template-rows: 14px repeat(7, 11px);
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  align-items: center;
+  /* Still scrollable (older weeks) — just without the visible scrollbar
+     track/thumb cluttering a card that's mostly a compact data grid. */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* old Edge/IE */
+}
+.heatmap::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/new Edge */
+}
+.heatmap-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.heatmap-month-label,
+.heatmap-weekday-label {
+  font-size: 10px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.heatmap-weekday-label {
+  padding-right: 4px;
+  text-align: right;
+}
+/* Rendered via a portal to document.body (position: fixed, coordinates from
+   the hovered cell's own bounding rect) rather than nested in .heatmap — the
+   heatmap's own overflow-x: auto would otherwise clip a nested tooltip that
+   pops outside its scroll region near the top/bottom edge of the grid. */
+.heatmap-tooltip {
+  position: fixed;
+  transform: translate(-50%, -100%);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: normal;
+  max-width: 325px; /* 25% wider than the original 260px */
+  box-shadow: var(--card-shadow);
+  z-index: 1000;
+  pointer-events: none;
+}
+.heatmap-tooltip strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* Code editor */
+.code-editor {
+  width: 100%;
+  min-height: 320px;
+  background: var(--editor-bg);
+  color: var(--editor-text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  tab-size: 4;
+  resize: vertical;
+}
+.code-editor:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Skill tree */
+.tree-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+}
+.tree-item.locked {
+  opacity: 0.5;
+}
+.tree-connector {
+  width: 2px;
+  height: 20px;
+  background: var(--border);
+  margin-left: 27px;
+}
+
+/* Chat panel */
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.chat-bubble {
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  max-width: 90%;
+  white-space: pre-wrap;
+}
+.chat-bubble.tutor {
+  background: var(--bg-elevated-2);
+  align-self: flex-start;
+}
+.chat-bubble.user {
+  background: var(--accent-dim);
+  align-self: flex-end;
+}
+.chat-bubble.typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 14px;
+}
+.chat-bubble.typing .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-faint);
+  animation: typing-bounce 1.1s infinite ease-in-out;
+}
+.chat-bubble.typing .dot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.chat-bubble.typing .dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* AskTrakPanel (src/components/AskTrakPanel.tsx) — a small floating,
+   draggable chat window for a Sequential Curriculum item. Fixed position (set
+   inline per-drag), a real .card-style border/shadow so it reads as a window
+   sitting above the page, and z-index high enough to clear everything else
+   including a sticky nav. */
+.ask-trak-panel {
+  position: fixed;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+.ask-trak-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated-2);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  flex-shrink: 0;
+}
+.ask-trak-panel-header:active {
+  cursor: grabbing;
+}
+
+/* Resize handles — thin strips/corners inset from the panel's own edges
+   (not overhanging them), so .ask-trak-panel's overflow:hidden never clips
+   them. Corners sit above the edge strips (z-index) since they overlap at
+   the panel's four corners and should win there. */
+.ask-trak-resize-handle {
+  position: absolute;
+  z-index: 5;
+  touch-action: none;
+}
+.ask-trak-resize-n,
+.ask-trak-resize-s {
+  left: 6px;
+  right: 6px;
+  height: 6px;
+  cursor: ns-resize;
+}
+.ask-trak-resize-n {
+  top: 0;
+}
+.ask-trak-resize-s {
+  bottom: 0;
+}
+.ask-trak-resize-e,
+.ask-trak-resize-w {
+  top: 6px;
+  bottom: 6px;
+  width: 6px;
+  cursor: ew-resize;
+}
+.ask-trak-resize-e {
+  right: 0;
+}
+.ask-trak-resize-w {
+  left: 0;
+}
+.ask-trak-resize-ne,
+.ask-trak-resize-nw,
+.ask-trak-resize-se,
+.ask-trak-resize-sw {
+  width: 12px;
+  height: 12px;
+  z-index: 6;
+}
+.ask-trak-resize-ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+.ask-trak-resize-nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+.ask-trak-resize-se {
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+}
+.ask-trak-resize-sw {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+/* AskTrakPanel's message input — a textarea that grows with its content up
+   to MAX_INPUT_LINES (JS-driven, see the component) and scrolls internally
+   beyond that, instead of a single-line input that scrolls off horizontally.
+   `textarea.ask-trak-input` (not just `.ask-trak-input`) to match
+   `textarea.input`'s specificity above — it must win on `resize`, and being
+   later in the stylesheet only breaks the tie when specificity is equal. */
+textarea.ask-trak-input {
+  resize: none;
+  overflow-y: auto;
+  line-height: 1.4;
+}
+
+/* Dockable workspace shell (WorkspaceShell.tsx) */
+.workspace-shell {
+  height: 100%;
+  min-height: 400px;
+}
+/* react-resizable-panels' Group/Panel don't impose a height on themselves —
+   they expect their CSS ancestors to hand them a real, definite height and
+   just render at their natural (near-zero) content height otherwise, with
+   no error of any kind. [data-group]/[data-panel] are attributes the
+   library always puts on its own rendered root elements (documented in its
+   own type declarations), so targeting them here reliably threads a real
+   height through the nested Group > Panel > Group > Panel chain regardless
+   of exactly how the library nests its internal wrapper divs. min-height/
+   min-width: 0 on panels overrides the flexbox default of refusing to
+   shrink below content size, which otherwise causes overflow instead of
+   the intended resizable/scrollable behavior. */
+.workspace-shell [data-group] {
+  height: 100%;
+  min-height: 400px;
+}
+.workspace-shell [data-panel] {
+  height: 100%;
+  min-height: 400px;
+  min-width: 0;
+}
+.resize-handle {
+  flex-shrink: 0;
+  position: relative;
+  background: var(--border);
+  transition: background 0.1s;
+}
+.resize-handle-horizontal {
+  width: 5px;
+  cursor: col-resize;
+}
+.resize-handle-vertical {
+  height: 5px;
+  cursor: row-resize;
+}
+.resize-handle:hover,
+.resize-handle:active {
+  background: var(--accent);
+}
+.workspace-editor-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+/* CodeMirror line highlight (CodeEditor.tsx's imperative scrollToLine) */
+.cm-highlighted-line {
+  background: var(--accent-dim);
+}
+
+/* Bottom error panel (ErrorPanel.tsx) — persistent, never fully hidden */
+.error-panel {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+.error-panel-header {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+.error-panel-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.error-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--bg-elevated-2);
+  font-size: 13px;
+}
+.error-row-message {
+  flex: 1;
+  color: var(--text);
+}
+.error-row-detail {
+  margin-top: 4px;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+/* Execution console popup (ExecutionConsolePopup.tsx) — transient overlay,
+   shown fresh on every Run, distinct from the persistent error panel above. */
+.console-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  padding: 24px;
+}
+.console-popup {
+  width: min(720px, 92vw);
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+.console-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.console-popup-body {
+  padding: 16px 18px;
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+.console-block {
+  margin-bottom: 14px;
+}
+.console-block:last-child {
+  margin-bottom: 0;
+}
+.console-block-label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+/* Dashboard "start your free trial" card (DashboardPage.tsx) */
+.trial-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* Dashboard "You're in!" banner after checkout (DashboardPage.tsx) */
+.welcome-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  border-color: var(--success);
+  background: var(--success-dim);
+}
+
+/* Billing (BillingPage.tsx) */
+.billing-offer h2 {
+  font-size: 24px;
+}
+.billing-price {
+  margin: 16px 0 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.billing-price-was {
+  color: var(--text-faint);
+  text-decoration: line-through;
+  font-size: 20px;
+}
+.billing-price-now {
+  font-size: 36px;
+  font-weight: 800;
+}
+.billing-founder-note {
+  background: var(--accent-dim);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  font-size: 14px;
+}
+.billing-included {
+  margin: 16px 0 20px;
+  padding-left: 20px;
+  color: var(--text-dim);
+}
+.billing-included li {
+  margin: 6px 0;
+}
+.billing-success {
+  margin-bottom: 16px;
+  border-color: var(--success);
+  background: var(--success-dim);
+}
+
+/* Push to GitHub popup (PushToGithubModal.tsx) — reuses the console popup shell. */
+.push-modal {
+  width: min(520px, 92vw);
+}
+.push-modal-body {
+  padding: 18px;
+}
+.push-option {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: normal;
+}
+.push-option.selected {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.push-option input {
+  margin-top: 3px;
+}
+.push-option > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+}
+
+/* Dashboard "connect your accounts" reminder (ConnectAccountsBanner.tsx). */
+.connect-banner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent-dim);
+}
+.connect-banner-icons {
+  display: flex;
+  gap: 6px;
+}
+.connect-banner-text {
+  flex: 1;
+  min-width: 220px;
+}
+.connect-banner-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Second, wider breakpoint than the 720px .grid-2/.grid-3 one above — a
+   3-way chat|editor docked split needs more room before side-by-side stays
+   usable than a simple 2-column grid does. Mirrors WORKSPACE_NARROW_BREAKPOINT_PX
+   in src/hooks/useMatchMedia.ts; keep the two numbers in sync if either changes. */
+@media (max-width: 900px) {
+  .main-workspace {
+    height: auto;
+    overflow: visible;
+  }
+  .console-popup {
+    width: 100%;
+  }
+}
+
+/* Password field with a Show/Hide button inside it */
+.password-input {
+  position: relative;
+}
+.password-input .input {
+  padding-right: 64px;
+}
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.password-toggle:hover {
+  color: var(--text);
+  background: var(--bg-elevated-2);
+}
+
+.billing-terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 14px 0 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.billing-terms input {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* Profile → Account: Delete my account */
+.delete-account {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.delete-account .btn-danger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.delete-account-confirm {
+  max-width: 420px;
+}
+
+/* TrakCode logo: one image per theme (see TrakLogo.tsx) */
+.trak-logo {
+  display: inline-flex;
+  align-items: center;
+}
+.trak-logo img {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+.trak-logo .logo-for-dark {
+  display: none;
+}
+/* A thin white edge around the dark "Trak" lettering. Invisible on the light
+   header, but it keeps the logo readable when a phone browser force-darkens
+   the light theme (Samsung Internet's dark mode ignores color-scheme). */
+.trak-logo .logo-for-light {
+  filter: drop-shadow(0 0 0.6px #fff) drop-shadow(0 0 0.6px #fff) drop-shadow(0 0 1.5px rgba(255, 255, 255, 0.9));
+}
+:root[data-theme='dark'] .trak-logo .logo-for-light {
+  display: none;
+}
+:root[data-theme='dark'] .trak-logo .logo-for-dark {
+  display: block;
+}
+
+/* "A new version is ready" prompt (components/UpdateWatcher.tsx). */
+.update-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100vw - 32px);
+  padding: 10px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  font-size: 14px;
+}
+
+/* Dashboard activity cards: recent list beside the heatmap, stacked on phones. */
+.activity-row {
+  display: flex;
+  align-items: flex-start;
+}
+.recent-activity {
+  flex: 0 0 160px;
+  padding-right: 10px;
+  margin-right: 10px;
+  border-right: 1px solid var(--border);
+}
+@media (max-width: 720px) {
+  .activity-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .activity-row > * {
+    width: 100%;
+  }
+  .recent-activity {
+    flex: none;
+    padding: 0 0 12px;
+    margin: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+}
+
+/* ---- Samsung Internet, light theme --------------------------------------
+   Samsung Internet force-darkens light pages and sites can't opt out. It does
+   leave canvas pixels alone, and text drawn as a shadow behind a transparent
+   glyph keeps its color (tested on a device; see SamsungLightBackground.tsx):
+   - CSS fills go transparent. A fixed canvas paints the page background and
+     grid, and each panel/button gets its own canvas child (.samsung-fill) as
+     its white (or purple, for primary buttons) fill;
+   - all text is drawn as `text-shadow: 0 0 0 currentColor` over a transparent
+     fill, so every element keeps its own color;
+   - color emoji (.emoji, Trak's avatar) and code blocks draw normally. */
+.samsung-light-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  pointer-events: none;
+}
+.samsung-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  display: block;
+}
+:root[data-samsung][data-theme='light'] [data-sfill] {
+  isolation: isolate;
+}
+:root[data-samsung][data-theme='light'] {
+  --bg: transparent;
+  --bg-elevated: transparent;
+  --bg-elevated-2: transparent;
+  --accent-dim: transparent;
+  --success-dim: transparent;
+  --danger-dim: transparent;
+  --warning-dim: transparent;
+  --code-inline-bg: transparent;
+  --heat-0: #e3e6ee;
+}
+:root[data-samsung] body,
+:root[data-samsung][data-theme='light'] .btn-primary,
+:root[data-samsung][data-theme='light'] .btn-primary:hover {
+  background: transparent;
+}
+:root[data-samsung][data-theme='light'] body,
+:root[data-samsung][data-theme='light'] body * {
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 0 currentColor;
+}
+:root[data-samsung][data-theme='light'] ::placeholder {
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 0 #8b93a7;
+}
+:root[data-samsung][data-theme='light'] input,
+:root[data-samsung][data-theme='light'] textarea {
+  caret-color: var(--text);
+}
+/* Drawn normally: color emoji and code (Samsung's own darkening keeps code readable). */
+:root[data-samsung][data-theme='light'] :is(.emoji, .trak-avatar, .code-editor, .cm-editor, pre),
+:root[data-samsung][data-theme='light'] :is(.emoji, .trak-avatar, .code-editor, .cm-editor, pre) * {
+  -webkit-text-fill-color: currentColor;
+  text-shadow: none;
+}
+
+/* Trak allowance line and limit notice (components/TrakAllowance.tsx). */
+.trak-allowance {
+  padding: 0 12px 10px;
+  margin-top: -4px;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+.trak-allowance.low {
+  color: var(--warning);
+}
+.fair-use {
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fair-use-warn {
+  color: var(--warning);
+  font-weight: 600;
+}
+.fair-use-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  overflow: hidden;
+}
+.fair-use-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+}
+.fair-use-bar.warn span {
+  background: var(--warning);
+}
+.trak-limit {
+  flex-basis: 100%;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+/* Billing: free-trial limits and "start membership now". */
+.trial-limits {
+  margin: 12px 0 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+/* Tutoring packs on the Billing page (components/TrakPacks.tsx). */
+.trak-pack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.trak-pack {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+/* Dashboard awards card (placeholder until awards are designed). */
+.awards-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.award-slot {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+/* ---- Practice Mode: long-form assignments ---- */
+.practice-mode-card {
+  text-align: left;
+  cursor: pointer;
+  border-color: var(--border);
+  background: var(--bg-elevated);
+}
+.practice-mode-card.selected {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.practice-hint {
+  margin: 6px 0 0;
+  font-size: 13px;
+}
+.step-slider input[type='range'] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.step-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+.step-slider-labels button {
+  background: none;
+  border: none;
+  padding: 2px 4px;
+  font-size: 13px;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.step-slider-labels button.active {
+  color: var(--text);
+  font-weight: 700;
+}
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chip {
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-dim);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.chip:hover {
+  color: var(--text);
+}
+.chip.selected {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--text);
+}
+.practice-skills {
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.practice-skills summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.practice-skill {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.practice-skill:hover {
+  background: var(--bg-elevated-2);
+}
+.practice-status {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--bg-elevated-2);
+  display: block;
+}
+.practice-status .spinner {
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.practice-status-error {
+  background: var(--danger-dim);
+}
+.practice-status-warning,
+.practice-warning {
+  background: var(--warning-dim);
+}
+.practice-warning {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+.practice-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.practice-row:last-child {
+  border-bottom: none;
+}
+.practice-row-title {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.practice-brief h4 {
+  margin: 14px 0 4px;
+}
+.practice-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.practice-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.practice-checklist li {
+  padding: 3px 0;
+}
+.practice-checklist .check-mark {
+  display: inline-block;
+  width: 18px;
+  font-weight: 700;
+}
+.practice-checklist .check-pass .check-mark {
+  color: var(--success);
+}
+.practice-checklist .check-fail .check-mark {
+  color: var(--danger);
+}
+.practice-checklist .check-todo .check-mark,
+.practice-checklist .check-review .check-mark {
+  color: var(--text-faint);
+}
+.practice-complete {
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--success-dim);
+}
+.file-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.file-tabs button {
+  background: none;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+.file-tabs button.active {
+  border-color: var(--border);
+  background: var(--editor-bg);
+  color: var(--text);
+}
+.fixture-view {
+  margin: 0;
+  height: 100%;
+  overflow: auto;
+  padding: 12px;
+  background: var(--editor-bg);
+  color: var(--editor-text);
+  font-size: 13px;
+}
+
+/* Compact selects (filters in the practice browser). */
+.input.input-sm {
+  padding: 6px 10px;
+  font-size: 13px;
+  width: auto;
+  min-width: 9.5em;
+}
+
+/* Practice library (components/PracticeLibrary.tsx). */
+.practice-library-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.practice-library-list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.library-row + .library-row {
+  border-top: 1px solid var(--border);
+}
+.library-row-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+.library-row-head:hover,
+.library-row.open .library-row-head {
+  background: var(--bg-elevated-2);
+}
+.library-caret {
+  width: 12px;
+  color: var(--text-faint);
+  flex-shrink: 0;
+}
+.library-row-main {
+  flex: 1;
+  min-width: 0;
+  /* Title and its tags on one line; tags wrap under it only when space runs out. */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 4px;
+}
+.library-title {
+  font-weight: 600;
+}
+.library-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.library-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.library-pager-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+}
+.library-tag {
+  font-size: 12px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.library-tag.basics {
+  border-color: var(--success);
+  color: var(--success);
+}
+.library-tag.stretch {
+  border-color: var(--accent);
+  color: var(--link);
+}
+.library-start {
+  flex-shrink: 0;
+  min-width: 84px;
+  justify-content: center;
+}
+.library-row-body {
+  padding: 4px 16px 14px 34px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.library-row-body ul {
+  margin: 6px 0 10px;
+  padding-left: 18px;
+}
+.practice-library-status {
+  margin-top: 12px;
+}
+
+/* Skip-the-trial pop-up (components/SkipTrialDialog.tsx). */
+.console-popup.skip-trial {
+  width: min(480px, 92vw);
+}
+.skip-trial-body {
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Admin, Safety review queue */
+.safety-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.safety-row {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-elevated);
+}
+.safety-row-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.safety-row-cats {
+  font-weight: 600;
+}
+.safety-row-who {
+  overflow-wrap: anywhere;
+}
+.safety-row-date {
+  margin-left: auto;
+  font-size: 13px;
+}
+.safety-row-body {
+  padding: 0 12px 12px;
+  border-top: 1px solid var(--border);
+}
+.safety-row-body > p:first-child {
+  margin-top: 12px;
+}
+.safety-context {
+  font-size: 13px;
+  color: var(--text-dim);
+  border-left: 3px solid var(--border);
+  padding-left: 10px;
+  margin: 8px 0;
+}
+.safety-context p {
+  margin: 4px 0;
+}
+.safety-message {
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 8px 0;
+}
+.safety-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 12px 0 4px;
+}
+.safety-report {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border);
+}
+.standing-notice {
+  max-width: 640px;
+  margin: 32px auto;
+}
+.safety-subtabs {
+  margin-bottom: 12px;
+}
+.safety-history {
+  margin: 12px 0 8px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  background: var(--bg-elevated-2);
+  font-size: 14px;
+}
+.safety-history ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+.safety-history li {
+  margin: 6px 0;
+}
+.safety-history summary {
+  cursor: pointer;
+  margin-top: 6px;
+}
+.text-danger {
+  color: var(--danger);
+}
+
+/* Admin, Growth tab */
+.growth-goal-line {
+  font-size: 16px;
+}
+.growth-big {
+  font-size: 28px;
+}
+.growth-progress {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--bg-elevated-2);
+  overflow: hidden;
+  margin: 10px 0 12px;
+}
+.growth-progress > div {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+.growth-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.growth-stat {
+  margin: 0;
+  padding: 14px;
+}
+.growth-stat-value {
+  font-size: 24px;
+  font-weight: 700;
+}
+.growth-chart-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.growth-ranges {
+  margin: 0;
+}
+.growth-chart {
+  position: relative;
+}
+.growth-chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.growth-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.growth-axis {
+  fill: var(--text-faint);
+  font-size: 11px;
+}
+.growth-line {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.growth-line.paying {
+  stroke: var(--accent);
+}
+.growth-line.trials {
+  stroke: var(--warning);
+  stroke-dasharray: 5 4;
+}
+.growth-bar.gained {
+  fill: var(--success);
+}
+.growth-bar.lost {
+  fill: var(--danger);
+}
+.growth-cursor {
+  stroke: var(--text-faint);
+  stroke-dasharray: 3 3;
+}
+.growth-tip {
+  position: absolute;
+  top: 8px;
+  transform: translateX(-50%);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+.growth-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  font-size: 13px;
+  color: var(--text-dim);
+  margin-top: 6px;
+}
+.growth-key {
+  display: inline-block;
+  width: 14px;
+  height: 4px;
+  border-radius: 2px;
+  margin-right: -8px;
+}
+.growth-key.paying {
+  background: var(--accent);
+}
+.growth-key.trials {
+  background: var(--warning);
+}
+.growth-key.gained {
+  background: var(--success);
+  height: 10px;
+}
+.growth-key.lost {
+  background: var(--danger);
+  height: 10px;
+}
+
+/* Admin, Problem Bank (practice assignments) */
+.library-tag.lang {
+  background: var(--bg-elevated-2);
+  color: var(--text);
+  font-weight: 600;
+}
+.bank-lang {
+  cursor: pointer;
+  border: 0;
+  font: inherit;
+  font-size: 12px;
+}
+.bank-assigned {
+  margin-left: auto;
+  font-size: 12px;
+  white-space: nowrap;
+  align-self: center;
+}
+
+/* Highlighted lesson text (==text==, from Learn edit mode) looks exactly like
+   inline code, e.g. print() in a reading. */
+mark {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--code-inline);
+  background: var(--code-inline-bg);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+
+/* ---- Learn: course cards (CoursesPage) ---- */
+.course-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--course-card-bg);
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+a.course-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.course-card-disabled {
+  opacity: 0.7;
+}
+.course-card-icon {
+  flex: 0 0 auto;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+.course-card-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.course-card-title {
+  margin: 0;
+  font-size: 19px;
+}
+.course-card-status {
+  font-size: 13px;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.course-card-status.soon {
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.course-card-desc {
+  margin: 6px 0 10px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.course-card-uses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.course-card-use {
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+@media (max-width: 520px) {
+  .course-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .course-card-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* An input with fixed text in front of it (Profile link: trakcode.com/u/...) */
+.input-with-prefix {
+  display: flex;
+  align-items: stretch;
+}
+.input-with-prefix .input-prefix {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-right: none;
+  border-radius: var(--radius, 8px) 0 0 var(--radius, 8px);
+  background: var(--bg-elevated);
+  color: var(--text-dim);
+  font-size: 14px;
+  white-space: nowrap;
+}
+.input-with-prefix .input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Feedback button + form (components/FeedbackWidget.tsx). The button floats in
+   the bottom right of every signed-in page; the form opens above it, styled
+   like the Ask Trak panel. Both are left out of feedback screenshots. */
+.feedback-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 550;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+  transition: transform 0.15s, filter 0.15s;
+}
+.feedback-fab:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+.feedback-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 84px;
+  z-index: 600;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+}
+.feedback-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px 8px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated-2);
+  flex-shrink: 0;
+}
+.feedback-close {
+  padding: 2px 8px;
+  line-height: 1;
+}
+.feedback-panel-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  overflow-y: auto;
+}
+textarea.feedback-input,
+textarea.feedback-reply {
+  font-family: inherit;
+  resize: vertical;
+  min-height: 110px;
+  line-height: 1.45;
+}
+.feedback-count {
+  align-self: flex-end;
+  font-size: 12px;
+  margin-top: -6px;
+}
+.feedback-shot-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.feedback-shot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.feedback-shot img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  object-position: left top;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+}
+@media (max-width: 720px) {
+  .feedback-fab {
+    right: 16px;
+    bottom: 16px;
+    width: 48px;
+    height: 48px;
+  }
+  .feedback-panel {
+    right: 16px;
+    bottom: 76px;
+    max-height: calc(100vh - 100px);
+  }
+}
+
+/* Messages icon in the top bar (components/MessagesButton.tsx). On wide
+   screens it sits with the other actions; on phones a copy stays next to the
+   menu button (.nav-pinned) so the unread badge is always visible. */
+.messages-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-dim);
+  transition: background 0.15s, color 0.15s;
+}
+.messages-button:hover,
+.messages-button.active {
+  background: var(--bg-elevated-2);
+  color: var(--text);
+}
+.messages-badge {
+  position: absolute;
+  top: -6px;
+  right: -7px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}
+.nav-pinned {
+  display: none;
+}
+@media (max-width: 720px) {
+  .nav-pinned {
+    display: flex;
+    margin-left: auto;
+  }
+  .nav-pinned + .nav-toggle {
+    margin-left: 0;
+  }
+  .messages-button-wide {
+    display: none;
+  }
+}
+
+/* Messages page (pages/MessagesPage.tsx). */
+.messages-page {
+  max-width: 760px;
+}
+.messages-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+.messages-list li + li {
+  border-top: 1px solid var(--border);
+}
+.messages-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 14px 16px;
+  color: var(--text);
+}
+.messages-row:hover {
+  background: var(--bg-elevated-2);
+}
+.messages-row-main {
+  min-width: 0;
+  flex: 1;
+}
+.messages-row-subject {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.messages-row.unread .messages-row-subject {
+  font-weight: 700;
+}
+.messages-row-preview {
+  font-size: 13px;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.messages-row-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.messages-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.messages-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+.messages-bubble {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  padding: 12px 14px;
+}
+.messages-bubble.from-user {
+  background: var(--bg-elevated-2);
+}
+.messages-bubble.from-team {
+  border-color: var(--accent);
+}
+.messages-bubble-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+.messages-bubble-body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+.messages-shot {
+  display: block;
+  margin-top: 10px;
+}
+.messages-shot img {
+  max-width: 100%;
+  max-height: 320px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* Admin, Feedback tab (components/admin/FeedbackTab.tsx). */
+.feedback-admin-list {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.feedback-admin-row + .feedback-admin-row {
+  border-top: 1px solid var(--border);
+}
+.feedback-admin-row.unread {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.feedback-admin-summary {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.feedback-admin-summary:hover {
+  background: var(--bg-elevated-2);
+}
+.feedback-admin-snippet {
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.feedback-admin-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 14px 16px;
+}
+
+/* Bug / suggestion toggle at the top of the feedback form. */
+.feedback-kind {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+}
+.feedback-kind-option {
+  padding: 8px 6px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.feedback-kind-option:hover {
+  color: var(--text);
+}
+.feedback-kind-option.active {
+  background: var(--accent);
+  color: #fff;
+}

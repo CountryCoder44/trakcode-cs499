@@ -1,0 +1,22 @@
+{
+ "libraryKey": "number-neg-5",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.975,
+ "sentences": [
+  {
+   "text": "-5.",
+   "start": 0,
+   "end": 0.975,
+   "segments": [
+    {
+     "text": "-5",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

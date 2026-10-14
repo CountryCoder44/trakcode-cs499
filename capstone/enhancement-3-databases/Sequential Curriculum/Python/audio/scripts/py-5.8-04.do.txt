@@ -1,0 +1,4 @@
+Assign, open perren Python comma 1991 comma Guido close perren, to, record.
+Unpack it into, language, year, and, creator.
+Print all three as labeled f string lines.
+Use one unpacking assignment rather than indexing each output.

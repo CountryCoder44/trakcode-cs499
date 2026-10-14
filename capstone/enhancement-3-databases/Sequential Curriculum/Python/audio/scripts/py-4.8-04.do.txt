@@ -1,0 +1,3 @@
+Assign, banana, to, word.
+Assign, word dot find open perren A. En, close perren, to, position, then print, First A. En. colon 1, with an f string.
+Use, find open perren close perren, with the substring, A. En, and insert, open brace position close brace, in the output.

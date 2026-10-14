@@ -1,0 +1,2 @@
+Read one line with at least three characters.
+Print its last three characters.

@@ -1,0 +1,3 @@
+not binds tighter than and or or when there are no parentheses.
+not True or True, is really, open perren not True close perren or True, which is, True.
+Add parentheses and you change what not is even flipping:, not open perren True or True close perren, reverses the whole or result, giving, False, instead.

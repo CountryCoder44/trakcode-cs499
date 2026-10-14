@@ -1,0 +1,2 @@
+Age colon plus 42, actually raises an error, because, plus, refuses to join a string and a number directly.
+You need to convert the number to text first, Age colon plus string open perren 42 close perren, gives you, Age colon 42.

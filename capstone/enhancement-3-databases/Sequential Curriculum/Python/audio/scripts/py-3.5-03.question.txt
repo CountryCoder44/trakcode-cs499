@@ -1,0 +1,1 @@
+Using Python's default precedence, what does, False or True and False, produce?

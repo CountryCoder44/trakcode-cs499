@@ -1,0 +1,3 @@
+Writing several comma-separated values *packs* them into a tuple:, p equals 1 comma 2 comma 3.
+Assigning a tuple to several names *unpacks* it:, x comma y comma z equals p.
+The number of names must match the number of items or Python raises, Value Error.

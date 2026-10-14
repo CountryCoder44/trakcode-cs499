@@ -1,0 +1,2 @@
+The full name needs a space between its parts, and the character count must measure the completed name rather than only the first name.
+Build, full name, as one expression joining, first, a space, and, last, with, plus, then measure, full name, with, len open perren close perren.

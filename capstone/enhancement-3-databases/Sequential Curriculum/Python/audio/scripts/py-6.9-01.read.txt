@@ -1,0 +1,4 @@
+A union combines the members of two sets and keeps one copy of each value.
+Use the, pipe, operator:, first pipe second.
+With, open brace 1 comma 2 close brace, and, open brace 2 comma 3 close brace, the union contains 1, 2, and 3.
+The original sets stay unchanged.

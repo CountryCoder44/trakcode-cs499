@@ -1,0 +1,3 @@
+Assign 9 to, price, and 4 to, quantity.
+Assign, price times quantity, to, total, then print, Total colon 36, with an f string.
+Calculate the total from the two variables and use, open brace total close brace, in the f string.

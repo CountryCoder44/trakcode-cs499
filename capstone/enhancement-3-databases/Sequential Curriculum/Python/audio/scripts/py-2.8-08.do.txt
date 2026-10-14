@@ -1,0 +1,3 @@
+Input line 1 is an item name, line 2 is a whole number quantity, and line 3 is a whole number unit price.
+The program swaps two of the inputs, leaves one numeric value as text, and uses addition for the total.
+Repair all three problems without adding prompts.

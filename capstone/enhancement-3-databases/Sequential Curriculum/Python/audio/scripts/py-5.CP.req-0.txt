@@ -1,0 +1,2 @@
+Reed four lines with, input open perren close perren, and convert each to int.
+Do not print prompts.

@@ -1,0 +1,4 @@
+Assign 20 to, amount.
+Decrease it by 4 with, minus equals, then multiply the result by 3 with, times equals.
+Print, amount.
+Use the two augmented assignments in that order.

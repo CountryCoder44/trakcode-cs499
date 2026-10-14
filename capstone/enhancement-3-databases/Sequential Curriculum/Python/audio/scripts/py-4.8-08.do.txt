@@ -1,0 +1,5 @@
+Reed two lines of text.
+Normalize each with, strip open perren close perren dot lower open perren close perren, assign the results to, first clean, and, second clean, then assign their equality comparison to, same.
+Print, Same colon less than same greater than, with an f string.
+Do not print prompts.
+Normalize both inputs before comparing the two variables with, double equals.

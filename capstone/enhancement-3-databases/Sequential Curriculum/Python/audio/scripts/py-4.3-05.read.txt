@@ -1,0 +1,3 @@
+A slice is a brand new string, not a cut made into the original.
+If, word equals garden, and, part equals word open bracket 1 colon 4 close bracket, part, becomes, ard, but, word, is still, garden, untouched.
+You can assign the slice, print it, or combine it with other strings using, plus.

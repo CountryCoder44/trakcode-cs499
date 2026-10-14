@@ -1,0 +1,3 @@
+Assign 22 to age and, True, to, has ticket.
+Assign, open perren age greater than or equal to 18 close perren and has ticket, to, can enter, then print, Can enter colon True, with an f string.
+Calculate, can enter, with the parenthesized comparison and one and operator, then insert, open brace can enter close brace, in the output.

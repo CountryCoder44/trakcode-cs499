@@ -1,0 +1,1 @@
+If the user types 5 and then 3, what does the shown program display?

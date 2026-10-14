@@ -1,0 +1,3 @@
+Once the first character is index 0, the numbers just keep going from left to right, the second character is 1, the third is 2, and so on.
+Spaces and punctuation count too.
+In, a b, the space has index 1 because it sits right between the a at 0 and the b at 2.

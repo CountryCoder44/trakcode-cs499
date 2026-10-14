@@ -1,0 +1,6 @@
+A value written directly in your code is called a literal.
+This lesson covers Python's two number types.
+int represents whole numbers, like 5, minus 2, and 1000.
+Any number literal written with a decimal point, 3 point 14, 0 point 5, 2 point 0, is a, float.
+Even, 2 point 0, which represents a whole amount, still counts as a, float, because of that decimal point.
+Symbols that perform calculations are called operators:, plus, minus, and, times, add, subtract, and multiply numbers.

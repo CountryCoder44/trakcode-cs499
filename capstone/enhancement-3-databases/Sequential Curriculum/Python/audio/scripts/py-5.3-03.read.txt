@@ -1,0 +1,3 @@
+The familiar slice shortcuts work on lists too.
+items open bracket colon 2 close bracket, takes the first two items, items open bracket 2 colon close bracket, takes everything from index 2 onward, and, items open bracket colon colon 2 close bracket, takes every other item beginning at index 0.
+The supported reversal pattern, items open bracket colon colon minus 1 close bracket, produces a new list in reverse order.

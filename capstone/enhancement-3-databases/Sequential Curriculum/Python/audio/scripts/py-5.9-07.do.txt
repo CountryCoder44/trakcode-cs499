@@ -1,0 +1,3 @@
+The program should replace the first value in the second row with 9, then report the final value in that row.
+It currently updates the second value in the first row and reads from the wrong row.
+Repair both nested indexes.

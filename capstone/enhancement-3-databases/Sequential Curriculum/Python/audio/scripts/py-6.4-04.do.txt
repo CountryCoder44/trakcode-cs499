@@ -1,0 +1,2 @@
+Assign, open brace mode colon safe comma temporary colon 99 comma retries colon 3 close brace, to, settings.
+Delete the, temporary, pair with del, then print the dictionary and its new length.

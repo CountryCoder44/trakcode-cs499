@@ -1,0 +1,2 @@
+With, s equals cat, build and print, bat, by combining a new first character with the rest of s.
+Do not type, bat, directly.

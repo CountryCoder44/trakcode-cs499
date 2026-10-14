@@ -1,0 +1,2 @@
+Assign, open bracket open bracket Ada comma 90 close bracket comma open bracket Grace comma 95 close bracket close bracket, to, records.
+Print the first inner list using, records open bracket 0 close bracket, then print the second using, records open bracket 1 close bracket.

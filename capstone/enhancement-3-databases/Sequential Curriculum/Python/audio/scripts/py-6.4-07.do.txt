@@ -1,0 +1,2 @@
+Read three lines: a name, an age (whole number), and a city.
+Build a dictionary of the form, open brace name colon open brace age colon age comma city colon city close brace close brace, and print it.

@@ -1,0 +1,2 @@
+Read three words, one per line.
+Build a list in that order, remove the second word, and print the list.

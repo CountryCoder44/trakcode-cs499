@@ -1,0 +1,2 @@
+The three results should show ordinary division, the whole number quotient, and the remainder for 17 divided by 5.
+Each calculation currently uses the wrong operator, repair all three expressions.

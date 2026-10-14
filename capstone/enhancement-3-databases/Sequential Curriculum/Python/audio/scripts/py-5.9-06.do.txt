@@ -1,0 +1,2 @@
+Assign, open bracket open bracket 1 comma 2 comma 3 close bracket comma open bracket 4 comma 5 comma 6 close bracket close bracket, to, grid.
+Print the last item of the first row using, len open perren close perren, for the index, don't hardcode 2.

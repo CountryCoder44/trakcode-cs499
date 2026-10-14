@@ -1,0 +1,4 @@
+A plain-text code editor or IDE can create, dot pie, files.
+Visual Studio Code is the recommended course example.
+Install the editor and its official Python extension.
+The extension adds editor support but is not itself the Python interpreter.

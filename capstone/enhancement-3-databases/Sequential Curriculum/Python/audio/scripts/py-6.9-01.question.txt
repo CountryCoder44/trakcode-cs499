@@ -1,0 +1,1 @@
+What does, sorted open perren open brace 1 comma 3 close brace pipe open brace 2 comma 3 close brace close perren, produce?

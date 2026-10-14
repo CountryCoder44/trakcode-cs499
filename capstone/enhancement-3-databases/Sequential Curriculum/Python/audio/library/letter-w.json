@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-w",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.882,
+ "sentences": [
+  {
+   "text": "\"w\".",
+   "start": 0,
+   "end": 0.882,
+   "segments": [
+    {
+     "text": "\"w\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

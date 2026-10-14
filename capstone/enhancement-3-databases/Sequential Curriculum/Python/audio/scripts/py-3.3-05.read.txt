@@ -1,0 +1,3 @@
+For ordering numbers, you've got, less than, greater than, less than or equal to, and, greater than or equal to, notice the equals sign always comes second, never first.
+Both boundaries count as true:, 5 less than or equal to 5, and, 5 greater than or equal to 5, are both, True.
+We're only comparing one pair of numbers at a time here, no chaining comparisons together yet.

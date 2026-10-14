@@ -1,0 +1,2 @@
+A terminal is a text interface for giving commands to the operating system and to command line programs.
+It's important to note the terminal itself is not Python, it's just something you can use to start the interpreter or ask Python to run a file.

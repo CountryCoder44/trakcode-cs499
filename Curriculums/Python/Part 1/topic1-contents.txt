@@ -1,0 +1,486 @@
+================================================================================
+TOPIC 1 — Introduction to Python
+================================================================================
+
+This topic builds a correct mental model of programming and Python, then traces
+how Python turns source code into output or an error. All work is in the
+TrakCode browser workspace — installing Python and setting up a local editor are
+not part of learning to program and are left to the learner's own tooling.
+**Scope boundaries.** Code examples containing `print()` are shown only to
+illustrate execution order, output, and errors — learners are **not** yet
+expected to write or modify `print()` statements, and `print()` is taught
+properly in Topic 2 alongside values and variables. Seeing quoted text, names,
+or error types inside those examples does **not** mean that strings, variables,
+functions, or exception handling have been taught; each is introduced later
+(strings and variables in Topic 2, functions in Topic 9, exception handling in
+Topic 10). Type conversion and user input are Topic 2. Virtual environments and
+dependency isolation are Topic 12. **Live-coding note.** Topic 1 is the stated
+exception to the "≥ 50% live coding" rule — every item is short reading plus a
+concept check, and there is no checkpoint. Hands-on coding starts in Topic 2.
+
+
+--------------------------------------------------------------------------------
+LESSON 1.1 — What Is Python?
+--------------------------------------------------------------------------------
+Objective: Build a correct mental model of programming, of Python as a language,
+and of the kinds of problems Python is used to solve.
+
+  py-1.1-01 · Programming Is Giving Instructions   [concept]
+
+  READING:
+    Programming is the process of designing and expressing instructions that a
+    computer can carry out. A computer follows the instructions it receives; it
+    does not automatically know the result a person intended. Clear steps and
+    exact rules matter.
+
+  QUESTION:
+    Which statement best describes programming?
+      A. Installing applications
+      B. Designing instructions a computer can carry out
+      C. Using software that someone else already built
+      D. Memorizing every command in a language
+
+  ANSWER: B — Designing instructions a computer can carry out
+  WHY:
+    Programming is about creating instructions and solving problems.
+  IF WRONG:
+    Contrast *creating* instructions with *installing* or *using* software that
+    already exists.
+
+
+  py-1.1-02 · A Language Is Not a Program   [concept]
+
+  READING:
+    A programming language supplies vocabulary, a set of structural rules called
+    *syntax*, and meaning for expressing instructions. A program is a particular
+    set of instructions written with that language. Python is a language; a file
+    that calculates a total can be a Python program.
+
+  QUESTION:
+    Which item is a Python program?
+      A. The rules of Python syntax
+      B. A file containing Python instructions that calculate a total
+      C. A description of what a program should accomplish, with no instructions
+      D. The name "Python" by itself
+
+  ANSWER: B — A file containing Python instructions that calculate a total
+  WHY:
+    A program is a concrete set of instructions written for a task.
+  IF WRONG:
+    A program is the *instructions themselves*. The syntax rules (A) are the
+    language; a goal with no steps (C) is not yet a program; and a name (D) is
+    just a label.
+
+
+  py-1.1-03 · Python Is a Programming Language   [concept]
+
+  READING:
+    Python is a **high-level**, **general-purpose** programming language.
+    *High-level* means a programmer can work without directly managing many
+    machine-level details. *General-purpose* means Python can be used for many
+    different kinds of work. Python was first released publicly in 1991 and is
+    used by beginners and professional teams alike. It emphasizes readable code,
+    but it still requires valid syntax. (The next two items expand on each
+    term.)
+
+  QUESTION:
+    Which description of Python is accurate?
+      A. A single program written for one particular task
+      B. A language used only by beginning programmers
+      C. A high-level, general-purpose programming language
+      D. A language designed for only one category of work
+
+  ANSWER: C — A high-level, general-purpose programming language
+  WHY:
+    Python is a language used to express computer instructions.
+  IF WRONG:
+    Python is a language, not one particular program (A). It is used by both
+    beginners and professional teams (B), and it supports many categories of
+    work rather than only one (D).
+
+
+  py-1.1-04 · What "High-Level" Means   [concept]
+
+  READING:
+    A high-level language lets a programmer work with concepts closer to human
+    problem solving, while the software that runs Python takes care of many
+    machine-level details. High-level does **not** mean "only for experts," and
+    it does **not** guarantee that a program is fast.
+
+  QUESTION:
+    Why is Python called high-level?
+      A. Only advanced programmers can use it
+      B. It hides many low-level machine details behind useful concepts
+      C. It always runs faster than every other language
+      D. Its instructions work directly with the computer's hardware
+
+  ANSWER: B — It hides many low-level machine details behind useful concepts
+  WHY:
+    "High-level" describes abstraction away from machine details.
+  IF WRONG:
+    Use the analogy of driving a car without directly controlling fuel-injection
+    timing.
+
+
+  py-1.1-05 · What "General-Purpose" Means   [concept]
+
+  READING:
+    A general-purpose language can be used across many categories of work.
+    Python is used for automation, web backends, data analysis, artificial
+    intelligence, testing, scientific computing, and developer tools. It is
+    flexible, but it is not automatically the best tool for every constraint.
+
+  QUESTION:
+    What does "general-purpose" mean?
+      A. Python can be used for many categories of problem
+      B. Python automatically solves every problem
+      C. Python is only meant for small, beginner-level tasks
+      D. Every project should be written in Python
+
+  ANSWER: A — Python can be used for many categories of problem
+  WHY:
+    General-purpose means broad applicability, not unlimited capability.
+  IF WRONG:
+    Contrast "many kinds of work" with "the correct choice for every job."
+
+
+  py-1.1-06 · A Common Python Use: Automation   [concept]
+
+  READING:
+    Automation uses code to perform repeatable work consistently. A Python
+    program might rename thousands of files, generate a recurring report,
+    organize folders, or check a set of web services. Automation is valuable
+    when a task has a clear rule and must be repeated.
+
+  QUESTION:
+    Why is renaming 4,000 files according to one rule a good automation task?
+      A. The same clear rule must be applied repeatedly
+      B. Every filename requires a different human judgment
+      C. The task has no rule describing the desired names
+      D. The computer must decide what the company intended
+
+  ANSWER: A — The same clear rule must be applied repeatedly
+  WHY:
+    Automation is most useful when code can apply a clear rule repeatedly and
+    consistently.
+  IF WRONG:
+    Automation needs a clear rule; it does not invent the intended result (C,
+    D). If every case required different human judgment (B), one repeated rule
+    would not be enough.
+
+
+  py-1.1-07 · Why Python Is Popular   [concept]
+
+  READING:
+    Python is popular partly because its syntax is approachable, it has
+    extensive learning materials, it has a large community, and a programmer can
+    reuse code that other people have already written and shared. Python also
+    runs on the common operating systems (Windows, macOS, and Linux). Readable
+    code is easier for people to review, test, maintain, and change — but
+    readable code can still contain mistakes.
+
+  QUESTION:
+    Why is readability valuable in software?
+      A. Code is read, tested, reviewed, and changed repeatedly
+      B. Readable code can never contain defects
+      C. Readable code is useful only to the computer running it
+      D. Readable code never needs to be tested or reviewed
+
+  ANSWER: A — Code is read, tested, reviewed, and changed repeatedly
+  WHY:
+    Readability helps people work with software over time.
+  IF WRONG:
+    Readability helps *people* — the reading says readable code is easier to
+    review, test, and change. It still needs testing and review (D), it still
+    matters to people, not just the computer (C), and it can still contain
+    mistakes (B).
+
+
+  py-1.1-08 · Keep the Language, Program, and Tools Separate   [concept]
+
+  READING:
+    Python is the language. A `.py` file stores Python source code. An
+    interpreter executes that code. A code editor helps a person write and
+    organize it. Keeping these roles separate makes the following items much
+    easier.
+
+  QUESTION:
+    Which component reads a `.py` file and executes its instructions?
+      A. The Python language itself
+      B. The interpreter
+      C. The code editor the file was typed in
+      D. The `.py` filename extension
+
+  ANSWER: B — The interpreter
+  WHY:
+    The interpreter is the software that executes the code.
+  IF WRONG:
+    Each role has one job. The language (A) is the rules; the editor (C) helps
+    you write the code; the `.py` extension (D) only labels the file. Only the
+    interpreter *runs* it.
+
+
+
+--------------------------------------------------------------------------------
+LESSON 1.2 — How Python Executes Code
+--------------------------------------------------------------------------------
+Objective: Trace source code — from a saved file or the interactive prompt —
+through the interpreter to output or an error.
+
+  py-1.2-01 · Source Code Is Program Text   [concept]
+
+  READING:
+    Source code is the human-readable text of a program — the instructions a
+    programmer writes. It is not the result the program produces when it runs,
+    not the language's own rules, and not the editor used to type it in.
+
+  QUESTION:
+    What is source code?
+      A. Human-readable program text
+      B. The result a program produces when it runs
+      C. The rules and vocabulary that make up Python
+      D. The editor a person types the code into
+
+  ANSWER: A — Human-readable program text
+  WHY:
+    Source code is the text used to express the program.
+  IF WRONG:
+    Source code is the instructions themselves. It is not the result they
+    produce (B), not the language's rules (C), and not the editor used to write
+    them (D).
+
+
+  py-1.2-02 · Python Files Usually End in `.py`   [concept]
+
+  READING:
+    Python source files conventionally use the `.py` extension, such as
+    `greeting.py`. The extension tells people and tools what kind of source code
+    the file likely contains. Saving a `.py` file does not automatically execute
+    it.
+
+  QUESTION:
+    What does `.py` normally identify?
+      A. A Python source file
+      B. A file that is guaranteed to be valid, error-free Python
+      C. A program that runs the moment it is saved
+      D. The Python interpreter itself
+
+  ANSWER: A — A Python source file
+  WHY:
+    The `.py` extension conventionally identifies Python source.
+  IF WRONG:
+    The `.py` extension only labels a file as Python source. It does not check
+    that the code is valid (B), it does not run the file when you save it (C),
+    and it is not the interpreter (D).
+
+
+  py-1.2-03 · The Interpreter Executes Code   [concept]
+
+  READING:
+    The Python interpreter is software that reads Python instructions and
+    executes them. A useful beginner model: source code goes into the
+    interpreter; the interpreter carries out the instructions; the program
+    produces a result or an error. The interpreter uses the instructions as
+    written; it does not silently rewrite them to match what the programmer
+    intended or decide what they should accomplish. (This beginner model is
+    enough for now.)
+
+  QUESTION:
+    What is the interpreter's role?
+      A. Decide the program's goal
+      B. Read and execute Python instructions
+      C. Correct the programmer's mistakes automatically
+      D. Write and organize the source code for the programmer
+
+  ANSWER: B — Read and execute Python instructions
+  WHY:
+    The interpreter carries out the instructions that were written.
+  IF WRONG:
+    The interpreter runs the instructions as written. It does not decide the
+    program's purpose (A), it does not fix mistakes (C), and it does not write
+    or organize the code (D) — that is the editor's job.
+
+
+  py-1.2-04 · Execution Usually Starts at the Top   [concept]
+
+  READING:
+    In a simple, straight-line program like the one below, Python starts with
+    the first instruction and then runs each following instruction from top to
+    bottom. The order the instructions run in is the order the results appear.
+    For reading this example only: each `print(...)` instruction displays the
+    text between its quotation marks — writing `print` yourself comes in Topic
+    2.
+
+  CODE SHOWN WITH THE QUESTION:
+    print("First")
+    print("Second")
+    print("Third")
+
+  QUESTION:
+    Which word appears first in the displayed text?
+      A. Third
+      B. Second
+      C. First
+      D. A word chosen at random each run
+
+  ANSWER: C — First
+  WHY:
+    The first instruction runs first in this simple, straight-line program.
+  IF WRONG:
+    Trace each line with the learner from top to bottom.
+
+
+  py-1.2-05 · Output Is a Program Result   [concept]
+
+  READING:
+    Output is information a program produces. It may appear on the screen or in
+    an output area, but a program can also create files or update stored data. A
+    program can execute successfully without displaying any text.
+
+  QUESTION:
+    Which statement about output is correct?
+      A. Every successful program must display something on the screen
+      B. Output can be displayed text, a file, or another produced result
+      C. Output is the source code, before the interpreter runs it
+      D. A created file cannot be output because nothing is shown on the screen
+
+  ANSWER: B — Output can be displayed text, a file, or another produced result
+  WHY:
+    Programs can produce different kinds of results.
+  IF WRONG:
+    Output is anything a program produces — screen text, a saved file, or
+    updated data. A program can finish successfully while showing nothing (A,
+    D), and output is never the source code, which exists before the program
+    runs (C).
+
+
+  py-1.2-06 · A Terminal Runs Commands   [concept]
+
+  READING:
+    A terminal is a text interface for giving commands to the operating system
+    and to command-line programs. The terminal is not Python. It can start the
+    Python interpreter or ask Python to run a file.
+
+  QUESTION:
+    Which statement is accurate?
+      A. A terminal is the Python language
+      B. A terminal is a text interface that can start Python
+      C. A terminal is a `.py` file
+      D. A terminal performs the same role as a code editor
+
+  ANSWER: B — A terminal is a text interface that can start Python
+  WHY:
+    The terminal accepts commands; Python is a separate tool it can start.
+  IF WRONG:
+    A terminal is a text interface for running commands. It is not the Python
+    language (A), not a `.py` file (C), and not a code editor — an editor is for
+    writing code, a terminal is for running commands (D).
+
+
+  py-1.2-07 · The REPL Is Interactive Python   [concept]
+
+  READING:
+    REPL means Read–Eval–Print Loop. It lets a programmer enter a small piece of
+    Python code, run it immediately, see a result when appropriate, and then
+    enter more. The `>>>` symbols are the Python prompt and are not part of the
+    code. The REPL is meant for quick experiments — not as the place to preserve
+    and build up a program over several days, or to hand finished software to
+    other people.
+
+  QUESTION:
+    When is the REPL most useful?
+      A. Quickly trying a short piece of code
+      B. Building a program over many days
+      C. Keeping code you will need to run again next week
+      D. Publishing a finished application for other people
+
+  ANSWER: A — Quickly trying a short piece of code
+  WHY:
+    The REPL is best for immediate, small experiments.
+  IF WRONG:
+    The REPL is for quick, temporary experiments. Anything you need to keep (C),
+    build up over days (B), or share with others (D) belongs in a saved file
+    instead.
+
+
+  py-1.2-08 · A Script Is Saved and Repeatable   [concept]
+
+  READING:
+    A script is source code saved in a file. Scripts are easier to edit, rerun,
+    share, test, and keep than a temporary REPL session. A script runs only when
+    an interpreter is asked to execute it.
+
+  QUESTION:
+    You are building a program over several days. Which approach fits best?
+      A. A saved `.py` script
+      B. A screenshot of the REPL session
+      C. An editor tab you never save
+      D. Retyping the code into the REPL each day
+
+  ANSWER: A — A saved `.py` script
+  WHY:
+    A script preserves the program for future work.
+  IF WRONG:
+    Emphasize repeatability and saved source.
+
+
+  py-1.2-09 · Syntax Errors Stop Normal Execution   [concept]
+
+  READING:
+    A syntax error means the code does not follow Python's structural rules. In
+    the example below, the opening quotation mark begins a piece of text, but
+    there is no matching closing quotation mark. Because the instruction is
+    incomplete, Python cannot understand it as valid code and reports a syntax
+    error instead of running it.
+
+  CODE SHOWN WITH THE QUESTION:
+    print("Hello)
+
+  QUESTION:
+    What kind of problem is shown?
+      A. Syntax error
+      B. Successful execution
+      C. A mistake in the file's name rather than its code
+      D. A warning Python notes but then runs the line anyway
+
+  ANSWER: A — Syntax error
+  WHY:
+    The text in the example is missing its closing quotation mark, so the
+    instruction is incomplete and invalid.
+  IF WRONG:
+    The opening quotation mark has no matching closing quotation mark, so the
+    code breaks Python's structural rules. Python reports a syntax error rather
+    than treating it as a filename problem or an ignorable warning.
+
+
+  py-1.2-10 · Runtime Errors Happen During Execution   [concept]
+
+  READING:
+    A runtime error happens after execution has already begun: Python reaches an
+    instruction it cannot complete. An unhandled runtime error — one the program
+    does not recover from — stops normal execution, so later instructions do not
+    run. In the example below, `print("Ready")` runs; then Python reaches
+    `pritn("Go")`. The misspelled `pritn` matches no name Python knows, so
+    Python raises a `NameError` and stops. `print("Finished")` never runs.
+
+  CODE SHOWN WITH THE QUESTION:
+    print("Ready")
+    pritn("Go")
+    print("Finished")
+
+  QUESTION:
+    What will most likely happen?
+      A. Python silently corrects `pritn` to `print`
+      B. Python raises a `NameError` when it reaches `pritn`
+      C. Python skips the bad line, so `Ready` and `Finished` both print
+      D. Nothing runs at all — not even `Ready`
+
+  ANSWER: B — Python raises a `NameError` when it reaches `pritn`
+  WHY:
+    Python reaches the misspelled name, cannot match it to anything, raises
+    `NameError`, and stops — so `Ready` prints but `Finished` does not.
+  IF WRONG:
+    Trace the program in order: `Ready` prints first, `pritn` then raises a
+    `NameError`, and normal execution stops before `Finished` can print.
+
+

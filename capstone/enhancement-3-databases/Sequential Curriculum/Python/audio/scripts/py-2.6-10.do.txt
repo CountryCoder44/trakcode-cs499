@@ -1,0 +1,3 @@
+The quantity arrives as text.
+The program calls, int open perren close perren, but throws away its return value, then tries to add a number to the original string.
+Store the converted value in a variable named, quantity, then use it.

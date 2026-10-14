@@ -1,0 +1,1 @@
+an error because strings are immutable.

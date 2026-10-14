@@ -1,0 +1,2 @@
+The values are assigned correctly, but both names used in, print open perren close perren, have the wrong capitalization, Python is case sensitive.
+Repair the output line without changing either assignment.

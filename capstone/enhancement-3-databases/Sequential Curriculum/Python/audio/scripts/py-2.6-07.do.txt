@@ -1,0 +1,3 @@
+Assign the, float, 19 point 99, to, price.
+Print only the whole dollar part (the number before the decimal) by converting to an integer.
+Convert, price, with, int open perren close perren, don't print 19 directly.

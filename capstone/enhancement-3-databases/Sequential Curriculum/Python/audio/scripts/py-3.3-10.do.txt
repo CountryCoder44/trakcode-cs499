@@ -1,0 +1,4 @@
+Reed a whole number age and report whether it is at least 18.
+The current program keeps the input as text and excludes the boundary value.
+Repair the conversion and comparison.
+Do not add prompts.

@@ -1,0 +1,4 @@
+Lists are mutable, which means their items can be changed after the list is created.
+numbers open bracket 0 close bracket equals 9, replaces the first item inside, numbers.
+The variable still refers to the same list, now with a different value at that position.
+This is different from strings, which must be rebuilt instead of changed character by character.

@@ -1,0 +1,3 @@
+Assign, 2026 slash 09 slash 04, to, date.
+Assign, date dot replace open perren slash comma minus close perren, to, formatted, then print it.
+Use, replace open perren close perren, to change every slash; do not write the completed date directly.

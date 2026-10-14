@@ -1,0 +1,2 @@
+Read two lines of space-separated words.
+Print every distinct word from both lines, as a sorted list.

@@ -1,0 +1,4 @@
+Assign 3 to, items left.
+Assign, items left compared to 0, to, sold out, then assign, not sold out, to, in stock.
+Print, In stock colon True, with an f string.
+Calculate, in stock, by applying not to, sold out.

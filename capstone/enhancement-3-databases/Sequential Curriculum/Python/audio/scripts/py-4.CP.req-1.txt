@@ -1,0 +1,3 @@
+The first name contains at least one letter after surrounding whitespace is removed.
+The last name contains at least three letters after surrounding whitespace is removed.
+Test inputs use English letters.

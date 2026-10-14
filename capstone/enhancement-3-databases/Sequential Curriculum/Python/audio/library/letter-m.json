@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-m",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.557,
+ "sentences": [
+  {
+   "text": "\"m\".",
+   "start": 0,
+   "end": 0.557,
+   "segments": [
+    {
+     "text": "\"m\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

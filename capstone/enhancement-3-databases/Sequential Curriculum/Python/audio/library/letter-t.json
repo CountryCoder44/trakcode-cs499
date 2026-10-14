@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-t",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.743,
+ "sentences": [
+  {
+   "text": "\"t\".",
+   "start": 0,
+   "end": 0.743,
+   "segments": [
+    {
+     "text": "\"t\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

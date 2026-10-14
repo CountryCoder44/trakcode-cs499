@@ -1,0 +1,2 @@
+Calculate, score, as, base to the power of 2 plus bonus times 3.
+Keep that mixed expression exactly; do not replace it with hardcoded intermediate results.

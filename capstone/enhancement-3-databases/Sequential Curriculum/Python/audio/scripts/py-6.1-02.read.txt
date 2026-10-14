@@ -1,0 +1,2 @@
+key in d, is, True, when d has that key (it does not look at values).
+len open paren d close paren, is the number of key-value pairs.

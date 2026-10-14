@@ -1,0 +1,2 @@
+Assign the text, Denver, to a variable named, city, then print the variable.
+Your solution must assign the value first and pass, city, to, print open perren close perren, rather than printing the text directly.

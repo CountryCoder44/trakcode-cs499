@@ -1,0 +1,1 @@
+With, stock equals open brace pen colon 12 comma pad colon 4 comma clip colon 30 close brace, defined, read one item name and print whether it is a key in, stock.

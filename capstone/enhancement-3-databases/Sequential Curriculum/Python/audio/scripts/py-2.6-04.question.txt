@@ -1,0 +1,2 @@
+Score colon plus 100, raises an error.
+Which version fixes it?

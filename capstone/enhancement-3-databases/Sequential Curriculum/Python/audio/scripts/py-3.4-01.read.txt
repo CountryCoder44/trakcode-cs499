@@ -1,0 +1,3 @@
+and combines two Boolean expressions, and it's picky, both sides have to be, True, for the whole thing to be, True.
+If either side is, False, the whole expression is, False.
+We'll only use and with actual Boolean values or comparison results for now.

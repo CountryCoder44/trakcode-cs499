@@ -1,0 +1,2 @@
+In Python 3, the, slash, operator always gives a, float, even when the division is exact.
+6 slash 2, is, 3 point 0, not 3.

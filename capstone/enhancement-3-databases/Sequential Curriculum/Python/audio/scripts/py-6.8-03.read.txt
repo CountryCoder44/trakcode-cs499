@@ -1,0 +1,3 @@
+update open perren list value close perren, adds each value from a list to the set.
+Existing members remain, and duplicates are ignored.
+If, tags equals open brace python close brace, then, tags dot update open perren open bracket web comma python comma api close bracket close perren, leaves the three distinct members, python, web, and, api.

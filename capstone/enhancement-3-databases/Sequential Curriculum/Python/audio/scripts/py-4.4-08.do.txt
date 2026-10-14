@@ -1,0 +1,2 @@
+Read a line of exactly two words separated by a space.
+Print them in the opposite order, separated by a space.

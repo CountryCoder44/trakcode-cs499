@@ -1,0 +1,3 @@
+Assign, open bracket email comma report comma meeting comma report close bracket, to, tasks.
+Remove the first, report, then print the list.
+Use, remove open perren report close perren; do not rebuild the remaining list.

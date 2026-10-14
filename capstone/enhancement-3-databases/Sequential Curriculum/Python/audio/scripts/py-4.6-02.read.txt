@@ -1,0 +1,2 @@
+Without the leading f, the braces are literal text.
+open brace name close brace, is the five characters, open brace name close brace; only, f open brace name close brace, substitutes.

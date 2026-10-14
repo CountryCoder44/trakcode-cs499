@@ -1,0 +1,2 @@
+With a single, print open perren close perren, call, display:, Total colon 15, the word, Total colon, and the number 15, separated by one space.
+Pass the two values to one, print open perren close perren, call separated by a comma; 15 stays a bare number.

@@ -1,0 +1,4 @@
+Assign, unhappy, to, word.
+Assign, word open bracket colon 2 close bracket, to, prefix, and, word open bracket 2 colon close bracket, to, rest.
+Print, prefix, and, rest, on separate lines.
+Use the two required slices rather than writing either result directly.

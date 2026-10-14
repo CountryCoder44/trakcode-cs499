@@ -1,0 +1,1 @@
+After, x equals 1, then, x equals 9, what does, print open perren x close perren, show?

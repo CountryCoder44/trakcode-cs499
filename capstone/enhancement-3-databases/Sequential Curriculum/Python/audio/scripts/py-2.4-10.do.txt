@@ -1,0 +1,3 @@
+alert, is already built correctly from, sound, and an exclamation point, leave the first two lines alone.
+The bug is only in the last line, which tries to add a number directly to, sound, instead of repeating the finished, alert, string.
+Repair the final line so it prints, beep exclamation point, repeated three times.

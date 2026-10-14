@@ -1,0 +1,4 @@
+List indexing works like string indexing.
+The first item is at index 0, the second is at 1, and so on.
+If, cities equals open bracket Rome comma Leema comma Tokyo close bracket, then, cities open bracket 0 close bracket, is, Rome, and, cities open bracket 1 close bracket, is, Leema.
+Indexing returns the item itself, not a smaller list.

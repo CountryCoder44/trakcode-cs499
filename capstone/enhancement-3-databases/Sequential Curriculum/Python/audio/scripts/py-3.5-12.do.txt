@@ -1,0 +1,3 @@
+A submission passes when both the score and mistake requirements are met, or when an override is active.
+The current grouping makes the override depend on the score requirement.
+Repair the parentheses so, override, applies to the complete normal rule.

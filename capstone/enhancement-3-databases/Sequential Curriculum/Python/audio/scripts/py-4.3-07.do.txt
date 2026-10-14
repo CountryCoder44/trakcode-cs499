@@ -1,0 +1,1 @@
+Read one line and print it reversed.

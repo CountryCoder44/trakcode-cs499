@@ -1,0 +1,4 @@
+A dictionary value can be another dictionary.
+This is a nested dictionary.
+In, user equals open brace name colon Ada comma contact colon open brace city colon London close brace close brace, user open bracket contact close bracket, retrieves the inner dictionary.
+Adding another key access, user open bracket contact close bracket open bracket city close bracket, reaches the string, London.

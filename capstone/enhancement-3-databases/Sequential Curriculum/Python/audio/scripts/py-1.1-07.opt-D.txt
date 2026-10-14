@@ -1,0 +1,1 @@
+Readable code never needs to be tested or reviewed.

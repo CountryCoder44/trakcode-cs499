@@ -1,0 +1,1 @@
+With, nums equals open bracket 4 comma 8 comma 15 comma 16 comma 23 comma 42 close bracket, defined, print the minimum on line 1, the maximum on line 2, and the sum on line 3.

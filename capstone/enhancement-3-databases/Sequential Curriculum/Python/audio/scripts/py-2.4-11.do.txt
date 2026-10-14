@@ -1,0 +1,3 @@
+The program should build one formatted label and underline the complete label.
+It currently leaves out the separating space and measures only the code.
+Repair both expressions without hardcoding the underline length.

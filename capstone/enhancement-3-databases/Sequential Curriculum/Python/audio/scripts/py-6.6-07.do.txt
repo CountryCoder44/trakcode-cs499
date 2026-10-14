@@ -1,0 +1,2 @@
+Read two lines of space-separated words.
+Print, as a sorted list, the words that appear on the first line but not the second.

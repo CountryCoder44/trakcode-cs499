@@ -1,0 +1,4 @@
+Some characters are trickier to type directly into a string than they are to just describe.
+Python handles these with an escape sequence, a backslash followed by another character.
+One of the most common is, backslash n, which basically means "start a new line." So, print open perren red backslash n blue close perren, displays red and, blue, on separate lines.
+You won't actually see the backslash or the n anywhere in the output.

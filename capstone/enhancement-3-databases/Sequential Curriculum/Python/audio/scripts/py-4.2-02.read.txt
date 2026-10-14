@@ -1,0 +1,3 @@
+s open bracket 0 close bracket, is the first character, s open bracket 1 close bracket, the second, and so on.
+For, s equals python, s open bracket 0 close bracket, is, p, and, s open bracket 2 close bracket, is, t.
+s open bracket len open paren s close paren close bracket, is one past the end and raises, Index Error.

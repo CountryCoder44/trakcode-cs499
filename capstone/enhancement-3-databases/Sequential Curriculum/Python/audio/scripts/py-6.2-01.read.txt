@@ -1,0 +1,3 @@
+Use square bracket assignment to add a new key value pair.
+Starting with, profile equals open brace name colon Ada close brace, the instruction, profile open bracket city close bracket equals London, adds a second pair.
+The dictionary changes in place, just as a list changes when one of its items is replaced.

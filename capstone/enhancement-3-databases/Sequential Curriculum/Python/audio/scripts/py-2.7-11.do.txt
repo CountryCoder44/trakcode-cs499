@@ -1,0 +1,3 @@
+The first two lines should insert the stored values.
+The last line should calculate their product inside one placeholder.
+Repair all three lines while keeping every line as an f string.

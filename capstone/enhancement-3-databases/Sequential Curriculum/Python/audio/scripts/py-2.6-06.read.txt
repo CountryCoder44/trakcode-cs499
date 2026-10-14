@@ -1,0 +1,4 @@
+Converting a, float, to an integer with, int open perren close perren, just throws away everything after the decimal point, it does not round.
+So, int open perren 3 point 9 close perren, is 3, and, int open perren minus 2 point 7 close perren, is minus 2.
+This is called truncating toward zero.
+Every conversion in this topic works with a valid numeric value.

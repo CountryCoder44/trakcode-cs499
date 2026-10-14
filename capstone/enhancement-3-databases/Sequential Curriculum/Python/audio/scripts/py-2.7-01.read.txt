@@ -1,0 +1,4 @@
+Putting an f right before a string's opening quote lets you drop, open brace close brace, placeholders inside it.
+Python replaces each, open brace name close brace, with that value and automatically converts it to text, even when the value isn't a string to begin with.
+So with, age equals 25, the f string, f Age colon open brace age close brace, becomes, Age colon 25.
+No need for, string open perren close perren, or, plus, to combine text with a number here; the conversion just happens on its own.

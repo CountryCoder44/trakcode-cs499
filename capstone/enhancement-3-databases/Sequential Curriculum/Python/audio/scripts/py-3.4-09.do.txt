@@ -1,0 +1,4 @@
+sold out, should be true when the item count is zero.
+in stock, should be the reverse of, sold out.
+The current comparison is reversed, and, in stock, copies that result instead of reversing it.
+Repair both stored expressions.

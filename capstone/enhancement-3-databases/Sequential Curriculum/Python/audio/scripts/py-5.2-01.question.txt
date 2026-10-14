@@ -1,0 +1,1 @@
+With, sizes equals open bracket small comma medium comma large close bracket, what does, sizes open bracket 1 close bracket, produce?

@@ -1,0 +1,2 @@
+A variable is a name that refers to a value, so you can use that value again later by name instead of repeating it.
+In, pi equals 3 point 14159, the name pi now refers to that number.

@@ -1,0 +1,3 @@
+Assign, open brace pens colon 4 comma books colon 2 comma markers colon 6 close brace, to, inventory.
+Create, names, quantities, and, pairs, as lists made from the dictionary's keys, values, and items.
+Print all three lists on labeled f string lines.

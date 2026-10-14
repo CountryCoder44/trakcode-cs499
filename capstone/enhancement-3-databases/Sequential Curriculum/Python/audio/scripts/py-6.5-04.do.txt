@@ -1,0 +1,3 @@
+Assign, open brace Ada colon 90 comma Grace colon 95 comma Linus colon 88 close brace, to, scores.
+Store its keys in, names, and its values in, points, using, list open perren close perren, with the matching dictionary methods.
+Print both lists.

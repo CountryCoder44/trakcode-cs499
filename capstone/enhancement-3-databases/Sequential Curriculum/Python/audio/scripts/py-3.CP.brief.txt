@@ -1,0 +1,1 @@
+Write a program that reads three whole numbers, works out a score using precedence and an augmented assignment, then reports three Boolean facts about that score, all without ever choosing which instruction runs.

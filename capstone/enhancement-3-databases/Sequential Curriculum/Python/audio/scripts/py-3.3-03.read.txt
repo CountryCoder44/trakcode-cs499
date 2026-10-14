@@ -1,0 +1,3 @@
+not equal to, is the not equal operator, it's, True, when the two values are different, False, when they match.
+So, 5 not equal to 8, is, True, and, 5 not equal to 5, is, False.
+Here, we're only comparing numbers.

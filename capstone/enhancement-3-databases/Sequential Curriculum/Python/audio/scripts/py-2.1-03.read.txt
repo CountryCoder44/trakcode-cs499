@@ -1,0 +1,2 @@
+name equals expression, runs in two steps: Python evaluates the expression on the right, then binds the name on the left to that result.
+The single, equals, means "assign," not "is equal to."

@@ -1,0 +1,3 @@
+square, and, cube, should be calculated as powers of, side.
+The current expressions multiply by the desired exponent instead.
+Repair both stored expressions and continue printing the result variables.

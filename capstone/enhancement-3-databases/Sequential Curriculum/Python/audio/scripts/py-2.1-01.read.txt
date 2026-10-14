@@ -1,0 +1,6 @@
+print open perren close perren, is a built in Python function, meaning Python provides it for you, and its job is to display information.
+Using a function like this is called making a function call.
+In, print open perren Denver close perren, the parentheses hold the value you want displayed.
+Notice the text sits between quotes, Denver, or, Denver, both work, and those quotes just mark where the text starts and ends; they never show up in the output itself.
+A number like 42, on the other hand, is written without quotes.
+So, print open perren Denver close perren, displays, Denver, and then moves down to a new line.

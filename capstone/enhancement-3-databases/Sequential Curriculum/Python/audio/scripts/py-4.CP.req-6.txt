@@ -1,0 +1,1 @@
+Assign, code open bracket colon colon minus 1 close bracket, to, reversed code.

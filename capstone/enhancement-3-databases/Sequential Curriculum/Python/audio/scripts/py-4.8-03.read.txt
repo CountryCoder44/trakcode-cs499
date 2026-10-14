@@ -1,0 +1,4 @@
+find open perren text close perren, tells you where a piece of text first shows up.
+It returns the starting index of the first match.
+If there's no match at all, it returns minus 1 to mean "not found." That minus 1 here is a result from, find open perren close perren, not a negative index you're using to grab a character.
+The search is case sensitive.

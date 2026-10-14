@@ -1,0 +1,2 @@
+Reed a, quantity, (line 1) and a, unit price, in whole dollars (line 2).
+Print, Total colon $ less than quantity times unit price greater than, using an f string.

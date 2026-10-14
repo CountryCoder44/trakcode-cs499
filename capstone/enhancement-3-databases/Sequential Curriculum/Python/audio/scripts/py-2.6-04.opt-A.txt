@@ -1,0 +1,1 @@
+Score colon plus string open perren 100 close perren.

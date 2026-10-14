@@ -1,0 +1,4 @@
+A comparison expression asks a yes or no question about two values and answers with, True, or, False.
+Equality uses, double equals, two equals signs.
+4 compared to 4, is, True, 4 compared to 7, is, False.
+A single, equals, is doing something completely different, it's assigning a value, not comparing one.

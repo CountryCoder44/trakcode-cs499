@@ -1,0 +1,3 @@
+A shop has 23 items and packs 5 items in each full box.
+The program should calculate the number of full boxes and the leftover items.
+Two operators are reversed, repair them without hardcoding either result.

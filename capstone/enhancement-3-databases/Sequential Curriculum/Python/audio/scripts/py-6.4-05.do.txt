@@ -1,0 +1,3 @@
+Assign, open brace title colon Guide comma draft colon True comma temporary colon 4 close brace, to, record, and, open brace old colon 1 comma unused colon 2 close brace, to, backup.
+Pop, draft, into, removed, delete, temporary, with del, and empty, backup, with, clear open perren close perren.
+Print the removed value and both finished dictionaries.

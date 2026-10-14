@@ -1,0 +1,3 @@
+Left to its own devices, Python does and before or.
+So, True or False and False, is really, True or open perren False and False close perren, which comes out, True.
+If that grouping isn't obvious at a glance, adding parentheses to spell it out is always a good idea.

@@ -1,0 +1,4 @@
+A list keeps several values together in a specific order.
+Write a list between square brackets, with commas separating its items:, open bracket red comma green comma blue close bracket.
+The opening order is preserved, so, red, is first and, blue, is last.
+Lists are useful when the values belong together, such as names on a roster or scores from one game.

@@ -1,0 +1,3 @@
+Assign, rocket, to, word.
+Print its first character by indexing, word.
+Pass, word open bracket 0 close bracket, to, print open perren close perren; do not print Are directly.

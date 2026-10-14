@@ -1,0 +1,3 @@
+Assign 5 to, side.
+Use, double star, to assign the square of, side, to, square, then print, 5 squared is 25, with an f string.
+The value 25 must be calculated with, side to the power of 2, and inserted through, open brace square close brace.

@@ -1,0 +1,1 @@
+With, record equals open paren Ada comma 36 comma London close paren, defined, unpack it into, name, age, and, city, then print, less than name greater than open paren less than age greater than close paren minus less than city greater than, using an f-string.

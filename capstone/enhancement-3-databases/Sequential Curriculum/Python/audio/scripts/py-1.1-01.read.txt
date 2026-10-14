@@ -1,0 +1,3 @@
+Programming means designing and writing instructions a computer can carry out.
+Here's the catch: a computer only follows what you actually tell it, it has no idea what result you *meant* to get.
+That's why clear steps and exact rules matter so much.

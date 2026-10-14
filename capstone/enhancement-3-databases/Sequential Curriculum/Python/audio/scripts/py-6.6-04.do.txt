@@ -1,0 +1,3 @@
+Assign, open brace title colon Python comma scores colon open bracket 82 comma 91 comma 88 close bracket close brace, to, course.
+Print the title, the second score, and the number of scores on separate labeled lines.
+Retrieve every result through, course.

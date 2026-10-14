@@ -1,0 +1,3 @@
+Store the text Ada in a variable named, first name, and the number 36 in a variable named age.
+Then print them on one line, separated by a space, with a single, print open perren close perren, call.
+Both values must come from your variables inside the, print open perren close perren, call, print open perren Ada 36 close perren, won't pass.

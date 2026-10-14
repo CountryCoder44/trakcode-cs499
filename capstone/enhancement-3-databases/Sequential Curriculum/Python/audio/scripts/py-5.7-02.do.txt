@@ -1,0 +1,3 @@
+Assign, open bracket 72 comma 91 comma 65 comma 88 close bracket, to, scores.
+Call, scores dot sort open perren close perren, then print the sorted list.
+Sort the existing list with the method; do not assign or print a finished list.

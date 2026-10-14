@@ -1,0 +1,3 @@
+The same syntax updates an existing key.
+If, score, already contains the key, points, then, score open bracket points close bracket equals 90, replaces the old value connected to that key.
+It does not create a second, points, entry because dictionary keys are unique.

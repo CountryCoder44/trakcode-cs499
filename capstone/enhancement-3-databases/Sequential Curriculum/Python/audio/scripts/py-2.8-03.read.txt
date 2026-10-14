@@ -1,0 +1,5 @@
+Separate, input open perren close perren, instructions run from top to bottom, just like anything else.
+In the example below, the first typed line gets assigned to, first, and the second to, second.
+Both values are strings, though, so, plus, joins them together instead of adding numbers.
+To actually do arithmetic, you need to convert each value with, int open perren close perren, first.
+The compact form, int open perren input open perren close perren close perren, converts a line the moment it's read.

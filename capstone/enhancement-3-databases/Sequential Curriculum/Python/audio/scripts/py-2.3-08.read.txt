@@ -1,0 +1,3 @@
+A variable can actually appear on the right side of its own reassignment.
+In, x equals x plus 1, Python first grabs the current value of x, adds 1 to it, and then assigns that result right back to x.
+So if x starts out as 4, this instruction changes it to 5.

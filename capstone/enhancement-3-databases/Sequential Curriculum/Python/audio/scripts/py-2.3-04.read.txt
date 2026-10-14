@@ -1,0 +1,2 @@
+Floor division, double slash, keeps just the whole number quotient and drops any remainder.
+For nonnegative integers with a positive, nonzero divisor, 17 floor divided by 5, is 3, 5 fits into 17 three whole times, with 2 left over.

@@ -1,0 +1,5 @@
+Assign, open bracket A comma Bee comma See comma Dee close bracket, to, letters.
+Assign the first two items to, first half, with, letters open bracket colon 2 close bracket.
+Assign the reversed list to, reversed letters, with, letters open bracket colon colon minus 1 close bracket.
+Print both new lists on separate lines.
+Use the exact slices named above.

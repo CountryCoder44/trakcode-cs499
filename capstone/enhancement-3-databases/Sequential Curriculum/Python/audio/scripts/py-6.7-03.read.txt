@@ -1,0 +1,3 @@
+open brace close brace, already means an empty dictionary, so an empty set is written as, set open perren close perren.
+It has length 0 and can receive values later.
+The type of, set open perren close perren, is set, while the type of, open brace close brace, is, dictionary.

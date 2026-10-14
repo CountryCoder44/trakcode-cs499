@@ -1,0 +1,3 @@
+Because the inner values here are lists, their items can be replaced.
+With, grid equals open bracket open bracket 1 comma 2 close bracket comma open bracket 3 comma 4 close bracket close bracket, the instruction, grid open bracket 1 close bracket open bracket 0 close bracket equals 9, changes the nested list to, open bracket open bracket 1 comma 2 close bracket comma open bracket 9 comma 4 close bracket close bracket.
+The first index selects the inner list; the second selects the item to replace.

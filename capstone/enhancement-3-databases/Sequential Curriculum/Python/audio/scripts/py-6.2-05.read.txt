@@ -1,0 +1,4 @@
+Square bracket assignment has two outcomes.
+If the key is new, Python adds a pair.
+If the key already exists, Python updates its value.
+You do not need different syntax for the two jobs; check the dictionary's current keys to understand which result will occur.

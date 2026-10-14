@@ -1,0 +1,3 @@
+Assign, team report, to, text.
+Assign, Ex not in text, to, no x, then print, No x colon True, with an f string.
+Calculate, no x, with, not in; do not assign the Boolean directly.

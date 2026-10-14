@@ -1,0 +1,3 @@
+whole text, should become a whole number, and, decimal text, should become a decimal.
+The two conversions are swapped, whole text, is being converted with, float open perren close perren, and, decimal text, with, int open perren close perren.
+Fix each line to use the correct function.

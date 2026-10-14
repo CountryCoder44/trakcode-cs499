@@ -1,0 +1,1 @@
+How many lines of output do, print open perren cat close perren, and, print open perren dog close perren, produce?

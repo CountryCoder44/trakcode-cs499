@@ -1,0 +1,2 @@
+Use a tuple for a fixed-size record whose parts should not change — a coordinate, open paren x comma y close paren, an RGB colour, open paren r comma g comma b close paren.
+Use a list for a collection you will grow, shrink, sort, or otherwise modify.

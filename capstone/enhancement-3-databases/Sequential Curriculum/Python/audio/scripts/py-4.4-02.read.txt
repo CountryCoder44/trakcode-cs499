@@ -1,0 +1,3 @@
+dot strip open paren close paren, returns the string with leading and trailing whitespace (spaces, tabs, newlines) removed.
+hi dot strip open paren close paren, is, hi.
+Inner spaces are untouched.

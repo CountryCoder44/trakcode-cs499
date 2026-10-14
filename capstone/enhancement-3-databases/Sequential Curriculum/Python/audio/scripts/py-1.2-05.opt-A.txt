@@ -1,0 +1,1 @@
+Every successful program must display something on the screen.

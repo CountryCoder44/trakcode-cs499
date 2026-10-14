@@ -1,0 +1,2 @@
+open brace close brace, creates an empty dictionary, not an empty set.
+(set open paren close paren, is how you make an empty set.), type open paren open brace close brace close paren, is, dictionary.

@@ -1,0 +1,3 @@
+A passing score includes 80, and the maximum allowed score includes 100.
+The current operators reject both boundary values.
+Repair the two comparisons without hardcoding either Boolean result.

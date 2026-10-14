@@ -1,0 +1,22 @@
+{
+ "libraryKey": "number-7",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.743,
+ "sentences": [
+  {
+   "text": "7.",
+   "start": 0,
+   "end": 0.743,
+   "segments": [
+    {
+     "text": "7",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

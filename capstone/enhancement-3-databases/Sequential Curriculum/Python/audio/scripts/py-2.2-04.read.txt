@@ -1,0 +1,3 @@
+A variable can always be assigned again.
+After, x equals 1, and then, x equals 9, the name x now refers to 9, the value 1 isn't gone, it's just no longer named by x.
+Whatever assignment happened most recently wins.

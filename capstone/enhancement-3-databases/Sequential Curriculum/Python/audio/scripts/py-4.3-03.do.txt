@@ -1,0 +1,2 @@
+Read one line and an integer k on the next line.
+Print, s open bracket colon k close bracket, on the first line and, s open bracket k colon close bracket, on the second.

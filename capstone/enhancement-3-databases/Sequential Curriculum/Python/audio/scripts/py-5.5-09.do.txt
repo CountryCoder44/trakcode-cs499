@@ -1,0 +1,1 @@
+With, matrix equals open bracket open bracket 10 comma 20 close bracket comma open bracket 30 comma 40 close bracket comma open bracket 50 comma 60 close bracket close bracket, defined, print the value in row 2, column 1.

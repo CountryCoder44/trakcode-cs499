@@ -1,0 +1,3 @@
+open brace value colon greater than N close brace, right-aligns, value, in a field N characters wide, padding with spaces on the left.
+open brace value colon less than N close brace, left-aligns.
+f open brace hi colon greater than 5 close brace, is, hi, (three spaces, then hi ).

@@ -1,0 +1,3 @@
+A list's, count open perren value close perren, method returns how many items equal that value.
+With, votes equals open bracket yes comma no comma yes close bracket, votes dot count open perren yes close perren, returns 2.
+It does not change the list.

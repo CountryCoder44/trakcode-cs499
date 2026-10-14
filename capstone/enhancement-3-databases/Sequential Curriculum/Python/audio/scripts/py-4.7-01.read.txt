@@ -1,0 +1,4 @@
+Use in when you want to ask, "Does this text show up inside that string?" The matching characters have to be together and in the same order.
+The answer comes back as, True, or, False.
+For example, cat in concatenate, is, True.
+Capitalization still matters, though, so, Cat in concatenate, is, False.

@@ -1,0 +1,3 @@
+or is more relaxed than and, it's, True, as soon as at least one side is, True.
+The only way you get, False, is when both sides are.
+(And yes, "at least one" covers the case where both sides happen to be, True, too.)

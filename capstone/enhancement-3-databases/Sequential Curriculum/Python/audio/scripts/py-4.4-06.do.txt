@@ -1,0 +1,4 @@
+Reed one line containing at least one character.
+Assign, text open bracket colon colon minus 1 close bracket, to, reversed text, then print it.
+Do not print a prompt.
+Use the exact reversal slice, open bracket colon colon minus 1 close bracket; do not hardcode any test result.

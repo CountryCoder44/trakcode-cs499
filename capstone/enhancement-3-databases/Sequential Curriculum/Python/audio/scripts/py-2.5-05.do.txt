@@ -1,0 +1,2 @@
+s holds the text, 30.
+Convert it to an integer, add 10, and print the result.

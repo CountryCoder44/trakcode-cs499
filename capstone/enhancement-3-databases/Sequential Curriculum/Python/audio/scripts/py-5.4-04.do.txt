@@ -1,0 +1,4 @@
+Assign, open bracket plan comma test close bracket, to, steps.
+Insert, code, at index 1, then append, ship.
+Print the final list.
+Use, insert open perren close perren, for the middle item and, append open perren close perren, for the final item.

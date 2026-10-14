@@ -1,0 +1,1 @@
+Assign, score less than or equal to limit, to a variable named, within limit.

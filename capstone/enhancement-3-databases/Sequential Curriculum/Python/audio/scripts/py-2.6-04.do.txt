@@ -1,0 +1,1 @@
+Read one line, convert it to an integer, add 100, and print the result (input 5 prints 105 ).

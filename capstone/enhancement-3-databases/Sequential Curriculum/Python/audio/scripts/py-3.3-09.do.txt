@@ -1,0 +1,3 @@
+The program should report whether, current, is below, target, and whether, target, is above, current.
+The comparisons use the wrong direction, and the output lines print the wrong result variables.
+Repair the program.

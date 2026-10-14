@@ -1,0 +1,4 @@
+A backslash already has a special job: it kicks off an escape sequence.
+So when you actually want a backslash to show up in the text, you write two of them, double backslash.
+Python reads that pair as one backslash character.
+For example, a double backslash b, contains just three displayed characters: a, backslash, and b.

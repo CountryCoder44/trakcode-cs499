@@ -1,0 +1,4 @@
+Python is a high level, general purpose programming language. *High level* means you can work without managing a lot of machine level detail yourself. *General purpose* means it's suited to many different kinds of work, not just one.
+It was first released publicly back in 1991, and it's used by total beginners and professional teams alike.
+Python leans hard into readable code, but that doesn't mean the rules are optional, it still needs valid syntax.
+(The next two items dig into each of those terms.)

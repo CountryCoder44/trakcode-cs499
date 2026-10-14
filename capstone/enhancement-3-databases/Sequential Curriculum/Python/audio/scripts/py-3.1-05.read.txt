@@ -1,0 +1,4 @@
+double star, raises a number to a power.
+In, 3 to the power of 2, 3 is the base and 2 is the exponent, it means 3 multiplied by itself twice, so you get 9.
+Don't mix it up with, 3 times 2, which is a different operator entirely and gives you 6.
+For now, stick to positive whole numbers on both sides.

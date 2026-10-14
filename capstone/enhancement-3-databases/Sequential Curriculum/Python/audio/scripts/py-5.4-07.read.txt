@@ -1,0 +1,2 @@
+a open bracket colon close bracket, is a full slice — from start to end — so it returns a copy of the whole list.
+b equals a open bracket colon close bracket, is a compact way to write, b equals a dot copy open paren close paren.

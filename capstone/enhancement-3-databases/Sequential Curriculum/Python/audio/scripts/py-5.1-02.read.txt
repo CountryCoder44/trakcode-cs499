@@ -1,0 +1,3 @@
+nums open bracket 0 close bracket, is the first item, nums open bracket minus 1 close bracket, the last.
+For, nums equals open bracket 10 comma 20 comma 30 comma 40 close bracket, nums open bracket 1 close bracket, is 20 and, nums open bracket minus 1 close bracket, is 40.
+An index past the end raises, Index Error.

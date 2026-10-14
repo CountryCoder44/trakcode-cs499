@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-v",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.65,
+ "sentences": [
+  {
+   "text": "\"v\".",
+   "start": 0,
+   "end": 0.65,
+   "segments": [
+    {
+     "text": "\"v\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

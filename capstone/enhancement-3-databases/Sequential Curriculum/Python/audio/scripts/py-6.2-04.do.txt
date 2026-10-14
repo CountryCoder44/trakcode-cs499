@@ -1,0 +1,3 @@
+Assign, open brace name colon Keyboard comma price colon 45 close brace, to, product.
+Change the price to 40, add, stock colon 12, and print the complete dictionary.
+Use two key assignments after creating the original dictionary.

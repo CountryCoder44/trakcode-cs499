@@ -1,0 +1,1 @@
+Build, first display, from, first clean open bracket 0 close bracket dot upper open perren close perren, plus, first clean open bracket 1 colon close bracket dot lower open perren close perren.

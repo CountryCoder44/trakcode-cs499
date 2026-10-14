@@ -1,0 +1,2 @@
+Read a line of exactly two words (a first and last name, any case).
+Print the two uppercase initials with no separator —, ada lovelace, → AL.

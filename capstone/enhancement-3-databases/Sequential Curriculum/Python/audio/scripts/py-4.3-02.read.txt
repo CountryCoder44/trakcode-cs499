@@ -1,0 +1,2 @@
+Leave out, start, to begin at 0; leave out, stop, to run to the end.
+s open bracket colon 3 close bracket, is the first three characters;, s open bracket 3 colon close bracket, is everything from index 3 onward;, s open bracket colon close bracket, is the whole string.

@@ -1,0 +1,3 @@
+Assign, ready, to raw.
+Assign, raw dot strip open perren close perren, to, clean, then print, less than ready greater than, by placing, clean, between, less than, and, greater than, in an f string.
+Use, strip open perren close perren, and the, open brace clean close brace, placeholder; the angle brackets make removed spaces visible.

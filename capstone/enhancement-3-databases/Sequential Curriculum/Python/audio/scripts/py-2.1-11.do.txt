@@ -1,0 +1,2 @@
+Each coordinate should appear on one line, but the four values are currently spread across four separate, print open perren close perren, calls instead of two.
+Shrink the program down to two, print open perren close perren, calls total, passing three values to each, don't add any new, print open perren close perren, calls.

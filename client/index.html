@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Trak icons, generated from 3D-Trak/Trak Favicon Source.png -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Set to "only light" or "dark" by the theme script below and by ThemeContext.
+         "only light" stops Chrome's auto-dark from force-darkening the light theme.
+         Samsung Internet ignores it; that case is handled by data-samsung below. -->
+    <meta name="color-scheme" id="color-scheme-meta" content="only light" />
+    <title>TrakCode</title>
+    <meta
+      name="description"
+      content="Learn to code with Trak, your AI tutor. Short lessons, live coding, and practice that unlocks as you learn."
+    />
+    <meta name="theme-color" content="#22304c" />
+    <!-- Link previews (Facebook, LinkedIn, Slack, iMessage, X…). Image is a 1200x630
+         crop of 3D-Trak/TrakCode Full Logo.png. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TrakCode" />
+    <meta property="og:title" content="TrakCode: learn to code with Trak, your AI tutor" />
+    <meta
+      property="og:description"
+      content="Short lessons, live coding, and practice that unlocks as you learn. Trak helps when you're stuck without handing you the answer."
+    />
+    <meta property="og:url" content="https://trakcode.com/" />
+    <meta property="og:image" content="https://trakcode.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trak, the TrakCode robot mouse, next to the TrakCode.com logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TrakCode: learn to code with Trak, your AI tutor" />
+    <meta
+      name="twitter:description"
+      content="Short lessons, live coding, and practice that unlocks as you learn."
+    />
+    <meta name="twitter:image" content="https://trakcode.com/og-image.jpg" />
+    <script>
+      // Applies the theme attribute synchronously, before first paint, so there's
+      // no flash of the wrong theme. Mirrors the resolution order ThemeContext
+      // uses at runtime: explicit user choice (localStorage) > OS preference.
+      (function () {
+        try {
+          var stored = localStorage.getItem('trakcode_theme');
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.getElementById('color-scheme-meta').setAttribute('content', theme === 'dark' ? 'dark' : 'only light');
+          // Samsung Internet force-darkens light pages whatever the site says;
+          // see components/SamsungLightBackground.tsx for the workaround.
+          if (/SamsungBrowser/i.test(navigator.userAgent)) document.documentElement.setAttribute('data-samsung', '');
+        } catch (e) {
+          /* localStorage/matchMedia unavailable — CSS :root defaults (light) still apply */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

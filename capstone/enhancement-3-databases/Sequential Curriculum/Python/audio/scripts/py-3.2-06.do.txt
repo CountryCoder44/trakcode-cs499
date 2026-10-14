@@ -1,0 +1,4 @@
+Assign 3 to, width, 4 to, height, and 2 to, border.
+Calculate, open perren width plus border close perren times open perren height plus border close perren, and assign it to, outer area.
+Print, Outer area colon 30, with an f string.
+Use both parenthesized additions in the calculation and insert, open brace outer area close brace, in the output.

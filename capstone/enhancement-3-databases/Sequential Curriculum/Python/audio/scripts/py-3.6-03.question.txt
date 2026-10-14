@@ -1,0 +1,1 @@
+If, size, is 7, what is its value after, size times equals 3?

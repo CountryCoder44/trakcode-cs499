@@ -1,0 +1,3 @@
+The receipt should show three lines, item, quantity, and total, but the quantity has no label and is grouped in with the item instead of standing on its own line.
+Repair it using exactly three, print open perren close perren, calls, adding a, QUANTITY colon, label for the middle line.
+Keep 2 and 8 as bare numbers.

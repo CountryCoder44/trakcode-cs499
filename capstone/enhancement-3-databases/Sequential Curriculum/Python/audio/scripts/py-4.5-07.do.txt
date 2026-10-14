@@ -1,0 +1,2 @@
+Read a line, then a character on the next line.
+Print how many times the character appears in the line.

@@ -1,0 +1,4 @@
+Start with, contact equals open brace name colon Linus close brace.
+Add, email colon linus at example dot com, and, verified colon True, with two square bracket assignments.
+Print the final dictionary.
+Do not rewrite the original dictionary literal.

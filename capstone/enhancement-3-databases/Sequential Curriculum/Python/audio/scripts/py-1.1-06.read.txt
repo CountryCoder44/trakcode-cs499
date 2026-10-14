@@ -1,0 +1,3 @@
+Automation is using code to do repeatable work consistently, every time.
+A Python program might rename thousands of files, generate a recurring report, organize folders, or check on a set of web services.
+It's most valuable when a task follows a clear rule and needs to happen over and over.

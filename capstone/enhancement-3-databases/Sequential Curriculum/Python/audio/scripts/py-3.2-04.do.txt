@@ -1,0 +1,4 @@
+Assign, 6 plus 2 times 5, to, usual.
+Assign, open perren 6 plus 2 close perren times 5, to, grouped.
+Print, usual, and then, grouped, on separate lines.
+Keep the expressions in the assignments so the second result is changed by parentheses.

@@ -1,0 +1,4 @@
+Assign, open brace theme colon dark comma notifications colon True close brace, to, preferences.
+Store whether the, theme, key exists in, has theme.
+Retrieve, theme, with, get open perren close perren, and retrieve the missing, language, with the fallback, English.
+Print all three results on labeled f string lines.

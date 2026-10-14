@@ -1,0 +1,4 @@
+Tabs work a lot like new lines.
+The escape sequence, backslash t, adds one tab character to a string.
+A tab moves whatever comes next to a tab position, so the visible gap can look wider or narrower depending on where it's displayed.
+In, Ay backslash t B, there's just one tab between A and B, not a visible backslash and the letter t.

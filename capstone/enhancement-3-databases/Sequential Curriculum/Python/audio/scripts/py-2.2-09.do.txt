@@ -1,0 +1,2 @@
+The program should show all three stages in order, but the first value is replaced before it's ever printed, and the last value is printed twice.
+Move and remove lines as needed while printing the, status, variable every time, never a quoted stage name.

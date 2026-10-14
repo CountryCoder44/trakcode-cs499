@@ -1,0 +1,1 @@
+string open perren Score colon close perren plus 100.

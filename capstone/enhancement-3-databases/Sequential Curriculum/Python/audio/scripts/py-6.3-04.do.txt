@@ -1,0 +1,3 @@
+Assign, open brace theme colon light close brace, to, settings.
+Use, get open perren close perren, to assign the existing theme to, theme, and the missing language to, language.
+Print, Theme colon light, and, Language colon None, with f strings.

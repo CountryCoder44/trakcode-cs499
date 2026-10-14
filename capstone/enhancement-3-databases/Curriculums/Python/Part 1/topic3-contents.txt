@@ -1,0 +1,924 @@
+================================================================================
+TOPIC 3 — Operators, Expressions & Boolean Logic
+================================================================================
+
+The learner combines values and operators into expressions, predicts and
+controls arithmetic evaluation order, compares numbers, builds Boolean
+expressions with `and`, `or`, and `not`, and updates variables with augmented
+assignment. These skills prepare the learner to write conditions later without
+introducing branching here.
+
+**Prerequisites from Topic 2.** The learner may use `print()`, variables,
+assignment and reassignment, `int`, `float`, `str`, `bool`, numeric literals,
+simple one-operator arithmetic, f-strings, `input()`, and valid `int()`
+conversion.
+
+**Scope boundaries.** Exponentiation uses nonnegative whole-number bases and
+positive whole-number exponents; chained exponentiation, negative-base syntax,
+fractional exponents, and unary-minus precedence are excluded. Mixed arithmetic
+expressions use whole numbers and, when division appears, a positive nonzero
+divisor. Comparisons are limited to `int` values and are not chained. Boolean
+operators receive only `bool` values or comparison results; using other kinds of
+values with them and skipping part of an expression are deferred. Operators not
+explicitly introduced in this topic are out of scope. No item asks the learner
+to choose which instruction runs.
+
+**Live coding.** Exactly half of each lesson's required items are practical
+coding tasks, and at least half of expected learner time is spent coding. The
+checkpoint is also live coding. When a task requires a particular operator or
+technique, grading must verify that structure rather than accept matching output
+produced by hardcoded text.
+
+
+--------------------------------------------------------------------------------
+LESSON 3.1 — Expressions and Exponentiation
+--------------------------------------------------------------------------------
+Objective: Recognize an expression, identify its operators and operands, and use
+`**` to calculate a whole-number power.
+
+  py-3.1-01 · Expressions Produce Values   [concept]
+
+  READING:
+    An **expression** is code that Python evaluates to produce a value. The
+    expression `4 + 3` produces `7`, and the expression `price * quantity`
+    produces a value using the current values of those variables. An expression
+    can be assigned to a variable, passed to `print()`, or placed inside an
+    f-string placeholder.
+
+  QUESTION:
+    Which part of `total = 4 + 3` is the expression that produces `7`?
+      A. `total`
+      B. `=`
+      C. `4 + 3`
+      D. the entire line only
+
+  ANSWER: C — `4 + 3`
+  WHY:
+    Python evaluates `4 + 3` to produce a value, then assigns that value to
+    `total`.
+  IF WRONG:
+    `total` is the variable name and `=` performs assignment. The code on the
+    right, `4 + 3`, is the expression that produces the value.
+
+
+  py-3.1-02 · Store an Expression's Result   [practical]
+
+  TASK:
+    Assign the result of `14 - 6` to a variable named `difference`, then print
+    `difference`. **The subtraction must occur in the assignment; do not assign
+    or print the finished value `8` directly.**
+
+  SOLUTION:
+    difference = 14 - 6
+    print(difference)
+
+  EXPECTED OUTPUT:
+    8
+
+
+  py-3.1-03 · Operators Act on Operands   [concept]
+
+  READING:
+    An **operator** is a symbol that tells Python which operation to perform.
+    The values an operator acts on are its **operands**. In `10 * 4`, `*` is the
+    operator, and `10` and `4` are the operands. A variable can also be an
+    operand: in `price * 4`, `price` and `4` are the operands.
+
+  QUESTION:
+    In the expression `12 / 3`, which symbol is the operator?
+      A. `/`
+      B. `12`
+      C. `3`
+      D. `=`
+
+  ANSWER: A — `/`
+  WHY:
+    `/` tells Python to divide; `12` and `3` are the values it acts on.
+  IF WRONG:
+    The operator is the operation symbol `/`. The numbers are operands, and
+    there is no assignment symbol in the expression.
+
+
+  py-3.1-04 · Build and Print an Expression   [practical]
+
+  TASK:
+    Assign `9` to `price` and `4` to `quantity`. Assign `price * quantity` to
+    `total`, then print `Total: 36` with an f-string. **Calculate the total from
+    the two variables and use `{total}` in the f-string.**
+
+  SOLUTION:
+    price = 9
+    quantity = 4
+    total = price * quantity
+    print(f"Total: {total}")
+
+  EXPECTED OUTPUT:
+    Total: 36
+
+
+  py-3.1-05 · ** Means Exponentiation   [concept]
+
+  READING:
+    The exponentiation operator `**` raises one number to a power. In `3 ** 2`,
+    `3` is the **base** and `2` is the **exponent**. It means `3` multiplied by
+    itself twice, so the expression produces `9`. It is not the same as
+    `3 * 2`, which produces `6`. This topic uses positive whole-number bases and
+    positive whole-number exponents only.
+
+  QUESTION:
+    What value does `2 ** 4` produce?
+      A. `6`
+      B. `8`
+      C. `16`
+      D. `24`
+
+  ANSWER: C — `16`
+  WHY:
+    `2 ** 4` means `2 * 2 * 2 * 2`, which is `16`.
+  IF WRONG:
+    The exponent tells how many copies of the base are multiplied. It does not
+    tell Python to add or multiply the base by the exponent once.
+
+
+  py-3.1-06 · Calculate a Power   [practical]
+
+  TASK:
+    Assign `5` to `side`. Use `**` to assign the square of `side` to `square`,
+    then print `5 squared is 25` with an f-string. **The value `25` must be
+    calculated with `side ** 2` and inserted through `{square}`.**
+
+  SOLUTION:
+    side = 5
+    square = side ** 2
+    print(f"{side} squared is {square}")
+
+  EXPECTED OUTPUT:
+    5 squared is 25
+
+
+
+--------------------------------------------------------------------------------
+LESSON 3.2 — Arithmetic Precedence and Parentheses
+--------------------------------------------------------------------------------
+Objective: Evaluate mixed arithmetic expressions using Python's precedence
+rules, left-to-right evaluation within a level, and parentheses.
+
+  py-3.2-01 · Multiplication-Level Operations Come First   [concept]
+
+  READING:
+    When an expression has different arithmetic operators, **precedence** tells
+    Python which operation to evaluate first. Exponentiation `**` comes before
+    multiplication-level operators. The operators `*`, `/`, `//`, and `%` come
+    before `+` and `-`. Therefore, `2 + 3 * 4` becomes `2 + 12`, then `14`.
+    This lesson does not use chained `**` expressions.
+
+  QUESTION:
+    What value does `5 + 2 * 3` produce?
+      A. `21`
+      B. `7`
+      C. `30`
+      D. `11`
+
+  ANSWER: D — `11`
+  WHY:
+    Multiplication has higher precedence, so Python evaluates `2 * 3` before
+    adding `5`.
+  IF WRONG:
+    Do not read the expression strictly from left to right. Complete `2 * 3`
+    first, then add `5`.
+
+
+  py-3.2-02 · Use Arithmetic Precedence   [practical]
+
+  TASK:
+    Assign the expression `4 + 3 ** 2` to `result`, then print `result`. **Write
+    the expression exactly as shown, without parentheses and without replacing
+    it with its finished value. Python must evaluate the exponentiation before
+    the addition.**
+
+  SOLUTION:
+    result = 4 + 3 ** 2
+    print(result)
+
+  EXPECTED OUTPUT:
+    13
+
+
+  py-3.2-03 · Parentheses Control Grouping   [concept]
+
+  READING:
+    Parentheses tell Python to evaluate the enclosed expression first. They can
+    change the result: `2 + 3 * 4` produces `14`, while `(2 + 3) * 4` produces
+    `20`. Parentheses may also make the intended grouping clearer even when
+    they do not change the result.
+
+  QUESTION:
+    What value does `(5 + 2) * 3` produce?
+      A. `11`
+      B. `13`
+      C. `21`
+      D. `30`
+
+  ANSWER: C — `21`
+  WHY:
+    The parentheses make `5 + 2` happen first; `7 * 3` is `21`.
+  IF WRONG:
+    Evaluate the expression inside `(5 + 2)` before performing the
+    multiplication outside it.
+
+
+  py-3.2-04 · Change the Grouping   [practical]
+
+  TASK:
+    Assign `6 + 2 * 5` to `usual`. Assign `(6 + 2) * 5` to `grouped`. Print
+    `usual` and then `grouped` on separate lines. **Keep the expressions in the
+    assignments so the second result is changed by parentheses.**
+
+  SOLUTION:
+    usual = 6 + 2 * 5
+    grouped = (6 + 2) * 5
+    print(usual)
+    print(grouped)
+
+  EXPECTED OUTPUT:
+    16
+    40
+
+
+  py-3.2-05 · Equal-Precedence Operators Go Left to Right   [concept]
+
+  READING:
+    The operators `*`, `/`, `//`, and `%` share one precedence level. When an
+    expression contains operators at that same level, Python evaluates them
+    from left to right. Addition and subtraction share a lower level and also
+    go from left to right. For example, `20 // 5 * 2` becomes `4 * 2`, so it
+    produces `8`.
+
+  QUESTION:
+    What value does `18 - 5 + 2` produce?
+      A. `11`
+      B. `15`
+      C. `21`
+      D. `25`
+
+  ANSWER: B — `15`
+  WHY:
+    Subtraction and addition share a precedence level, so Python evaluates
+    `(18 - 5) + 2` from left to right.
+  IF WRONG:
+    Neither `+` nor `-` wins over the other here. Start at the left: `18 - 5`
+    is `13`, then add `2`.
+
+
+  py-3.2-06 · Combine Grouping and Precedence   [practical]
+
+  TASK:
+    Assign `3` to `width`, `4` to `height`, and `2` to `border`. Calculate
+    `(width + border) * (height + border)` and assign it to `outer_area`. Print
+    `Outer area: 30` with an f-string. **Use both parenthesized additions in the
+    calculation and insert `{outer_area}` in the output.**
+
+  SOLUTION:
+    width = 3
+    height = 4
+    border = 2
+    outer_area = (width + border) * (height + border)
+    print(f"Outer area: {outer_area}")
+
+  EXPECTED OUTPUT:
+    Outer area: 30
+
+
+
+--------------------------------------------------------------------------------
+LESSON 3.3 — Comparison Operators
+--------------------------------------------------------------------------------
+Objective: Compare numeric values with equality, inequality, and ordering
+operators and recognize that each comparison produces a Boolean value.
+
+  py-3.3-01 · Comparisons Produce Booleans   [concept]
+
+  READING:
+    A **comparison expression** asks how two values relate and produces either
+    the Boolean value `True` or `False`. The equality operator is `==`, with two
+    equals signs. For example, `4 == 4` produces `True`, while `4 == 7`
+    produces `False`. A single `=` assigns a value; it does not compare two
+    values.
+
+  QUESTION:
+    What does `6 == 6` produce?
+      A. `True`
+      B. `6`
+      C. `False`
+      D. the text `6 == 6`
+
+  ANSWER: A — `True`
+  WHY:
+    Both numeric values are equal, so the comparison produces `True`.
+  IF WRONG:
+    `==` asks whether the two operands are equal. Its result is a Boolean, not
+    one of the operands or a copy of the source code.
+
+
+  py-3.3-02 · Test Equality   [practical]
+
+  TASK:
+    Assign `12` to `first` and `12` to `second`. Assign the result of
+    `first == second` to `same`, then print `Same: True` with an f-string.
+    **Calculate `same` with `==` and insert `{same}` in the output.**
+
+  SOLUTION:
+    first = 12
+    second = 12
+    same = first == second
+    print(f"Same: {same}")
+
+  EXPECTED OUTPUT:
+    Same: True
+
+
+  py-3.3-03 · != Means Not Equal   [concept]
+
+  READING:
+    The not-equal operator is `!=`. It produces `True` when its operands have
+    different values and `False` when they are equal. Thus, `5 != 8` produces
+    `True`, while `5 != 5` produces `False`. In this topic, comparison operands
+    are numbers.
+
+  QUESTION:
+    What does `9 != 9` produce?
+      A. `True`
+      B. `False`
+      C. `9`
+      D. `18`
+
+  ANSWER: B — `False`
+  WHY:
+    The two values are equal, so the claim that they are not equal is false.
+  IF WRONG:
+    Read `!=` as “is not equal to.” Since `9` is equal to `9`, that comparison
+    produces `False`.
+
+
+  py-3.3-04 · Test Inequality   [practical]
+
+  TASK:
+    Assign `7` to `current` and `10` to `target`. Assign the result of
+    `current != target` to `different`, then print `Different: True` with an
+    f-string. **Use `!=` to calculate the Boolean value.**
+
+  SOLUTION:
+    current = 7
+    target = 10
+    different = current != target
+    print(f"Different: {different}")
+
+  EXPECTED OUTPUT:
+    Different: True
+
+
+  py-3.3-05 · Ordering Comparisons   [concept]
+
+  READING:
+    Numeric ordering comparisons use `<` (less than), `>` (greater than), `<=`
+    (less than or equal to), and `>=` (greater than or equal to). The equals
+    sign is written second in `<=` and `>=`. The boundary is included: both
+    `5 <= 5` and `5 >= 5` produce `True`. This topic compares one pair of
+    numeric values at a time; chained comparisons are excluded.
+
+  QUESTION:
+    Which comparison produces `True` when `score` is exactly `80`?
+      A. `score > 80`
+      B. `score < 80`
+      C. `score >= 80`
+      D. `score != 80`
+
+  ANSWER: C — `score >= 80`
+  WHY:
+    `>=` includes equality, so a score equal to `80` satisfies the comparison.
+  IF WRONG:
+    At the boundary, `>` and `<` are false, and `!=` is false. The `=` in `>=`
+    makes equality count.
+
+
+  py-3.3-06 · Compare Numeric Input   [practical]
+
+  TASK:
+    Read an `age` as a whole number from one line. Assign the result of
+    `age >= 18` to `at_least_18`, then print `At least 18: <at_least_18>` with
+    an f-string. Do not
+    print a prompt. **Convert the input to `int`, perform the `>=` comparison,
+    and insert the `at_least_18` variable in the output.**
+
+  SOLUTION:
+    age = int(input())
+    at_least_18 = age >= 18
+    print(f"At least 18: {at_least_18}")
+
+  HIDDEN TESTS (input -> output):
+    in : "18"
+    out: "At least 18: True"
+    in : "17"
+    out: "At least 18: False"
+    in : "42"
+    out: "At least 18: True"
+
+
+
+--------------------------------------------------------------------------------
+LESSON 3.4 — Boolean Operators
+--------------------------------------------------------------------------------
+Objective: Combine or reverse Boolean values with `and`, `or`, and `not`.
+
+  py-3.4-01 · and Requires Both Sides to Be True   [concept]
+
+  READING:
+    The Boolean operator `and` combines two Boolean expressions. It produces
+    `True` only when the expression on its left and the expression on its right
+    both produce `True`. If either side is `False`, the complete `and`
+    expression produces `False`. This topic uses `and` only with Boolean values
+    and comparison results.
+
+  QUESTION:
+    What does `True and False` produce?
+      A. `True`
+      B. `False`
+      C. `None`
+      D. the text `True and False`
+
+  ANSWER: B — `False`
+  WHY:
+    `and` produces `True` only when both operands are `True`; one operand here
+    is `False`.
+  IF WRONG:
+    Think “both conditions must hold.” Having only one `True` is not enough for
+    `and`.
+
+
+  py-3.4-02 · Require Both Conditions   [practical]
+
+  TASK:
+    Assign `22` to `age` and `True` to `has_ticket`. Assign
+    `(age >= 18) and has_ticket` to `can_enter`, then print `Can enter: True`
+    with an f-string. **Calculate `can_enter` with the parenthesized comparison
+    and one `and` operator, then insert `{can_enter}` in the output.**
+
+  SOLUTION:
+    age = 22
+    has_ticket = True
+    can_enter = (age >= 18) and has_ticket
+    print(f"Can enter: {can_enter}")
+
+  EXPECTED OUTPUT:
+    Can enter: True
+
+
+  py-3.4-03 · or Requires at Least One True Side   [concept]
+
+  READING:
+    The Boolean operator `or` combines two Boolean expressions. It produces
+    `True` when at least one side is `True`. It produces `False` only when both
+    sides are `False`. “At least one” includes the case where both sides are
+    `True`.
+
+  QUESTION:
+    What does `False or True` produce?
+      A. `True`
+      B. `False`
+      C. `None`
+      D. an error
+
+  ANSWER: A — `True`
+  WHY:
+    One operand is `True`, and `or` needs at least one true operand.
+  IF WRONG:
+    `or` is false only in the `False or False` case. Either one or two true
+    operands make it true.
+
+
+  py-3.4-04 · Accept Either Condition   [practical]
+
+  TASK:
+    Assign `8` to `temperature` and `False` to `is_raining`. Assign
+    `(temperature < 10) or is_raining` to `take_coat`, then print
+    `Take coat: True` with an f-string. **Use the parenthesized comparison and
+    one `or` operator to calculate `take_coat`.**
+
+  SOLUTION:
+    temperature = 8
+    is_raining = False
+    take_coat = (temperature < 10) or is_raining
+    print(f"Take coat: {take_coat}")
+
+  EXPECTED OUTPUT:
+    Take coat: True
+
+
+  py-3.4-05 · not Reverses a Boolean   [concept]
+
+  READING:
+    The Boolean operator `not` applies to one Boolean expression and reverses
+    its result. `not True` produces `False`, and `not False` produces `True`.
+    For example, if `finished` is `False`, then `not finished` is `True`.
+
+  QUESTION:
+    If `available` is `False`, what does `not available` produce?
+      A. `False`
+      B. `None`
+      C. `True`
+      D. `available`
+
+  ANSWER: C — `True`
+  WHY:
+    `not` reverses the Boolean value from `False` to `True`.
+  IF WRONG:
+    `not` does not preserve, erase, or rename the value. It produces the
+    opposite Boolean value.
+
+
+  py-3.4-06 · Reverse a Comparison Result   [practical]
+
+  TASK:
+    Assign `3` to `items_left`. Assign `items_left == 0` to `sold_out`, then
+    assign `not sold_out` to `in_stock`. Print `In stock: True` with an
+    f-string. **Calculate `in_stock` by applying `not` to `sold_out`.**
+
+  SOLUTION:
+    items_left = 3
+    sold_out = items_left == 0
+    in_stock = not sold_out
+    print(f"In stock: {in_stock}")
+
+  EXPECTED OUTPUT:
+    In stock: True
+
+
+
+--------------------------------------------------------------------------------
+LESSON 3.5 — Logical Precedence and Grouping
+--------------------------------------------------------------------------------
+Objective: Evaluate expressions that combine comparisons and Boolean operators,
+and use parentheses to make the intended logic explicit.
+
+  py-3.5-01 · Comparisons Come Before Boolean Operators   [concept]
+
+  READING:
+    In a mixed logical expression, Python evaluates arithmetic first, then
+    comparisons, then Boolean operators. Among the Boolean operators, `not`
+    comes before `and`, and `and` comes before `or`. For example,
+    `4 < 7 and 9 == 9` first produces `True and True`, then produces `True`.
+    This lesson uses short expressions whose operands are Boolean values or
+    comparison results.
+
+  QUESTION:
+    What does `3 < 5 and 8 != 8` produce?
+      A. `True`
+      B. `False`
+      C. `3`
+      D. `8`
+
+  ANSWER: B — `False`
+  WHY:
+    The comparisons produce `True` and `False`; `True and False` produces
+    `False`.
+  IF WRONG:
+    Evaluate each comparison first: `3 < 5` is `True`, while `8 != 8` is
+    `False`. Then apply `and`.
+
+
+  py-3.5-02 · Evaluate Comparisons Before and   [practical]
+
+  TASK:
+    Assign `15` to `score` and `4` to `mistakes`. Assign
+    `score >= 10 and mistakes < 5` to `passed`, then print `Passed: True` with
+    an f-string. **Use the complete comparison-and-comparison expression shown
+    to calculate `passed`.**
+
+  SOLUTION:
+    score = 15
+    mistakes = 4
+    passed = score >= 10 and mistakes < 5
+    print(f"Passed: {passed}")
+
+  EXPECTED OUTPUT:
+    Passed: True
+
+
+  py-3.5-03 · and Comes Before or   [concept]
+
+  READING:
+    Without parentheses, Python applies `and` before `or`. Therefore,
+    `True or False and False` is grouped as `True or (False and False)` and
+    produces `True`. Parentheses are recommended whenever they make the intended
+    grouping easier to see.
+
+  QUESTION:
+    Using Python's default precedence, what does
+    `False or True and False` produce?
+      A. `True`
+      B. `False`
+      C. `None`
+      D. an error
+
+  ANSWER: B — `False`
+  WHY:
+    Python evaluates `True and False` first, producing `False`; then
+    `False or False` also produces `False`.
+  IF WRONG:
+    Do the `and` operation before the `or` operation. Do not group the first two
+    values merely because they appear first.
+
+
+  py-3.5-04 · Use Default Logical Precedence   [practical]
+
+  TASK:
+    Assign the expression `True or False and False` to `result`, then print
+    `result`. **Write the expression without parentheses so Python's default
+    `and`-before-`or` precedence determines the result.**
+
+  SOLUTION:
+    result = True or False and False
+    print(result)
+
+  EXPECTED OUTPUT:
+    True
+
+
+  py-3.5-05 · Parentheses Control Logical Grouping   [concept]
+
+  READING:
+    Parentheses can override logical precedence just as they override arithmetic
+    precedence. `(True or False) and False` evaluates the parenthesized `or`
+    first, then applies `and`, so it produces `False`. Parentheses can also
+    document the intended groups without changing the result, such as
+    `(age >= 18) and has_ticket`.
+
+  QUESTION:
+    What does `(False or True) and True` produce?
+      A. `True`
+      B. `False`
+      C. `None`
+      D. the number `1`
+
+  ANSWER: A — `True`
+  WHY:
+    The parentheses produce `True`, and `True and True` produces `True`.
+  IF WRONG:
+    Evaluate `(False or True)` first. Its Boolean result then becomes the left
+    operand of `and`.
+
+
+  py-3.5-06 · Group a Logical Expression   [practical]
+
+  TASK:
+    Assign `False` to `is_member`, `True` to `has_coupon`, and `True` to
+    `item_available`. Assign `(is_member or has_coupon) and item_available` to
+    `can_buy`, then print `Can buy: True` with an f-string. **Keep the
+    parentheses around the `or` expression and calculate `can_buy` from all
+    three Boolean variables.**
+
+  SOLUTION:
+    is_member = False
+    has_coupon = True
+    item_available = True
+    can_buy = (is_member or has_coupon) and item_available
+    print(f"Can buy: {can_buy}")
+
+  EXPECTED OUTPUT:
+    Can buy: True
+
+
+  py-3.5-07 · `not` Is Applied Before `and` and `or`   [concept]
+
+  READING:
+    Without parentheses, `not` is applied before `and` or `or`. For example,
+    `not True or True` is grouped as `(not True) or True`, so it produces
+    `True`. Parentheses change what `not` applies to: `not (True or True)`
+    produces `False` because the parenthesized `or` expression is reversed as
+    one Boolean value.
+
+  QUESTION:
+    Using Python's default precedence, what does `not False or False` produce?
+      A. `False`
+      B. `None`
+      C. an error
+      D. `True`
+
+  ANSWER: D — `True`
+  WHY:
+    Python applies `not` first, producing `True or False`, which produces
+    `True`.
+  IF WRONG:
+    Reverse the first `False` with `not` before applying `or`. Parentheses would
+    be required to make `not` reverse the complete `or` expression.
+
+
+  py-3.5-08 · Apply not Before or   [practical]
+
+  TASK:
+    Assign `True` to `is_closed` and `False` to `staff_override`. Assign
+    `not is_closed or staff_override` to `may_enter`, then print
+    `May enter: False` with an f-string. **Do not add parentheses; calculate
+    `may_enter` with the complete expression shown.**
+
+  SOLUTION:
+    is_closed = True
+    staff_override = False
+    may_enter = not is_closed or staff_override
+    print(f"May enter: {may_enter}")
+
+  EXPECTED OUTPUT:
+    May enter: False
+
+
+
+--------------------------------------------------------------------------------
+LESSON 3.6 — Augmented Assignment
+--------------------------------------------------------------------------------
+Objective: Update a variable from its current value with arithmetic augmented
+assignment operators.
+
+  py-3.6-01 · += Updates a Variable   [concept]
+
+  READING:
+    An **augmented assignment** performs an operation using a variable's current
+    value and assigns the result back to that same variable. `count += 3` is a
+    shorter way to write `count = count + 3`. If `count` starts as `5`, it
+    becomes `8`. The variable must already have a value before it is updated.
+
+  QUESTION:
+    If `points` is `10`, what is its value after `points += 4`?
+      A. `4`
+      B. `6`
+      C. `10`
+      D. `14`
+
+  ANSWER: D — `14`
+  WHY:
+    `points += 4` adds `4` to the current value `10` and stores the result back
+    in `points`.
+  IF WRONG:
+    Keep the current value in the calculation: `points += 4` means
+    `points = points + 4`, not a fresh assignment of `4`.
+
+
+  py-3.6-02 · Increase a Running Value   [practical]
+
+  TASK:
+    Assign `12` to `score`, increase it by `5` with `+=`, then print
+    `Score: 17` with an f-string. **The update must use `score += 5`.**
+
+  SOLUTION:
+    score = 12
+    score += 5
+    print(f"Score: {score}")
+
+  EXPECTED OUTPUT:
+    Score: 17
+
+
+  py-3.6-03 · -= and *= Follow the Same Pattern   [concept]
+
+  READING:
+    Other augmented assignments follow the same pattern. `balance -= 6` means
+    `balance = balance - 6`, and `size *= 3` means `size = size * 3`. Each uses
+    the variable's current value, performs the named operation, and stores the
+    result back in that variable.
+
+  QUESTION:
+    If `size` is `7`, what is its value after `size *= 3`?
+      A. `3`
+      B. `4`
+      C. `10`
+      D. `21`
+
+  ANSWER: D — `21`
+  WHY:
+    `size *= 3` multiplies the current value `7` by `3` and assigns `21` back to
+    `size`.
+  IF WRONG:
+    Read `*=` as “multiply the current value and store the result.” It is not
+    subtraction, addition, or replacement with the right operand.
+
+
+  py-3.6-04 · Decrease and Multiply   [practical]
+
+  TASK:
+    Assign `20` to `amount`. Decrease it by `4` with `-=`, then multiply the
+    result by `3` with `*=`. Print `amount`. **Use the two augmented assignments
+    in that order.**
+
+  SOLUTION:
+    amount = 20
+    amount -= 4
+    amount *= 3
+    print(amount)
+
+  EXPECTED OUTPUT:
+    48
+
+
+  py-3.6-05 · Division Has Augmented Forms Too   [concept]
+
+  READING:
+    Division operators also have augmented forms: `/=`, `//=`, and `%=`. They
+    follow the same result rules as `/`, `//`, and `%`. In particular, `/=`
+    stores a `float`, even when the division is exact. With nonnegative whole
+    numbers and a positive divisor, `value //= divisor` stores the whole-number
+    quotient, while `value %= divisor` stores the remainder. This lesson uses
+    only nonnegative whole-number starting values and positive divisors.
+
+  QUESTION:
+    If `value` is `17`, what is its value after `value %= 5`?
+      A. `2`
+      B. `3`
+      C. `3.4`
+      D. `15`
+
+  ANSWER: A — `2`
+  WHY:
+    Dividing `17` by `5` leaves a remainder of `2`, and `%=` stores that
+    remainder back in `value`.
+  IF WRONG:
+    `%=` uses the remainder operation. `17` contains three complete groups of
+    `5`, with `2` left over.
+
+
+  py-3.6-06 · Update with Division Operators   [practical]
+
+  TASK:
+    Assign `17` to each of three variables: `regular`, `whole`, and `remainder`.
+    Update `regular` with `/= 5`, `whole` with `//= 5`, and `remainder` with
+    `%= 5`. Print the three variables on separate lines in that order. **Use
+    each required augmented operator exactly once.**
+
+  SOLUTION:
+    regular = 17
+    whole = 17
+    remainder = 17
+    regular /= 5
+    whole //= 5
+    remainder %= 5
+    print(regular)
+    print(whole)
+    print(remainder)
+
+  EXPECTED OUTPUT:
+    3.4
+    3
+    2
+
+
+
+--------------------------------------------------------------------------------
+CHECKPOINT — py-3.CP
+--------------------------------------------------------------------------------
+
+  py-3.CP · Score Rules Without Branching   [checkpoint]
+
+  BRIEF:
+    Write a program that reads three whole numbers, calculates a score with
+    arithmetic precedence and augmented assignment, then reports three Boolean
+    facts about the result. The program evaluates conditions but does not use
+    `if` or choose between instructions.
+
+  REQUIREMENTS:
+    - Read three lines with `input()`: `base`, `bonus`, and `limit`, each as a
+      nonnegative whole number.
+    - Convert every input to `int` as it is read. Do not print input prompts.
+    - Calculate `score` as `base ** 2 + bonus * 3`. Keep that mixed expression
+      exactly; do not replace it with hardcoded intermediate results.
+    - Increase `score` by `5` using `score += 5`.
+    - Assign `score <= limit` to a variable named `within_limit`.
+    - Assign `base > 0 and bonus > 0` to a variable named `both_positive`.
+    - Assign `not within_limit or not both_positive` to a variable named
+      `needs_review`.
+    - Use f-strings to print exactly these four lines, in this order:
+        Score: <score>
+        Within limit: <within_limit>
+        Both positive: <both_positive>
+        Needs review: <needs_review>
+    - Do not use `if`, `else`, a conditional expression, or any other branching.
+    - Do not print extra text or blank lines. The program must run successfully.
+
+  SOLUTION:
+    base = int(input())
+    bonus = int(input())
+    limit = int(input())
+    score = base ** 2 + bonus * 3
+    score += 5
+    within_limit = score <= limit
+    both_positive = base > 0 and bonus > 0
+    needs_review = not within_limit or not both_positive
+    print(f"Score: {score}")
+    print(f"Within limit: {within_limit}")
+    print(f"Both positive: {both_positive}")
+    print(f"Needs review: {needs_review}")
+
+  HIDDEN TESTS (input -> output):
+    in : "2\n3\n20"
+    out: "Score: 18\nWithin limit: True\nBoth positive: True\nNeeds review: False"
+    in : "4\n0\n15"
+    out: "Score: 21\nWithin limit: False\nBoth positive: False\nNeeds review: True"
+    in : "0\n0\n5"
+    out: "Score: 5\nWithin limit: True\nBoth positive: False\nNeeds review: True"

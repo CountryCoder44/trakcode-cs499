@@ -1,0 +1,2 @@
+Parentheses tell Python "do this part first", and they can genuinely change the answer:, 2 plus 3 times 4, is 14, but, open perren 2 plus 3 close perren times 4, is 20.
+Even when they don't change the result, they're often worth adding just to make your intent obvious.

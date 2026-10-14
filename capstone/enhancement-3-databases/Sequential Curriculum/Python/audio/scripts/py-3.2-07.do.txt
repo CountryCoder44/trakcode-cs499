@@ -1,0 +1,3 @@
+The intended expression is, base cost plus fee times quantity.
+Parentheses in the current code change the result by adding before multiplying.
+Remove the incorrect grouping and continue calculating, total, from the variables.

@@ -1,0 +1,2 @@
+Create, skills, as a set containing the three skill inputs.
+Repeated skill names must collapse into one member.

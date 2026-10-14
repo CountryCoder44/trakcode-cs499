@@ -1,0 +1,58 @@
+# Enhancement One: Software Design and Engineering
+
+Ryan Cartwright · CS 499 Computer Science Capstone · Milestone Two (revised for the final ePortfolio)
+
+## 1. Artifact Description
+
+The artifact is TrakCode, a full-stack educational platform I am building independently, outside of my SNHU coursework, and my chosen artifact for all three enhancement categories. TrakCode teaches programming through a structured curriculum, practice problems that are graded by actually running the learner's code, and an AI coding tutor named Trak. It has a React and TypeScript front end, a Node, Express, and TypeScript API, and a separate execution microservice that compiles and runs learner code in Python, TypeScript, and C++. Development began earlier this year and continued throughout this term.
+
+For this enhancement I focused on the backend API layer the rest of the system depends on: the AI tutor service, the error handling path every controller shares, the testing infrastructure, and the configuration and documentation. Before this milestone, that layer had no automated tests, error handling was done ad hoc in ten separate controller files, and the API had no documentation beyond inline code comments.
+
+## 2. Justification for Inclusion
+
+I selected this part of TrakCode because every other feature runs through it, so improving it improves the reliability of the whole product, and because the weaknesses my code review found here are common, real software engineering problems. Three components show my skills best: the decomposition of the AI tutor service, the typed error hierarchy, and the automated test suite.
+
+**Decomposing the tutor service.** Before this enhancement, the tutor service was a single file of roughly six hundred sixty lines doing five jobs: building the model's system prompt, running a two-layer safety guardrail against leaked solutions, classifying whether a learner seemed ready to move on, extracting durable facts to remember about a learner, and orchestrating the reply generation loop. Every piece reached directly into a shared client object to call the Anthropic API, so none of it could be tested without a real network call or mocking an entire module. I split it into four modules, one per responsibility, and changed every function that talks to the model so the client is passed in as a parameter, with the real client as the default. That one change is what made real unit tests possible against a fake client. The original file is now a thin orchestration layer of about seventy-five lines that owns only the retry loop, and it re-exports the same three functions as before, so the controller that calls it needed no import changes.
+
+**A typed error hierarchy.** Before, a service that hit a problem, such as a missing API key, an exhausted retry budget, or an unreachable execution sandbox, threw a plain error with a message string, and each of ten controllers guessed the right HTTP status by checking whether the message contained a particular substring. Rewording any message would silently change the status a client received, and nothing would catch it at compile time. I introduced a small set of typed error classes, one per real failure category, and a single shared function that maps any of them to the correct response. I deleted all ten per-controller handlers and replaced their call sites with Express's own `next` function, removing roughly one hundred fifty lines of duplicated logic and making error handling consistent by construction rather than by convention.
+
+**An automated test suite and continuous integration.** No tests existed anywhere in the project before this milestone. I introduced Jest across both the API and the execution microservice and wrote three deliberate kinds of tests: pure unit tests for side-effect-free functions, dependency-injection tests that pass a fake collaborator straight into a function, and an integration test that runs the real Express application against a real, temporary MongoDB instance over HTTP. A continuous integration workflow type-checks all three packages and runs the full test suite on every push and pull request.
+
+### How the pieces work together
+
+After the refactor, a message to Trak follows one clear path, and each step lives in its own module:
+
+1. The tutor controller validates the request and assembles the context Trak needs (the problem or lesson, the learner's latest code, and what Trak remembers about them).
+2. During a lesson's warm-up conversation, the classifier module decides whether the learner is ready to be given a practice question.
+3. The orchestration loop in `tutor.service.ts` asks the prompt builder for a system prompt, calls the model through the injected client, and hands the reply to the guardrail module.
+4. The guardrail checks the reply two ways: it runs any code in the reply against the problem's real tests, and it asks a classifier model whether the reply gives away a full solution. If either check flags the reply, the loop retries with stricter instructions, and after the last attempt it falls back to a safe, fixed reply.
+5. The controller saves the accepted reply and returns it, then the memory module extracts anything worth remembering in the background so it never delays the learner.
+6. Anything that goes wrong along the way throws a typed error, which the controller passes to `next`, and the central error handler turns into the correct HTTP response.
+
+One note on the code: the readiness classifier in step 2 belonged to an earlier version of Learn Mode. When I prepared the final capstone copy of TrakCode I retired that version of Learn Mode, and the classifier module was removed with it. The `enhancement-1-software-design` folder keeps the code exactly as submitted for this milestone; the current repository has the same structure without that one module.
+
+### Test results
+
+At the end of this milestone the API suite had **55 tests in 6 suites, all passing**, and the execution microservice had 11 more. I re-ran the milestone's snapshot for this revision and it still passes all 55. Measured over the code this milestone changed, the suite covers about 65% of lines. Coverage is highest where a mistake would hurt most: the central error handler is fully covered and the guardrail is at 79% of lines. The lowest coverage is in the code paths that call the live model (the reply loop, the readiness check, and memory extraction). Those are the next tests I would add, using the same fake-client approach.
+
+### Two real defects fixed along the way
+
+The first was a security bug in the tutor's guardrail. If the model call that checks whether a reply leaks a complete solution failed for any reason, such as a network blip, the old code treated that failure as proof that no leak had occurred. For sessions with no runnable tests, that silently disabled the only safety check they had. I changed the failure path to fail closed: an unverifiable reply is treated as a possible leak and sent through the stricter retry path instead of reaching the learner. The second defect was in my own new tests, and I describe it in the reflection below.
+
+## 3. Course Outcomes
+
+- **Outcome 4, well-founded techniques and tools (met):** a real test suite, continuous integration, and API documentation checked with a linter, where none existed before.
+- **Outcome 3, design trade-offs (met):** dependency injection with real defaults kept every caller unchanged while making the modules testable. I also chose to centralize only the configuration values that are true cross-cutting business decisions, rather than every constant, and wrote the reasoning into the code.
+- **Outcome 5, security mindset (met):** the guardrail now fails closed, on the assumption that a dependency will eventually fail and that the failure should default to the safe outcome.
+- **Outcome 2, professional communication (met):** an OpenAPI reference for the whole API and an architecture README for the server, both written for an engineer who has never seen the codebase.
+- **Outcome 1, collaborative environments (partially met):** TrakCode is a solo project, so I cannot show collaboration with a real teammate. What this milestone does provide is the working infrastructure a team relies on. The CI workflow runs on every pull request, so any contributor's change passes the same automated gate as mine without depending on me to review it by hand. The OpenAPI document is a shared contract, so a front-end developer can build against the API without reading server code. The module boundaries and injected dependencies let two people work on, for example, the prompt and the guardrail at the same time, with tests that isolate each piece. These are strategies for a collaborative environment rather than proof of one, which is why I count this outcome as partially met.
+
+## 4. Reflection
+
+The most valuable lesson came from debugging my own test. After finishing the central error handler, I wrote a test file that imported the error classes once at the top, but for two tests that needed a different configuration I reset Jest's entire module cache and re-imported the error handler inside those tests. Two unrelated tests then failed with a 500 where I expected a 404, even though the handler's own log showed it had received the correct error object. Resetting the module cache had made the re-imported handler load its own separate copy of the error class, which is a different object identity in JavaScript, so its `instanceof` check silently returned false. The fix was to import everything once and use a narrower tool that isolates a single test's module registry. Diagnosing it meant understanding how a module system decides whether two classes are the same class, not just knowing the testing library's API, and that is the kind of understanding I came into this program wanting to deepen.
+
+A smaller but useful lesson came from validating the API documentation. I ran it through a real linter instead of trusting that it looked right, and it caught fourteen structural errors. Several descriptions contained a comma inside a compact object syntax, where the comma is a field separator, so a single sentence had been parsed as several nonsensical properties. That reinforced a habit I tried to hold throughout this milestone: verify a claim by running the tool that checks it.
+
+The main challenge was scope discipline. It would have been easy to keep pulling threads, such as centralizing every constant in the project or redesigning how the tutor's memory works. I held a line between improvements tied to a specific finding from my code review and changes that only look like progress, and I documented where I drew that line in the code itself so it is a decision rather than an accident.
+
+**Incorporating feedback.** My instructor's review of this milestone asked for a shorter course outcomes section, a summary of how the new modules work together as a system, and a summary of the test results. I condensed the outcomes into one entry each, added the request flow and test results above, and measured coverage for this revision rather than estimating it. Feedback on my journals also pointed out that I needed to explain how my practices provide evidence of collaboration rather than only good individual habits, so I rewrote the outcome one entry around what a second contributor would concretely gain, and I kept it at partially met because that is the honest assessment.

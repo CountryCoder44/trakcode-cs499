@@ -1,0 +1,1 @@
+How many values are in the set created by, open brace red comma blue comma red close brace?

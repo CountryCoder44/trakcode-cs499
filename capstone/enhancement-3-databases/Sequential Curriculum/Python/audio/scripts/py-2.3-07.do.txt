@@ -1,0 +1,3 @@
+A rectangle is 4 wide and 6 tall.
+Store the width and height in variables, compute the area (width times height) into a variable named, area, and print, area.
+Store the product in, area, and print that variable, don't print 24 directly.

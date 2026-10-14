@@ -1,0 +1,3 @@
+x, data, and, temp, rarely say what a value *means*.
+A name like, monthly total, or, is logged in, lets the next reader (often you) understand the code without tracing every line.
+Readable code was one reason Python is popular (Topic 1).

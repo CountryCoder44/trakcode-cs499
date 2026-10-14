@@ -1,0 +1,2 @@
+This code will not run — two variable names are invalid.
+Rename them to valid, snake case, names (keep the meaning) so the program prints the two words.

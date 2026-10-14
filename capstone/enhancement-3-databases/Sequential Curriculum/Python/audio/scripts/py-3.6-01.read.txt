@@ -1,0 +1,4 @@
+An augmented assignment takes a variable's current value, does something to it, and saves the result right back into that same variable.
+count plus equals 3, is just shorthand for, count equals count plus 3.
+Starting at 5, count, becomes 8.
+Of course, count, needs a value already before you can update it this way.

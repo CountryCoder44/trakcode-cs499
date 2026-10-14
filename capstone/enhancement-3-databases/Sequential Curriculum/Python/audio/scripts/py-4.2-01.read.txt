@@ -1,0 +1,6 @@
+You can think of a string as a row of characters.
+A character might be a letter, digit, space, punctuation mark, or any other single piece of text.
+An index is just the numbered position of one character in that row.
+Python starts counting at 0, so, word open bracket 0 close bracket, gets you the first character.
+If, word equals code, then, word open bracket 0 close bracket, is See and, word open bracket 1 close bracket, is Oh.
+Each result you get back is still a string, just a one character one.

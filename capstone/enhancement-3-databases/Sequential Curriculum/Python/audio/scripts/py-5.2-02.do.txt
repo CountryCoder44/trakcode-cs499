@@ -1,0 +1,3 @@
+Assign, open bracket 72 comma 88 comma 91 comma 65 close bracket, to, scores.
+Print the first score and then the third score on separate lines by indexing the list.
+Use, scores open bracket 0 close bracket, and, scores open bracket 2 close bracket; do not print the numbers directly.

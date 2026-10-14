@@ -1,0 +1,2 @@
+Assign, open bracket 68 comma 72 comma 75 comma 71 comma 69 close bracket, to, temps.
+Print the first reading using index 0, then print the last reading using, len open perren temps close perren minus 1, as the index, don't use the literal last index number.

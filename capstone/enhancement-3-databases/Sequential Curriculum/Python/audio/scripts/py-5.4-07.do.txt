@@ -1,0 +1,3 @@
+plan, must be first, ship, must follow, test, and the two review steps must be added from one list.
+The current program uses the wrong positions and methods.
+Repair the three calls.

@@ -1,0 +1,1 @@
+With, nums equals open bracket 5 comma 2 comma 8 comma 1 close bracket, defined, sort it in place and print it.

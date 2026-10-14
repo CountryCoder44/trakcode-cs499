@@ -1,0 +1,5 @@
+A text value like, hello, has the type string.
+A string can hold letters, digits, spaces, and punctuation, Room 3B, is one string, and even, 42, in quotes is a string, not a number.
+The, plus, operator joins, or concatenates, two strings end to end, so, cat plus dog, becomes, catdog.
+Notice it adds no space on its own, you have to include one yourself, like, cat plus plus dog.
+And, plus, only ever joins a string with another string.

@@ -1,0 +1,4 @@
+You can actually run one string method right after another.
+This is called a method chain, and Python works through it left to right.
+In, text dot strip open perren close perren dot lower open perren close perren, strip open perren close perren, cleans the ends first, then, lower open perren close perren, lowercases that already cleaned string.
+You end up with one final new string, while the original stays untouched.

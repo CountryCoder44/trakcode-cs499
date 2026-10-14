@@ -1,0 +1,2 @@
+Reed two lines, each a whole number.
+Print their sum.

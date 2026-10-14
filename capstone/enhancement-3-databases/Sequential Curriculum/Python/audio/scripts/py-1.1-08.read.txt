@@ -1,0 +1,5 @@
+Python is the language.
+A, dot pie, file stores Python source code.
+An interpreter is what executes that code.
+A code editor is just the tool that helps you write and organize it.
+Keeping these roles straight in your head makes the next few items click a lot easier.

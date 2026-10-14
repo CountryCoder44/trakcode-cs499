@@ -1,0 +1,3 @@
+plus, concatenates two lists into a new one:, open bracket 1 comma 2 close bracket plus open bracket 3 close bracket, is, open bracket 1 comma 2 comma 3 close bracket.
+times, repeats:, open bracket 0 close bracket times 3, is, open bracket 0 comma 0 comma 0 close bracket.
+Neither changes the originals.

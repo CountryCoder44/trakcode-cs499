@@ -1,0 +1,2 @@
+Local setup instructions differ by operating system, but every branch returns to the same next step: verify Python 3.
+Complete only the branch that matches the computer you are configuring.

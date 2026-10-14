@@ -1,0 +1,3 @@
+Assign, Coffee, to, item, and 3 to, count.
+Use f strings to print exactly two lines:, Item colon Coffee, on the first line and, Count colon 3, on the second.
+Both lines must use placeholders for the variable values.

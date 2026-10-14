@@ -1,0 +1,3 @@
+An operator is the symbol that tells Python what to do, the values it works on are its operands.
+In, 10 times 4, times, is the operator and 10 and 4 are the operands.
+Operands don't have to be plain numbers, either: in, price times 4, price, and 4 are the operands.

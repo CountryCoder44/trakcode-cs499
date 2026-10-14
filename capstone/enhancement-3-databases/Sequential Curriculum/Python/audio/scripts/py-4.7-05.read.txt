@@ -1,0 +1,3 @@
+startswith open perren text close perren, checks only the beginning of a string.
+It gives you, True, when the opening characters match and, False, when they don't, and the match is case sensitive.
+For example, python dot pie dot startswith open perren pie close perren, is, True; the text, pie, only has to match the beginning, not the whole string.

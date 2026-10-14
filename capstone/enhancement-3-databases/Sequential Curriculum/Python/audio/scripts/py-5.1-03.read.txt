@@ -1,0 +1,4 @@
+An empty list is written as, open bracket close bracket.
+It contains no items yet, so its length is 0.
+An empty list is still a real list value and can be stored in a variable.
+Later in this topic, you'll add items to one.

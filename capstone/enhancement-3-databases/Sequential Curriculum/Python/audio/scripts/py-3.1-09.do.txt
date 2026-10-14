@@ -1,0 +1,3 @@
+The price and quantity are correct.
+The program calculates the total using, quantity, twice, then prints, price, instead of the stored result.
+Repair both uses while keeping the calculation in, total.

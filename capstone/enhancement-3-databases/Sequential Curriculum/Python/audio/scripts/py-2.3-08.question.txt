@@ -1,0 +1,1 @@
+If, score, is 10, what value does, score equals score minus 3, assign to, score?

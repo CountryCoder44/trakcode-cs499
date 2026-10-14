@@ -1,0 +1,2 @@
+nums dot count open paren x close paren, returns how many times x appears.
+nums dot index open paren x close paren, returns the position of the first x, or raises, Value Error, if x is absent.

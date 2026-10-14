@@ -1,0 +1,4 @@
+You don't always have to write both slice boundaries.
+Leave out the start, and Python just begins at the start of the string, text open bracket colon 3 close bracket, takes indexes 0, 1, and 2.
+Leave out the stop, and Python continues all the way to the end, text open bracket 3 colon close bracket, starts at index 3 and takes everything after it.
+Leave both out, and, text open bracket colon close bracket, just gives you the whole string back.

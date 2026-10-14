@@ -1,0 +1,1 @@
+A terminal performs the same role as a code editor.

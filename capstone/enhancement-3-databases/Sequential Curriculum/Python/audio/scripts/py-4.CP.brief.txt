@@ -1,0 +1,1 @@
+Write a program that cleans up a first name, a last name, and a message, builds new strings out of them with indexing and slicing, and reports back what it finds in the normalized message.

@@ -1,0 +1,4 @@
+Start with the integer 7.
+Convert it to a string and print that string's length.
+Then convert it back to an integer, add 1, and print the result.
+Use, string open perren close perren, len open perren close perren, and, int open perren close perren, don't print 1 and 8 directly.

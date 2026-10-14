@@ -1,0 +1,3 @@
+Assign, open bracket 5 comma 2 comma 9 comma 1 close bracket, to, numbers.
+Sort the list, reverse it, and print the final descending order.
+Use, sort open perren close perren, followed by, reverse open perren close perren, on the same list.

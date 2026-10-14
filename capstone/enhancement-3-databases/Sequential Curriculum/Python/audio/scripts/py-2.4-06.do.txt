@@ -1,0 +1,3 @@
+Assign, elephant, to, word.
+Print the word, then on the next line print how many characters it has.
+Get the length with, len open perren close perren, and print the, word, variable, don't print, elephant, and 8 directly.

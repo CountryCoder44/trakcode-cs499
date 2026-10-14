@@ -1,0 +1,3 @@
+remove open perren value close perren, searches from the start of a list and deletes the first item equal to that value.
+If, colors equals open bracket red comma blue comma red close bracket, then, colors dot remove open perren red close perren, leaves, open bracket blue comma red close bracket.
+Every, remove open perren close perren, task in this topic uses a value that is present.

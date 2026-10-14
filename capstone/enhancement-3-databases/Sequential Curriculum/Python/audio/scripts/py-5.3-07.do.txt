@@ -1,0 +1,3 @@
+The program should keep an unchanged saved list, then modify only, current.
+It currently gives both variables the same list and slices the wrong range for, middle.
+Repair both assignments.

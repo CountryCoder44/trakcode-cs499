@@ -1,0 +1,3 @@
+The variable, result, is meant to show that no result exists yet.
+The current value is a real number, and the second line inspects different text instead of the variable.
+Repair both lines.

@@ -1,0 +1,5 @@
+copy equals original, gives two variable names to the same list.
+Changing the list through either name is visible through both.
+Use, copy equals original open bracket colon close bracket, when you need a separate outer list.
+Then replacing an item in, copy, does not replace the matching item in, original.
+Nested copying has additional rules that are outside this topic.

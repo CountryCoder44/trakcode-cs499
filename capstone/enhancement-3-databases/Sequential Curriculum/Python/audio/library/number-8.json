@@ -1,0 +1,22 @@
+{
+ "libraryKey": "number-8",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.511,
+ "sentences": [
+  {
+   "text": "8.",
+   "start": 0,
+   "end": 0.511,
+   "segments": [
+    {
+     "text": "8",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

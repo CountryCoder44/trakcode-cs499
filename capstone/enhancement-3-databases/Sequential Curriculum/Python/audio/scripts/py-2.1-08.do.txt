@@ -1,0 +1,3 @@
+The status card should have four lines, including one blank line.
+Repair the line layout and the final, print open perren close perren, call.
+Split, SYSTEM, and, READY, into two separate, print open perren close perren, calls, keep the blank, print open perren close perren, and separate, Attempts colon, and 3 with a comma.

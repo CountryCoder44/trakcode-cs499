@@ -1,0 +1,4 @@
+Assign 17 to each of three variables:, regular, whole, and, remainder.
+Update, regular, with, divide equals 5, whole, with, floor divide equals 5, and, remainder, with, modulo equals 5.
+Print the three variables on separate lines in that order.
+Use each required augmented operator exactly once.

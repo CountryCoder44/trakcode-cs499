@@ -1,0 +1,1 @@
+What does, open bracket 10 comma 20 comma 30 comma 40 close bracket open bracket 1 colon 3 close bracket, produce?

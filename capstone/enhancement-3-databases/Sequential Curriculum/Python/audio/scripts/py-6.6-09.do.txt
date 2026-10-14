@@ -1,0 +1,2 @@
+Read two lines of space-separated words.
+Print whether the two lines contain exactly the same set of distinct words (order and repeats do not matter).

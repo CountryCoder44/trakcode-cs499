@@ -1,0 +1,3 @@
+add open perren value close perren, places one value into an existing set.
+If the value is already present, the set stays unchanged because duplicates are not kept.
+Starting with, numbers equals open brace 1 comma 2 close brace, numbers dot add open perren 3 close perren, gives three members, while another, numbers dot add open perren 2 close perren, does not increase the length.

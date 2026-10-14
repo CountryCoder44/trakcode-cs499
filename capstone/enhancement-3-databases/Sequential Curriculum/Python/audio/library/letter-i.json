@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-i",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.511,
+ "sentences": [
+  {
+   "text": "\"i\".",
+   "start": 0,
+   "end": 0.511,
+   "segments": [
+    {
+     "text": "\"i\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

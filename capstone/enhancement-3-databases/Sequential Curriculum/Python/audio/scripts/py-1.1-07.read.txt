@@ -1,0 +1,3 @@
+Part of why Python is so popular: its syntax is approachable, there's a huge amount of learning material out there, the community is large, and you can reuse code other people have already written and shared.
+It also runs on all the common operating systems, Windows, macOS, and Linux.
+Readable code is easier for people to review, test, maintain, and change, though readable code can still absolutely contain mistakes.

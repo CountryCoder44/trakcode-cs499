@@ -1,0 +1,4 @@
+Reed one filename.
+Assign, filename dot endswith open perren dot pie close perren, to, is python, then print, Python file colon less than is python greater than, with an f string.
+Do not print a prompt.
+Use the case sensitive, endswith open perren close perren, call exactly as shown.

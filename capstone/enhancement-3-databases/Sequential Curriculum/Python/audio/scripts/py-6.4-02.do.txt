@@ -1,0 +1,3 @@
+Assign, open brace name colon Ada comma password colon secret comma active colon True close brace, to, user.
+Pop, password, into, removed, then print, Removed colon secret, and the remaining dictionary.
+Use the value returned by, pop open perren close perren.

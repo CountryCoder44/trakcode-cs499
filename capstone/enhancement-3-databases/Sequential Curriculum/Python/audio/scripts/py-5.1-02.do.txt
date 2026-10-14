@@ -1,0 +1,3 @@
+Assign a list containing, red, green, and, blue, in that order to, colors.
+Print the complete, colors, list.
+Create one list with square brackets and print the variable.

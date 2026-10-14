@@ -1,0 +1,3 @@
+dictionary dot items open perren close perren, keeps each key beside its value.
+Wrapped in, list open perren close perren, it produces a list of two item tuples.
+For, open brace A colon 1 comma Bee colon 2 close brace, the result of, list open perren data dot items open perren close perren close perren, is, open bracket open perren A comma 1 close perren comma open perren Bee comma 2 close perren close bracket.

@@ -1,0 +1,2 @@
+Assign 12 to, score, increase it by 5 with, plus equals, then print, Score colon 17, with an f string.
+The update must use, score plus equals 5.

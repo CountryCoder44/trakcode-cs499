@@ -1,0 +1,1 @@
+With, nums equals open bracket 1 comma 2 comma 3 comma 4 comma 5 comma 6 close bracket, defined, print just the middle two items as a list.

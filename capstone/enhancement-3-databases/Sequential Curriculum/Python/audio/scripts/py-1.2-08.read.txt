@@ -1,0 +1,3 @@
+A script is just source code saved in a file.
+Compared to a temporary repple session, scripts are much easier to edit, rerun, share, test, and hold onto.
+A script only runs when you actually ask an interpreter to execute it.

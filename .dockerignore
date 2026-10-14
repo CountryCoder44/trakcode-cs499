@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/.env*
+!server/.env.example
+server/.mongo-data
+admin-credentials.txt
+.devnotes.txt
+.git
+Sequential Curriculum/**/audio/clips/*.wav
+Sequential Curriculum/**/audio/.tmp

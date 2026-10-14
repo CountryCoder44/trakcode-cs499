@@ -1,0 +1,4 @@
+You can also count from the other end of a string.
+Negative indexes start at minus 1, which gets you the last character.
+minus 2 gets you the one just before that, and the pattern keeps moving left from there.
+With, word equals code, word open bracket minus 1 close bracket, is E and, word open bracket minus 2 close bracket, is Dee.

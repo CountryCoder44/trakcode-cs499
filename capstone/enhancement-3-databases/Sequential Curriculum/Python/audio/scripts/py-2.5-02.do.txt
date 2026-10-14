@@ -1,0 +1,3 @@
+Assign, True, to, is logged in, and, False, to, has premium.
+Print each on its own line.
+Assign the two booleans to variables and print each variable, don't print, True, or, False, directly.

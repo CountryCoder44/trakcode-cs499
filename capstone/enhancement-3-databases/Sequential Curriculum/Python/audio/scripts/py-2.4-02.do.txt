@@ -1,0 +1,3 @@
+Assign, Grace, to, name.
+Using, plus, build and print the string, Hello comma Grace exclamation point, note the comma and space after Hello and the exclamation point at the end.
+Build the string with, plus, printing the finished, Hello comma Grace exclamation point, literal won't pass.

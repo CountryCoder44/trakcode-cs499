@@ -1,0 +1,2 @@
+Read three lines: a name, an age (whole number), and a city.
+Build a dictionary with keys, name, age, city, and print it.

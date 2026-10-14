@@ -1,0 +1,2 @@
+Checking, x in s, on a set is fast no matter how big the set is, while, x in some list, slows down as the list grows.
+If you will test membership many times, convert the list to a set once first.

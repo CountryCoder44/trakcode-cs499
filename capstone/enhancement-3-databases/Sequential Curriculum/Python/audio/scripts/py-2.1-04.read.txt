@@ -1,0 +1,2 @@
+Every, print open perren close perren, call ends by moving down to a new line, so calling, print, twice puts the two outputs on separate lines.
+And if you call, print open perren close perren, with nothing between the parentheses, you just get an empty line.

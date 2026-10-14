@@ -1,0 +1,5 @@
+Write one line that prints the number 42.
+Numbers are written without quotes.
+The quotes are what tell Python "this is text, treat it exactly as written." A bare 42 is a number, while, 42, is text.
+Their types are introduced in Lessons 2 point 3 and 2 point 4.
+Write 42 as a bare number, not, 42, in quotes.

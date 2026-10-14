@@ -1,0 +1,4 @@
+Use a current, supported Python 3 release.
+On Windows, install from the official Python source or a trusted system source and enable "Add Python to PATH" if offered.
+On macOS, install a current Python 3 release from the official installer or a trusted package manager.
+On Linux, first check the distribution's existing Python 3 and use the distribution's documented package manager only if it is missing — do not remove or replace a Linux system interpreter.

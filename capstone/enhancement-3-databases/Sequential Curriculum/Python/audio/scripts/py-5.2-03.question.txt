@@ -1,0 +1,1 @@
+With, values equals open bracket 5 comma 10 comma 15 comma 20 close bracket, what does, values open bracket minus 2 close bracket, produce?

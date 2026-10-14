@@ -1,0 +1,4 @@
+insert open perren index comma value close perren, adds an item at a chosen position.
+Existing items at that position and after it shift to the right.
+With, letters equals open bracket A comma See close bracket, letters dot insert open perren 1 comma Bee close perren, produces, open bracket A comma Bee comma See close bracket.
+Nothing is replaced.

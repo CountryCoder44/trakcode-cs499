@@ -1,0 +1,2 @@
+x in nums, is, True, when x is one of the list's items, otherwise, False.
+20 in open bracket 10 comma 20 comma 30 close bracket, is, True;, 25 in open bracket 10 comma 20 comma 30 close bracket, is, False.

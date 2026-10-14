@@ -1,0 +1,4 @@
+Assign, notebook, to, word.
+Calculate, len open perren word close perren minus 1, and assign it to, last index.
+Use, last index, to print the final character.
+Do not use minus 1, the literal index 7, or the literal character Kay.

@@ -1,0 +1,26 @@
+{
+  "name": "trakcode",
+  "private": true,
+  "version": "0.1.0",
+  "description": "TrakCode — coding education platform. See CodeForge_Specs_1.md for the full technical spec.",
+  "workspaces": [
+    "server",
+    "client",
+    "services/*"
+  ],
+  "scripts": {
+    "dev:server": "npm run dev -w server",
+    "build:server": "npm run build -w server",
+    "start:server": "npm run start -w server",
+    "typecheck:server": "npm run typecheck -w server",
+    "seed:demo-code": "npm run seed:demo-code -w server",
+    "seed:curriculum": "npm run seed:curriculum -w server",
+    "dev:sandbox": "npm run dev -w @trakcode/execution-sandbox",
+    "build:sandbox": "npm run build -w @trakcode/execution-sandbox",
+    "start:sandbox": "npm run start -w @trakcode/execution-sandbox",
+    "typecheck:sandbox": "npm run typecheck -w @trakcode/execution-sandbox",
+    "dev:client": "npm run dev -w @trakcode/client",
+    "build:client": "npm run build -w @trakcode/client",
+    "typecheck:client": "npm run typecheck -w @trakcode/client"
+  }
+}

@@ -1,0 +1,3 @@
+The point is stored as, open perren x comma y close perren, but the unpacking order is reversed.
+The status should also be a one item tuple, not a string in parentheses.
+Repair both lines.

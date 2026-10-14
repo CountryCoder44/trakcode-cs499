@@ -1,0 +1,1 @@
+Reed three lines with, input open perren close perren: a name as text, a current age as a whole number, and a favorite number as a whole number.

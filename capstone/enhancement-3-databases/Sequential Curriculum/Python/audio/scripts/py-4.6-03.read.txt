@@ -1,0 +1,3 @@
+lower open perren close perren, goes the other direction, it gives you a new string with lowercase letters.
+Digits, spaces, and punctuation don't have upper or lower forms, so they just stay put.
+Code 3 exclamation point dot lower open perren close perren, for instance, gives you, code 3 exclamation point.

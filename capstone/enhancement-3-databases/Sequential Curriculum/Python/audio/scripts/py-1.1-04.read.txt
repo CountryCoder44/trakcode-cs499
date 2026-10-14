@@ -1,0 +1,2 @@
+A high level language lets you work with concepts closer to how humans actually think through problems, while the software running Python handles a lot of the machine level details behind the scenes.
+Just to be clear, "high level" does not mean "only for experts," and it doesn't guarantee a program runs fast either.

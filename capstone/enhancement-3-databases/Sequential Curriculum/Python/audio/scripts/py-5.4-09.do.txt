@@ -1,0 +1,2 @@
+Read four integers, one per line.
+Print the first two as a list on line 1 and the last two as a list on line 2.

@@ -1,0 +1,3 @@
+Assign, open brace contact colon open brace city colon Miami close brace comma scores colon open bracket 80 comma 90 close bracket close brace, to, student.
+Change the city to, Boston, replace the second score with 95, and append 100 to the score list.
+Print the updated city, complete score list, and final score on labeled lines.

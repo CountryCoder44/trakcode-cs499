@@ -1,0 +1,3 @@
+dictionary dot values open perren close perren, provides the values without their keys.
+Wrapping it in, list open perren close perren, gives a regular list in the same insertion order.
+With, scores equals open brace Ada colon 90 comma Grace colon 95 close brace, list open perren scores dot values open perren close perren close perren, produces, open bracket 90 comma 95 close bracket.

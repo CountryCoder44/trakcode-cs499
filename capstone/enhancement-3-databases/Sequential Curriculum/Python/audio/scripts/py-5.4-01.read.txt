@@ -1,0 +1,3 @@
+append open perren value close perren, adds one item to the end of a list.
+If, tasks equals open bracket plan comma code close bracket, then, tasks dot append open perren test close perren, changes the list to, open bracket plan comma code comma test close bracket.
+The method changes the existing list, so you call it on its own instead of assigning its result to another variable.

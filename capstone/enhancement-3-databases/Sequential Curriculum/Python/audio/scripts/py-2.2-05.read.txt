@@ -1,0 +1,2 @@
+Assigning to a name that already exists points it at a new value; the old value is simply no longer referred to by that name.
+n equals n plus 1, is normal: Python evaluates, n plus 1, using the current n, then rebinds n to the result.

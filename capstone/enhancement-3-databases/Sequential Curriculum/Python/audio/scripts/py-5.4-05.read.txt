@@ -1,0 +1,4 @@
+extend open perren other list close perren, adds each item from another list to the end.
+If, first equals open bracket 1 comma 2 close bracket, then, first dot extend open perren open bracket 3 comma 4 close bracket close perren, changes, first, to, open bracket 1 comma 2 comma 3 comma 4 close bracket.
+In this topic, the argument to, extend open perren close perren, is always a list.
+Use, append open perren close perren, for one item and, extend open perren close perren, for several items from a list.

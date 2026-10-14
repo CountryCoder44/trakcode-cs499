@@ -1,0 +1,4 @@
+usual, should let exponentiation happen before addition.
+grouped, should add first and then square the result.
+Their parentheses are currently reversed.
+Repair both expressions.

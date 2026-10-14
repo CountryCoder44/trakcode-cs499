@@ -1,0 +1,3 @@
+same, should ask whether the two values are equal, while, different, should ask whether they are unequal.
+Both stored comparisons use the opposite operator.
+Repair them without changing the output lines.

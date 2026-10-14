@@ -1,0 +1,3 @@
+Assign, pyXthon, to, text.
+Build, python, by joining, text open bracket colon 2 close bracket, and, text open bracket 3 colon close bracket, assign the result to, corrected, and print it.
+Remove the character at index 2 with the two required slices; do not use a method or write, python, directly.

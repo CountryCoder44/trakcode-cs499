@@ -1,0 +1,3 @@
+Assign, planet, to, text.
+Assign the character at index 3 to, character, then print, Character colon n, with an f string.
+Retrieve the value with, text open bracket 3 close bracket, and insert, open brace character close brace, in the output.

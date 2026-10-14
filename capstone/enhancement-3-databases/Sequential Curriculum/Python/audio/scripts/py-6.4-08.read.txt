@@ -1,0 +1,1 @@
+people dot get open paren name comma open brace close brace close paren, returns the inner record, or an empty dictionary if the person is unknown — so a following, dot get open paren age comma 0 close paren, on the result stays safe.

@@ -1,0 +1,3 @@
+Assign, open bracket 10 comma 20 comma 30 comma 40 close bracket, to, scores.
+Replace the last item with 99 using a negative index, not a positive one.
+Print, scores.

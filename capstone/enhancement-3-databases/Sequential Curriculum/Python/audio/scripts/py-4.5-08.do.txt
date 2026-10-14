@@ -1,0 +1,2 @@
+Read one line.
+Print whether every character in it is a digit ( 0 – 9 ).

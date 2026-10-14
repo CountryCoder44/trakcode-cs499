@@ -1,0 +1,4 @@
+Reed one line of text.
+Assign, text dot lower open perren close perren, to, normalized, then print it.
+Do not print a prompt.
+Use, lower open perren close perren, on the input variable rather than hardcoding any result.

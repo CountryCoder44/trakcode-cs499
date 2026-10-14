@@ -1,0 +1,3 @@
+The program should report whether, cat, is present, how many times it appears, and its first index.
+All three expressions currently ask about the wrong condition or value.
+Repair them.

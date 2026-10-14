@@ -1,0 +1,4 @@
+Immutable strings don't stop you from reassigning a variable, though.
+In, word equals word plus Ess, Python first builds a brand new string, then assigns that new value back to, word.
+The old string was never edited, the variable just got handed a new value.
+It's the exact same "latest assignment wins" rule you already used with numbers.

@@ -1,0 +1,2 @@
+Build, code, from the first character of, first clean, plus the first three characters of, last clean.
+Then reassign, code, to, code dot lower open perren close perren.

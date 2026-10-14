@@ -1,0 +1,1 @@
+Create the tuple, summary, from, values open bracket 0 close bracket, and, values open bracket minus 1 close bracket, then unpack it into, lowest, and, highest.

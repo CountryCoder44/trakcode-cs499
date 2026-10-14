@@ -1,0 +1,3 @@
+Assign the expression, 4 plus 3 to the power of 2, to, result, then print, result.
+Write the expression exactly as shown, without parentheses and without replacing it with its finished value.
+Python must evaluate the exponentiation before the addition.

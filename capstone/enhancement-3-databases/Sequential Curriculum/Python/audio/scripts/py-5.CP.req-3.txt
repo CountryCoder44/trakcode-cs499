@@ -1,0 +1,1 @@
+Remove the item at index 1 with, pop open perren 1 close perren, and assign it to, removed.

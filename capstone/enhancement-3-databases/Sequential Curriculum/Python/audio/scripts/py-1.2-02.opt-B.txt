@@ -1,0 +1,1 @@
+A file that is guaranteed to be valid, error free Python.

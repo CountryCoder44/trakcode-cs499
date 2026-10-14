@@ -1,0 +1,4 @@
+Assign, open brace 1 comma 2 comma 3 comma 4 close brace, to, first, and, open brace 3 comma 4 comma 5 close brace, to, second.
+Assign the intersection to, shared, with, ampersand.
+Assign values found only in, first, to, first only, with, minus.
+Print both results with, sorted open perren close perren.

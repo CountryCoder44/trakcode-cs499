@@ -1,0 +1,3 @@
+List slices use the same, start colon stop, rule as string slices: include the starting position and stop before the ending position.
+With, letters equals open bracket A comma Bee comma See comma Dee close bracket, letters open bracket 1 colon 3 close bracket, produces, open bracket Bee comma See close bracket.
+The result is a new list, while, letters, stays unchanged.

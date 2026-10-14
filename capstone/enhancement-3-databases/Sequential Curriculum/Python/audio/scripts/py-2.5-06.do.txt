@@ -1,0 +1,2 @@
+Print the type of 10, then the type of, 10, then the type of, True, each on its own line.
+Use, type open perren close perren, for all three, don't type the class lines out yourself.

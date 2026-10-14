@@ -1,0 +1,4 @@
+int open perren close perren, float open perren close perren, and, string open perren close perren, each convert a value from one type to another, building a new value rather than changing the original.
+int open perren 42 close perren, gives you the whole number 42.
+float open perren 3 close perren, gives you, 3 point 0.
+And going the other way, string open perren 42 close perren, gives you the text, 42.

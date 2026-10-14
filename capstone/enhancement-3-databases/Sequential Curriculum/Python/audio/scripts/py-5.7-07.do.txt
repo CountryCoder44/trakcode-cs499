@@ -1,0 +1,3 @@
+The program should preserve the original order, create a separate ascending list, and then reverse only that new list into descending order.
+It currently stores the result of, sort open perren close perren, and reverses the wrong list.
+Repair both lines.

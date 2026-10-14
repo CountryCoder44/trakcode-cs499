@@ -1,0 +1,2 @@
+not flips a single Boolean value:, not True, is, False, and, not False, is, True.
+So if, finished, is currently, False, not finished, gives you, True.

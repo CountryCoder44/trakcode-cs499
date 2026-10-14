@@ -1,0 +1,3 @@
+endswith open perren text close perren, does the same kind of check at the other end.
+It gives you, True, when the final characters match and, False, when they don't.
+It's also case sensitive:, report dot pdf dot endswith open perren dot pdf close perren, is, True, but, report dot PDF dot endswith open perren dot pdf close perren, is, False.

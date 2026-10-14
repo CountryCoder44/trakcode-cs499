@@ -1,0 +1,3 @@
+Output is just information a program produces.
+It might show up on screen or in an output area, but a program can just as easily create files or update stored data instead.
+A program can even run successfully without ever displaying any text at all.

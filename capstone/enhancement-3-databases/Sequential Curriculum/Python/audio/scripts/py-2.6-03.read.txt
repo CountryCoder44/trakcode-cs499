@@ -1,0 +1,2 @@
+Convert input to, int open paren close paren, when the value is a count or whole number (ages, quantities), and to, float open paren close paren, when it can have a fractional part (prices, measurements).
+Converting, 7, with, float open paren close paren, gives, 7 point 0, which may not be the display you want.

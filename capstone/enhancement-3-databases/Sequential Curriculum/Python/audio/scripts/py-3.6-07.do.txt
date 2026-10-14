@@ -1,0 +1,4 @@
+The account starts with 50.
+A charge removes 20, a refund adds 5, and a matching bonus doubles the result.
+Each augmented assignment uses the wrong operator.
+Repair all three while preserving their order.

@@ -1,0 +1,4 @@
+Assign, ZX minus 2048, to, code.
+Assign, code open bracket colon 2 close bracket, to, letters, and, code open bracket 3 colon close bracket, to, digits.
+Use one f string to print, ZX 2048.
+Both displayed parts must come from the slice variables.

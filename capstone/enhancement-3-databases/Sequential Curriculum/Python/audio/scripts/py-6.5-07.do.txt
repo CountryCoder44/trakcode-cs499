@@ -1,0 +1,4 @@
+Assign, open brace pen colon 2 comma book colon 8 close brace, to, prices.
+Convert its items to a list named, pairs.
+Assign the first tuple to, first pair, unpack it into, item, and, price, then print, Item colon pen, Price colon 2, and, Pair count colon 2.
+Use, items open perren close perren, list open perren close perren, indexing, and tuple unpacking.

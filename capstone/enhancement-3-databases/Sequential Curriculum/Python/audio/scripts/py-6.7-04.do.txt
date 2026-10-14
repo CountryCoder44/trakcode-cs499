@@ -1,0 +1,2 @@
+Assign, set open perren close perren, to, seen.
+Print its type, its length, and the result of, Ada not in seen, on separate lines.

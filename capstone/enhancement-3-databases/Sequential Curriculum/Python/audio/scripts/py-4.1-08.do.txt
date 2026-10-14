@@ -1,0 +1,2 @@
+With one ordinary string literal, print exactly, C colon backslash data.
+Write the backslash as, double backslash; a single, backslash t, would create a tab instead.

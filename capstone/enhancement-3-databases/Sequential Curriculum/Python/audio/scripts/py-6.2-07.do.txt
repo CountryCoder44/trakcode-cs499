@@ -1,0 +1,2 @@
+With, inv equals open brace pen colon 5 comma cup colon 2 close brace, defined, pop the, pen, entry.
+Print the popped value on line 1 and the remaining dictionary on line 2.

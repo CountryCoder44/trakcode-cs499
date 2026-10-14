@@ -1,0 +1,3 @@
+The modulo operator, percent sign, gives you the remainder left over after floor division.
+17 modulo 5, is 2, because 5 fits into 17 three whole times with 2 left over.
+Together, floor division, and, modulo, split a division into its whole part and its remainder.

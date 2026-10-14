@@ -1,0 +1,1 @@
+Why is renaming 4,000 files according to one rule a good automation task?

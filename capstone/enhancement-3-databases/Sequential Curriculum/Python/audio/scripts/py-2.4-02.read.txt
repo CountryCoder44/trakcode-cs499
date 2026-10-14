@@ -1,0 +1,2 @@
+boolean, has exactly two values, True, and, False, (capitalized).
+Comparisons produce booleans:, 3 greater than 1, evaluates to, True, and its type is, boolean.

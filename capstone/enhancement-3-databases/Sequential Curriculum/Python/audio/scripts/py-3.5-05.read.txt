@@ -1,0 +1,3 @@
+Just like with arithmetic, parentheses can override the default logical order.
+open perren True or False close perren and False, forces the or to happen first, then applies and, landing on, False.
+Sometimes parentheses don't change anything at all; they're just there to make the grouping obvious, like, open perren age greater than or equal to 18 close perren and has ticket.

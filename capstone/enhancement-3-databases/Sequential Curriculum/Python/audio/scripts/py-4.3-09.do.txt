@@ -1,0 +1,2 @@
+Read one line, then an integer k on the next line ( k is no larger than the line's length).
+Print the first k characters on line 1 and the last k characters on line 2.

@@ -1,0 +1,3 @@
+Assign, A. Bee. See. Dee. E. Eff. Gee. Aitch, to, letters.
+Assign, letters open bracket colon colon 2 close bracket, to, alternating, then print it.
+Use the step slice; do not write, A. See. E. Gee, directly.

@@ -1,0 +1,1 @@
+Its instructions work directly with the computer's hardware.

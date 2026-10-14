@@ -1,0 +1,5 @@
+A slice can actually take a third number:, text open bracket start colon stop colon step close bracket.
+The step tells Python how far to jump before grabbing the next character.
+With a positive step of 2, it takes a character, skips one, takes the next, and keeps going like that.
+When both boundaries are left out, text open bracket colon colon 2 close bracket, starts at index 0.
+Applied to, A. Bee. See. Dee. E. Eff, it takes indexes 0, 2, and 4, giving you, A. See. E.

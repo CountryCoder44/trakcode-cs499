@@ -1,0 +1,3 @@
+Slice bounds can be negative.
+s open bracket minus 3 colon close bracket, is the last three characters;, s open bracket colon minus 1 close bracket, is everything except the last character.
+For, s equals python, s open bracket minus 2 colon close bracket, is, on.

@@ -1,0 +1,3 @@
+Assign 5 to, width, and 3 to, height.
+With a single f string, print, Area of 5 by 3 is 15.
+The 15 must come from a, open brace width times height close brace, placeholder, no hardcoded numbers in the text.

@@ -1,0 +1,4 @@
+Assign an empty list to, queue.
+Append, Ada, then append, Grace.
+Print, queue.
+Use two, append open perren close perren, calls rather than assigning a finished two item list.

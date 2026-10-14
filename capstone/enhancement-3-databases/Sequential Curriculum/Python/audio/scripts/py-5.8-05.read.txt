@@ -1,0 +1,4 @@
+Parentheses alone do not make a one item tuple.
+open perren ready close perren, is simply the string, ready, in parentheses.
+The comma creates the tuple:, open perren ready comma close perren.
+Printing its type shows, less than class tuple greater than, and its length is 1.

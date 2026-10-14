@@ -1,0 +1,1 @@
+Which comparison produces, True, when, score, is exactly 80?

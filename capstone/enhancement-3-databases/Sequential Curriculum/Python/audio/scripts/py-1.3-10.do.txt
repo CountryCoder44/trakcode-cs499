@@ -1,0 +1,2 @@
+Create a folder named, python foundations.
+Inside it, create, environment check dot pie, enter the line below, and save the file.

@@ -1,0 +1,3 @@
+Square brackets are best when a key is known to exist.
+For an optional key, get open perren key close perren, is safer: it returns the connected value when the key exists and returns, None, when it does not.
+With, user equals open brace name colon Ada close brace, user dot get open perren name close perren, is, Ada, while, user dot get open perren phone close perren, is, None.

@@ -1,0 +1,3 @@
+Entry is allowed only when the location is neither closed nor under maintenance.
+not currently reverses only, is closed, so maintenance can incorrectly make the result true.
+Group the complete or expression that must be reversed.

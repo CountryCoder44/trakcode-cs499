@@ -1,0 +1,4 @@
+Assign, open bracket A comma Bee close bracket, to, letters.
+Use, extend open perren close perren, to add, open bracket See comma Dee close bracket.
+Then use, insert open perren close perren, to add Ex at index 1.
+Print, letters.

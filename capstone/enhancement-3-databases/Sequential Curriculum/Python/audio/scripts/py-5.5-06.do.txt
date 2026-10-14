@@ -1,0 +1,4 @@
+Assign, open bracket pen comma eraser comma ruler comma tape close bracket, to, supplies.
+Use, pop open perren 1 close perren, to remove and store the item at index 1 in a variable named, removed.
+Then use, remove open perren close perren, to delete, tape.
+Print, removed, then, supplies.

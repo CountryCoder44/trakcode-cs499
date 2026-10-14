@@ -1,0 +1,3 @@
+The sentence should place both dimensions and their product into one line.
+It currently leaves the dimensions as literal names and adds instead of multiplying.
+Repair the one output line.

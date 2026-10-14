@@ -1,0 +1,3 @@
+The inventory count should be shown before and after reassignment.
+The current program changes the value too early and prints the variable's *name* as text on the second line.
+Repair both problems.

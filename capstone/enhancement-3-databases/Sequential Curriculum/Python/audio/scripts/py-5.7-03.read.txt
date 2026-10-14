@@ -1,0 +1,4 @@
+reverse open perren close perren, flips the current list from end to start.
+It does not sort by value first.
+open bracket 3 comma 1 comma 2 close bracket, becomes, open bracket 2 comma 1 comma 3 close bracket.
+If you want descending sorted order using the tools taught here, call, sort open perren close perren, first and, reverse open perren close perren, second.

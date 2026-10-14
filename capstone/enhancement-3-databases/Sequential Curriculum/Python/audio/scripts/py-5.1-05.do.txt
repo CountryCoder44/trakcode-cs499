@@ -1,0 +1,2 @@
+Read three integers, one per line.
+Put them in a list in the order read and print the list.

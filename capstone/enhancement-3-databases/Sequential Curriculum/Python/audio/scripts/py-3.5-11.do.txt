@@ -1,0 +1,3 @@
+The intended expression is, priority or active and paid, using Python's default and -before- or precedence.
+The current parentheses change the rule and reject a priority user.
+Remove the incorrect grouping.

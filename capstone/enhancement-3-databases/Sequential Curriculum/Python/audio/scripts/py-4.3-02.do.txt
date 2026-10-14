@@ -1,0 +1,3 @@
+Assign, notebook, to, word.
+Assign, word open bracket 1 colon 5 close bracket, to, middle, then print, middle.
+Use the slice exactly as shown; do not assign or print, oteb, directly.

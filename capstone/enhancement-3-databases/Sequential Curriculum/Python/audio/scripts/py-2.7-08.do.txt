@@ -1,0 +1,3 @@
+Three lines should each insert a stored value into a placeholder.
+The first line is missing its placeholder entirely, and the other two point at the wrong variables.
+Repair all three f strings without changing the assignments.

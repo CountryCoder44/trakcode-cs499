@@ -1,0 +1,967 @@
+openapi: 3.0.3
+info:
+  title: TrakCode API
+  version: '1.0'
+  description: >
+    REST API for TrakCode, a full-stack platform for learning to code. Hand-authored
+    from the actual route/controller/zod-schema definitions under `server/src/routes`
+    and `server/src/controllers` (not produced by a build-time codegen tool) as part
+    of the CS-499 Milestone Two software design and engineering enhancement — the
+    Module 2 code review's finding was that the project had no external/API
+    documentation at all. Kept close to the code deliberately: every path below
+    matches an actual `router.<method>(...)` call, and every schema matches an
+    actual zod validator, so this stays a reliable reference rather than aspirational
+    documentation that drifts from what the server really does.
+servers:
+  - url: /api
+security:
+  - bearerAuth: []
+tags:
+  - name: Auth
+  - name: Sequential Curriculum
+    description: Learn Mode — the structured, hand-authored topic/lesson/item curriculum (`/seq/*`).
+  - name: Practice Mode
+  - name: Tutor
+    description: Trak, the AI coding tutor.
+  - name: Portfolio
+  - name: Profile
+  - name: Roadmap
+  - name: Billing
+  - name: Feedback
+    description: Feedback button and the learner's Messages inbox.
+  - name: Admin
+
+paths:
+  /auth/signup:
+    post:
+      tags: [Auth]
+      summary: Create an account
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, name]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, minLength: 8 }
+                name: { type: string, minLength: 1 }
+      responses:
+        '201': { $ref: '#/components/responses/AuthSession' }
+        '400': { $ref: '#/components/responses/ValidationError' }
+        '409': { description: An account with that email already exists }
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Log in with email and password
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string }
+      responses:
+        '200': { $ref: '#/components/responses/AuthSession' }
+        '401': { description: Invalid email or password }
+
+  /auth/me:
+    get:
+      tags: [Auth]
+      summary: Get the current authenticated user
+      responses:
+        '200':
+          description: The current user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: { user: { $ref: '#/components/schemas/PublicUser' } }
+        '404': { description: User not found }
+
+  /auth/providers:
+    get:
+      tags: [Auth]
+      summary: List the social sign-in providers configured on this server
+      security: []
+      responses:
+        '200':
+          description: Configured providers (unconfigured ones are omitted)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  providers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { $ref: '#/components/schemas/OAuthProvider' }
+                        label: { type: string }
+
+  /auth/oauth/{provider}/start:
+    get:
+      tags: [Auth]
+      summary: Start social sign-in (browser navigation, redirects to the provider)
+      description: "Sets a short-lived httpOnly cookie holding state + PKCE verifier. With `link`, connects the provider to the account that created that ticket. Failures redirect to the client's /auth/callback with #error=…"
+      security: []
+      parameters:
+        - { name: provider, in: path, required: true, schema: { $ref: '#/components/schemas/OAuthProvider' } }
+        - { name: link, in: query, required: false, schema: { type: string }, description: "Single-use ticket from POST /auth/oauth/{provider}/link" }
+      responses:
+        '302': { description: "Redirect to the provider's authorize URL, or to the client with #error=…" }
+
+  /auth/oauth/{provider}/callback:
+    get:
+      tags: [Auth]
+      summary: Social sign-in callback (the provider redirects here)
+      description: "Checks state against the cookie, exchanges the code, then finds, links, or creates the account. Redirects to the client's /auth/callback with #token=…[&new=1][&linked=…][&returnTo=…], or #error=…"
+      security: []
+      parameters:
+        - { name: provider, in: path, required: true, schema: { $ref: '#/components/schemas/OAuthProvider' } }
+        - { name: code, in: query, required: false, schema: { type: string } }
+        - { name: state, in: query, required: false, schema: { type: string } }
+        - { name: error, in: query, required: false, schema: { type: string } }
+      responses:
+        '302': { description: Redirect to the client with the session token or an error in the URL fragment }
+
+  /auth/oauth/{provider}/link:
+    post:
+      tags: [Auth]
+      summary: Get a single-use start URL to connect a provider to the signed-in account
+      parameters:
+        - { name: provider, in: path, required: true, schema: { $ref: '#/components/schemas/OAuthProvider' } }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                purpose: { type: string, enum: [login, portfolio], default: login, description: "portfolio (GitHub only) also grants public_repo for portfolio push" }
+                returnTo: { type: string, description: In-app path to land on afterward }
+      responses:
+        '200':
+          description: The start URL to navigate to (valid 5 minutes, single use)
+          content:
+            application/json:
+              schema: { type: object, properties: { url: { type: string } } }
+        '400': { description: Invalid purpose or returnTo }
+        '503': { description: Provider not configured }
+
+  /auth/identities/{provider}:
+    delete:
+      tags: [Auth]
+      summary: Disconnect a provider from the signed-in account
+      parameters:
+        - { name: provider, in: path, required: true, schema: { $ref: '#/components/schemas/OAuthProvider' } }
+      responses:
+        '200':
+          description: The updated user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: { user: { $ref: '#/components/schemas/PublicUser' } }
+        '404': { description: That provider isn't connected }
+        '409': { description: It's the account's last way to sign in }
+
+  /seq/topics:
+    get:
+      tags: [Sequential Curriculum]
+      summary: List topics for a course, with completion status
+      parameters:
+        - { name: course, in: query, schema: { type: string, default: python } }
+      responses:
+        '200': { description: Topics with lessonCount/totalItems/completedItems/status }
+
+  /seq/progress:
+    get:
+      tags: [Sequential Curriculum]
+      summary: Compact per-course completion summary (all courses if no `course` param)
+      parameters:
+        - { name: course, in: query, schema: { type: string } }
+      responses:
+        '200': { description: 'completedTopicIds/completedTopicNumbers/currentTopicId/furthestCompletedTopicNumber, etc.' }
+
+  /seq/topics/{topicId}:
+    get:
+      tags: [Sequential Curriculum]
+      summary: Get one topic's lessons/items and the learner's progress through it
+      parameters:
+        - { name: topicId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: 'lessons, checkpoint, progress' }
+        '404': { description: Topic not found }
+
+  /seq/topics/{topicId}/items/{itemId}/submit:
+    post:
+      tags: [Sequential Curriculum]
+      summary: Submit an answer/code for one item and get it graded
+      parameters:
+        - { name: topicId, in: path, required: true, schema: { type: string } }
+        - { name: itemId, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [kind, value]
+              properties:
+                kind: { type: string, enum: [choice, code, text] }
+                value: { type: string, maxLength: 20000 }
+                preview:
+                  type: boolean
+                  description: Admin-only — grade without persisting and without the order lock.
+      responses:
+        '200': { description: 'Grade result: passed, rationale/ifIncorrect (concept), tests/hint (code), nextItemId, topicComplete' }
+        '400': { $ref: '#/components/responses/ValidationError' }
+        '403': { description: preview requested by a non-admin }
+        '404': { description: Topic or item not found }
+        '409': { description: This item is locked }
+
+  /seq/topics/{topicId}/skip:
+    post:
+      tags: [Sequential Curriculum]
+      summary: Mark a topic complete via skip instead of earning it
+      parameters:
+        - { name: topicId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Topic marked skipped }
+        '404': { description: Topic not found }
+
+  /seq/topics/{topicId}/reset:
+    post:
+      tags: [Sequential Curriculum]
+      summary: Delete all progress on a topic for the current learner
+      description: Destructive. The client shows a confirm dialog before calling this — never call it against an account someone is actively using.
+      parameters:
+        - { name: topicId, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Topic progress reset }
+        '404': { description: Topic not found }
+
+  /practice/deep-dive/request:
+    post:
+      tags: [Practice Mode]
+      summary: Request (bank-first, else AI-generated) a Deep Dive problem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [stack]
+              properties:
+                stack: { $ref: '#/components/schemas/Stack' }
+                topic: { type: string, description: Freeform topic text — only used when the stack has no Sequential Curriculum course (cpp). }
+                topicNumbers:
+                  type: array
+                  items: { type: integer, minimum: 1 }
+                  description: Sequential Curriculum topics to scope generation to (python/typescript).
+      responses:
+        '201': { $ref: '#/components/responses/Problem' }
+        '400': { description: 'No topic selected, or every selected topic is concept-only' }
+        '503': { $ref: '#/components/responses/AiUnavailable' }
+
+  /practice/flash-card/request:
+    post:
+      tags: [Practice Mode]
+      summary: Request a Flash Bug/Flash Fill problem (auto-scoped to completed topics)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [stack, type]
+              properties:
+                stack: { $ref: '#/components/schemas/Stack' }
+                type: { type: string, enum: [flash_bug, flash_fill] }
+      responses:
+        '201': { $ref: '#/components/responses/Problem' }
+        '503': { $ref: '#/components/responses/AiUnavailable' }
+
+  /practice/problem/{id}:
+    get:
+      tags: [Practice Mode]
+      summary: Get one problem
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { $ref: '#/components/responses/Problem' }
+        '404': { description: Problem not found }
+
+  /practice/submit:
+    post:
+      tags: [Practice Mode]
+      summary: Submit a solution for real sandbox grading
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [problemId, code, language]
+              properties:
+                problemId: { type: string }
+                code: { type: string, minLength: 1 }
+                language: { $ref: '#/components/schemas/Stack' }
+      responses:
+        '201': { description: 'Graded submission: result (pass/fail/error), testResults, executionTimeMs' }
+        '400': { description: Submitted language does not match the problem's language }
+        '404': { description: Problem not found }
+        '503': { $ref: '#/components/responses/SandboxUnavailable' }
+
+  /practice/history:
+    get:
+      tags: [Practice Mode]
+      summary: Get the current user's last 100 submissions
+      responses:
+        '200': { description: 'Submission history, newest first' }
+
+  /practice/catalog:
+    get:
+      tags: [Practice Mode]
+      summary: Languages, scopes, the learner's skill checklist and the concepts beyond the basics
+      parameters:
+        - { in: query, name: language, schema: { type: string, enum: [python, typescript, cpp] } }
+      responses:
+        '200': { description: 'Options for the practice setup screen' }
+
+  /practice/assignments/start:
+    post:
+      tags: [Practice Mode]
+      summary: Start a long-form assignment (database match first, generation only as a fallback)
+      description: >-
+        Idempotent per requestId. Returns `ready` (an attempt), `pending` (a generation job to poll),
+        `conflict` (the request can't be served as asked, with suggestions), `previously_started`,
+        `active_exists`, `failed` or `unavailable`.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [requestId, language, mode, scope]
+              properties:
+                requestId: { type: string, description: 'Client-generated per Start click' }
+                intent: { type: string, enum: [auto, new], default: auto }
+                language: { type: string, enum: [python, typescript, cpp] }
+                mode: { type: string, enum: [basics, stretch] }
+                scope: { type: string, enum: [small, medium, large] }
+                conceptCount: { type: integer, minimum: 0, maximum: 3, description: 'Stretch only: exactly this many concepts beyond the basics' }
+                conceptIds: { type: array, items: { type: string } }
+                conceptText: { type: string, description: 'Free text resolved against concept names and aliases' }
+                foundationIds: { type: array, items: { type: string }, description: "The learner's skill checklist; omitted = their default" }
+      responses:
+        '201': { description: 'ready' }
+        '202': { description: 'pending' }
+        '200': { description: 'conflict, previously_started, active_exists, failed or unavailable' }
+
+  /practice/jobs/{jobId}:
+    get:
+      tags: [Practice Mode]
+      summary: Check a pending generation job; returns the learner's attempt once it is ready
+      parameters:
+        - { in: path, name: jobId, required: true, schema: { type: string } }
+      responses:
+        '200': { description: 'Same outcome shapes as start' }
+        '404': { description: 'No such job for this learner' }
+
+  /practice/attempts:
+    get:
+      tags: [Practice Mode]
+      summary: "The learner's attempts (default: unfinished work)"
+      parameters:
+        - { in: query, name: status, schema: { type: string, example: 'in_progress,abandoned' } }
+      responses:
+        '200': { description: 'Attempt summaries, most recent first' }
+
+  /practice/attempts/{id}:
+    get:
+      tags: [Practice Mode]
+      summary: An attempt and its assignment (public fields only)
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      responses:
+        '200': { description: 'Attempt and assignment' }
+        '404': { description: 'Not found, or not this learner''s' }
+
+  /practice/attempts/{id}/code:
+    put:
+      tags: [Practice Mode]
+      summary: Autosave the learner's code
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [code], properties: { code: { type: string } } }
+      responses:
+        '200': { description: Saved }
+
+  /practice/attempts/{id}/run:
+    post:
+      tags: [Practice Mode]
+      summary: Save, run every test and concept check, complete when all pass
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, required: [code], properties: { code: { type: string } } }
+      responses:
+        '200': { description: 'Updated attempt with the run results (hidden tests report pass/fail only)' }
+
+  /practice/attempts/{id}/abandon:
+    post:
+      tags: [Practice Mode]
+      summary: Put an in-progress attempt down (it stays resumable)
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Updated attempt }
+
+  /practice/attempts/{id}/reopen:
+    post:
+      tags: [Practice Mode]
+      summary: Continue a previously abandoned attempt with its saved work
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Updated attempt }
+
+  /practice/attempts/{id}/restart:
+    post:
+      tags: [Practice Mode]
+      summary: Start the same assignment fresh from the starter code
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The new attempt }
+
+  /practice/attempts/{id}/replay:
+    post:
+      tags: [Practice Mode]
+      summary: Redo completed work, marked as a replay (not new practice)
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The replay attempt }
+
+  /practice/attempts/{id}/github:
+    post:
+      tags: [Practice Mode]
+      summary: Push a completed attempt (code, public files, README) to the learner's GitHub
+      parameters:
+        - { in: path, name: id, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title]
+              properties:
+                title: { type: string }
+                destination: { type: string, enum: [default, new] }
+                newRepoName: { type: string }
+      responses:
+        '201': { description: Pushed }
+        '400': { description: 'Not completed yet, or GitHub not linked' }
+
+  /tutor/message:
+    post:
+      tags: [Tutor]
+      summary: Send a message to Trak, or start/continue a session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [contextType, contextId]
+              properties:
+                sessionId: { type: string, description: Omit to imply a new session unless `initiate` is set. }
+                contextType: { type: string, enum: [problem, seqItem, practiceAttempt] }
+                contextId: { type: string }
+                message: { type: string, description: Required unless `initiate` is set. }
+                initiate: { type: boolean, description: Have Trak speak first to open a brand-new session. }
+                code: { type: string, maxLength: 20000, description: "The learner's current, unsaved editor buffer." }
+      responses:
+        '200': { description: "Trak's reply" }
+        '201': { description: "Trak's reply (new session created)" }
+        '400': { $ref: '#/components/responses/ValidationError' }
+        '404': { description: 'Tutor session, problem, or lesson item not found' }
+        '503':
+          description: AI tutor unavailable (AI_API_KEY not configured)
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+  /tutor/session/{id}:
+    get:
+      tags: [Tutor]
+      summary: Get a tutor session's full message history
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Session with its ordered message list }
+        '404': { description: Tutor session not found }
+
+  /portfolio/push:
+    post:
+      tags: [Portfolio]
+      summary: Push a passing submission to a new GitHub repo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [submissionId]
+              properties: { submissionId: { type: string } }
+      responses:
+        '201': { description: 'githubRepoUrl of the newly created repo' }
+        '400': { description: 'Only passing submissions can be pushed, or GitHub account not linked' }
+        '404': { description: Submission or its problem not found }
+        '409': { description: This submission has already been pushed }
+        '502': { description: The GitHub API itself returned an error }
+
+  /portfolio:
+    get:
+      tags: [Portfolio]
+      summary: List the current user's pushed portfolio entries
+      responses:
+        '200': { description: 'Portfolio entries, newest first' }
+
+  /profile/settings:
+    put:
+      tags: [Profile]
+      summary: Update the current user's public-profile settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug: { type: string }
+                isPublic: { type: boolean }
+                showPortfolioLinks: { type: boolean }
+      responses:
+        '200': { description: Updated profile settings }
+        '400': { description: 'Set a slug before making the profile public' }
+        '409': { description: That slug is already taken }
+
+  /profile/me/activity:
+    get:
+      tags: [Profile]
+      summary: Get the current user's own activity summary (heatmaps/streak)
+      responses:
+        '200': { description: Activity summary }
+
+  /profile/{slug}:
+    get:
+      tags: [Profile]
+      summary: Get a public profile by slug
+      security: []
+      parameters:
+        - { name: slug, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: 'Public profile (name, heatmaps, streak, portfolio links)' }
+        '404': { description: 'Profile not found (also returned for a private/nonexistent slug, to avoid leaking which)' }
+
+  /feedback:
+    post:
+      tags: [Feedback]
+      summary: Send feedback (with an optional screenshot)
+      description: >-
+        Any signed-in account, no subscription needed. Creates a thread with the
+        message and an automatic "we got it" reply, and emails the team. Body
+        limit for this route is 4 MB; the decoded screenshot must be a JPEG or
+        PNG of at most 2.5 MB. 10 per hour per account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                kind: { type: string, enum: [bug, idea], default: bug, description: 'Report a bug or suggest an improvement' }
+                message: { type: string, maxLength: 1000 }
+                screenshot: { type: string, description: 'data:image/jpeg;base64,... or data:image/png;base64,...' }
+                pagePath: { type: string, description: 'In-app path only; anything else is dropped' }
+                viewport: { type: string, example: 1280x800 }
+      responses:
+        '201': { description: The new thread }
+        '400': { description: 'Empty or too-long message, or a screenshot that is not a real image' }
+        '413': { description: Screenshot too large }
+        '429': { description: Too many messages }
+
+  /feedback/threads:
+    get:
+      tags: [Feedback]
+      summary: List my feedback threads (newest first)
+      responses:
+        '200': { description: 'Threads with subject, preview, unread count, status' }
+
+  /feedback/unread:
+    get:
+      tags: [Feedback]
+      summary: Number of unread messages (for the Messages badge)
+      responses:
+        '200': { description: '{ unread: number }' }
+
+  /feedback/threads/{id}:
+    get:
+      tags: [Feedback]
+      summary: Open one of my threads (marks it read)
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The thread with all messages }
+        '404': { description: 'Not found (also for another account''s thread)' }
+
+  /feedback/threads/{id}/screenshot:
+    get:
+      tags: [Feedback]
+      summary: The screenshot I sent with a thread
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The image (image/jpeg or image/png) }
+        '404': { description: 'No screenshot, or not my thread' }
+
+  /admin/users/{id}/packs:
+    get:
+      tags: [Admin]
+      summary: A learner's tutoring packs with per-pack usage
+      description: >-
+        Bought questions come out of the oldest pack first. Each pack shows used
+        and remaining questions, whether it is unused, and whether it is still
+        within the 7-day unused-pack refund window.
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: 'Total balance and packs, newest first' }
+        '403': { description: Not an admin }
+
+  /admin/feedback:
+    get:
+      tags: [Admin]
+      summary: Feedback inbox
+      parameters:
+        - { name: status, in: query, schema: { type: string, enum: [open, closed, all], default: open } }
+        - { name: kind, in: query, schema: { type: string, enum: [bug, idea, all], default: all } }
+        - { name: page, in: query, schema: { type: integer, default: 1 } }
+      responses:
+        '200': { description: 'Threads (20 per page) plus total, openCount and unreadCount' }
+        '403': { description: Not an admin }
+
+  /admin/feedback/{id}:
+    get:
+      tags: [Admin]
+      summary: Open a feedback thread (marks it read for the team)
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: 'The thread, with page, browser and window size' }
+        '404': { description: Not found }
+
+  /admin/feedback/{id}/screenshot:
+    get:
+      tags: [Admin]
+      summary: The screenshot sent with a thread
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The image }
+        '404': { description: No screenshot }
+
+  /admin/feedback/{id}/reply:
+    post:
+      tags: [Admin]
+      summary: Reply to a learner (shows up in their Messages)
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [body]
+              properties:
+                body: { type: string, maxLength: 4000 }
+      responses:
+        '200': { description: The updated thread }
+        '404': { description: Not found }
+
+  /admin/feedback/{id}/status:
+    post:
+      tags: [Admin]
+      summary: Close or reopen a feedback thread
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties:
+                status: { type: string, enum: [open, closed] }
+      responses:
+        '200': { description: The updated thread }
+
+  /roadmap:
+    get:
+      tags: [Roadmap]
+      summary: List skill roadmap requests
+      security: []
+      description: Public. Optionally authenticated — personalizes `votedByViewer` when a valid token is sent.
+      responses:
+        '200': { description: Requests sorted by votes descending }
+
+  /roadmap/request:
+    post:
+      tags: [Roadmap]
+      summary: Submit a new skill roadmap request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [title, description]
+              properties:
+                title: { type: string }
+                description: { type: string }
+      responses:
+        '201': { description: Created request }
+
+  /roadmap/{id}/vote:
+    post:
+      tags: [Roadmap]
+      summary: Toggle the current user's vote on a request
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '200': { description: Updated vote count and votedByViewer }
+        '404': { description: Skill request not found }
+
+  /billing/checkout-session:
+    post:
+      tags: [Billing]
+      summary: Start Stripe Checkout for TrakCode Pro (monthly)
+      description: "Card is always collected. Includes the 7-day trial if this email hasn't had one, and the founding-member coupon for founding members."
+      responses:
+        '201': { description: Stripe Checkout session URL }
+        '409': { description: Already subscribed; use the portal instead }
+        '503': { description: Billing is not configured (or the founder coupon is missing for a founding member) }
+
+  /billing/portal-session:
+    post:
+      tags: [Billing]
+      summary: Open Stripe's Customer Portal (change card, cancel, invoices)
+      responses:
+        '200': { description: Portal session URL }
+        '400': { description: No billing account yet }
+        '503': { description: Stripe is not configured }
+
+  /billing/status:
+    get:
+      tags: [Billing]
+      summary: Current plan, trial, founding-member status and display price
+      responses:
+        '200': { description: "Billing status (subscriptionStatus, hasAccess, trialAvailable, foundingMember, price, ...)" }
+
+  /billing/bypass-trial:
+    post:
+      tags: [Billing]
+      summary: Start the free trial without Stripe (capstone build's paywall bypass)
+      description: Gives an account with no current access the same free trial a paid checkout would, for TRIAL_LENGTH_DAYS. No payment details.
+      responses:
+        '200': { description: 'Trial started (subscriptionStatus, trialEndsAt)' }
+        '401': { description: Not signed in }
+        '409': { description: The account already has access }
+
+  /billing/webhook:
+    post:
+      tags: [Billing]
+      summary: Stripe webhook receiver
+      security: []
+      description: Stripe-signed, not user-authed. Mounted with a raw body parser ahead of the global JSON parser (see app.ts).
+      responses:
+        '200': { description: Acknowledged }
+        '400': { description: Missing or invalid Stripe-Signature }
+        '503': { description: Stripe webhook is not configured }
+
+  /admin/problems/pending-review:
+    get:
+      tags: [Admin]
+      summary: List generated problems flagged for manual review (validated=false)
+      responses:
+        '200': { description: Up to 200 most recent pending-review problems }
+
+  /admin/roadmap/{id}/status:
+    put:
+      tags: [Admin]
+      summary: Update a roadmap request's status
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [status]
+              properties: { status: { type: string, enum: [requested, planned, in_progress, live] } }
+      responses:
+        '200': { description: Updated request }
+        '404': { description: Skill request not found }
+
+  /admin/usage/summary:
+    get:
+      tags: [Admin]
+      summary: AI usage summary grouped by purpose/tier/model
+      parameters:
+        - { name: days, in: query, schema: { type: integer } }
+        - { name: since, in: query, schema: { type: string, format: date-time } }
+      responses:
+        '200': { description: Grouped usage rows plus totals }
+
+  /admin/usage/by-user:
+    get:
+      tags: [Admin]
+      summary: AI usage summary grouped by user, sorted by cost descending
+      parameters:
+        - { name: days, in: query, schema: { type: integer } }
+        - { name: since, in: query, schema: { type: string, format: date-time } }
+        - { name: limit, in: query, schema: { type: integer, maximum: 200, default: 50 } }
+      responses:
+        '200': { description: Per-user usage rows }
+
+  /admin/problems:
+    get:
+      tags: [Admin]
+      summary: Browse the full problem bank (filtered/paginated)
+      responses:
+        '200': { description: Paginated problem list }
+
+  /admin/practice/metrics:
+    get:
+      tags: [Admin]
+      summary: Practice Mode bank reuse, generation cost/latency/failures, and learner completion
+      parameters:
+        - { in: query, name: days, schema: { type: integer, minimum: 1, maximum: 365, default: 30 } }
+      responses:
+        '200': { description: Metrics }
+        '403': { description: Not an admin }
+
+  /admin/users:
+    get:
+      tags: [Admin]
+      summary: Browse users with aggregated submission/session/lesson counts
+      responses:
+        '200': { description: Paginated user list }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: '`Authorization: Bearer <token>` — issued by signup/login/social sign-in, verified by `middleware/auth.middleware.ts`.'
+
+  schemas:
+    Stack:
+      type: string
+      enum: [python, typescript, cpp]
+
+    PublicUser:
+      type: object
+      properties:
+        id: { type: string }
+        email: { type: string }
+        name: { type: string }
+        role: { type: string, enum: [user, admin] }
+        subscriptionStatus: { type: string }
+        profile: { type: object }
+        createdAt: { type: string, format: date-time }
+        identities:
+          type: array
+          items:
+            type: object
+            properties:
+              provider: { $ref: '#/components/schemas/OAuthProvider' }
+              email: { type: string, nullable: true }
+              linkedAt: { type: string, format: date-time }
+        hasPassword: { type: boolean }
+        githubPortfolioConnected: { type: boolean }
+
+    OAuthProvider:
+      type: string
+      enum: [google, github, linkedin]
+
+    ErrorResponse:
+      type: object
+      properties:
+        error: { type: string }
+        details:
+          description: Present on a 400 validation failure — zod's per-field error map.
+        stack:
+          type: string
+          description: Present only outside production/capstone-submission (see middleware/errorHandler.ts).
+
+  responses:
+    AuthSession:
+      description: A session token and the account it belongs to
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token: { type: string }
+              user: { $ref: '#/components/schemas/PublicUser' }
+
+    Problem:
+      description: A problem (bank hit or freshly generated + sandbox-validated)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties: { problem: { type: object } }
+
+    ValidationError:
+      description: Request body/query failed zod validation
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+    AiUnavailable:
+      description: AI_API_KEY is not configured, or generation exhausted its retry budget
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorResponse' }
+
+    SandboxUnavailable:
+      description: The execution-sandbox microservice is unreachable or misconfigured
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/ErrorResponse' }

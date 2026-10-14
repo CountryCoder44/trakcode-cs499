@@ -1,0 +1,4 @@
+count open perren text close perren, tells you how many times a piece of text shows up inside a string.
+It hands back that number as an int, and capitalization matters here too.
+For example, banana dot count open perren A close perren, returns 3, while, banana dot count open perren A close perren, returns 0.
+Our examples stick to single characters or matches that are clearly separate.

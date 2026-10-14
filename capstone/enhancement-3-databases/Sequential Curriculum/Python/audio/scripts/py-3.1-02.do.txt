@@ -1,0 +1,2 @@
+Assign the result of, 14 minus 6, to a variable named, difference, then print, difference.
+The subtraction must occur in the assignment; do not assign or print the finished value 8 directly.

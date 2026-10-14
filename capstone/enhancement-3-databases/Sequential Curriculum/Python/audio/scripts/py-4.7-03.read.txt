@@ -1,0 +1,2 @@
+not in, asks the opposite question: "Is this text missing?" It gives you, True, when the text isn't there and, False, when it is.
+So, Ex not in team, is, True, while, E not in team, is, False.

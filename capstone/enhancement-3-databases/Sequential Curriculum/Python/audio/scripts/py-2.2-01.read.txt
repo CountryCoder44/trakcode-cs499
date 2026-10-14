@@ -1,0 +1,4 @@
+A variable is just a name connected to a value.
+The instruction, city equals Denver, assigns the text, Denver, to the variable, city.
+From that point on, using, city, means using whatever value it was assigned.
+That single, equals, means assign, the variable name goes on the left, the value goes on the right.

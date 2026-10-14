@@ -1,0 +1,3 @@
+in checks whether a value appears as an item in a list, and, not in, checks whether it is absent.
+Both produce a Boolean.
+With, roles equals open bracket admin comma editor close bracket, editor in roles, is, True, while, viewer not in roles, is also, True.

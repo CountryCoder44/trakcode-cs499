@@ -1,0 +1,4 @@
+Reed one line of text.
+Assign, text dot count open perren A close perren, to, a count, then print, Lowercase a colon less than a count greater than, with an f string.
+Do not print a prompt.
+Use the case sensitive, count open perren close perren, call; uppercase A must not be counted.

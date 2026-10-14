@@ -1,0 +1,3 @@
+An f string isn't limited to just one, open brace close brace, you can pack in as many placeholders as you need.
+With, first equals Ada, and, last equals Lovelace, the f string, f open brace first close brace open brace last close brace, becomes, Ada Lovelace.
+Each placeholder gets replaced independently, in the order it shows up.

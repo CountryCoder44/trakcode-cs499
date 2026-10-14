@@ -1,0 +1,3 @@
+s open bracket a colon b colon step close bracket, takes every, step, -th character.
+s open bracket colon colon 2 close bracket, is every other character.
+s open bracket colon colon minus 1 close bracket, steps backward through the whole string, which reverses it:, python open bracket colon colon minus 1 close bracket, is, nohtyp.

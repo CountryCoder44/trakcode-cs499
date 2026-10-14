@@ -1,0 +1,3 @@
+Use a list for an ordered sequence that may hold duplicates and needs indexing.
+Use a set for fast "is this present?" checks on unique values with no order.
+Use a dictionary to look a value up by a key.

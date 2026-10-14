@@ -1,0 +1,2 @@
+Assign the text, echo, to, word, then print it twice on separate lines, using the variable both times.
+Both, print open perren close perren, calls must print the variable, not the text, echo, retyped.

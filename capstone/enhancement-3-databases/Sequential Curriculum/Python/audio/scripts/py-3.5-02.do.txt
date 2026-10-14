@@ -1,0 +1,3 @@
+Assign 15 to, score, and 4 to, mistakes.
+Assign, score greater than or equal to 10 and mistakes less than 5, to, passed, then print, Passed colon True, with an f string.
+Use the complete comparison and comparison expression shown to calculate, passed.

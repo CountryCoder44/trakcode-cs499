@@ -1,0 +1,4 @@
+Input line 1 is a nonnegative whole number base and line 2 is a positive whole number exponent.
+The program leaves the exponent as text and uses multiplication instead of exponentiation.
+Repair both problems.
+Do not add prompts.

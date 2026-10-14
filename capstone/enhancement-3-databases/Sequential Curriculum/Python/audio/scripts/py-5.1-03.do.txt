@@ -1,0 +1,1 @@
+With, nums equals open bracket 10 comma 20 comma 30 comma 40 close bracket, already defined, print, nums open bracket 0 close bracket, on line 1, nums open bracket minus 1 close bracket, on line 2, and, len open paren nums close paren, on line 3.

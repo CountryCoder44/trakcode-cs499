@@ -1,0 +1,3 @@
+A border adds 2 to both the width and height before those new dimensions are multiplied.
+The current grouping applies the border to only one part of the calculation.
+Repair the expression with two parenthesized additions.

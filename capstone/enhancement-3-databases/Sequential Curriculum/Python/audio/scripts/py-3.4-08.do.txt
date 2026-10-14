@@ -1,0 +1,4 @@
+A coat is recommended when it is cold or raining.
+The current program requires both conditions and prints, is raining, rather than the combined result.
+Repair both lines.
+Keep the comparison parenthesized.

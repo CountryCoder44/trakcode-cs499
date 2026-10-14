@@ -1,0 +1,3 @@
+Reach the nested value first, then assign its replacement.
+If, player equals open brace stats colon open brace score colon 10 close brace close brace, the instruction, player open bracket stats close bracket open bracket score close bracket equals 25, changes the score inside the inner dictionary.
+For a list value, player open bracket levels close bracket open bracket 0 close bracket equals 2, uses a key and then an index.

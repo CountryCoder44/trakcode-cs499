@@ -1,0 +1,4 @@
+Assign, open bracket 1 comma 2 comma 3 close bracket, to, original.
+Create, copy list, as an independent copy of, original, using slicing, not, equals.
+Append 4 to, copy list.
+Print, original, then, copy list.

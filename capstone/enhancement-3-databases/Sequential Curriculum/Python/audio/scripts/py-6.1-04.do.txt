@@ -1,0 +1,3 @@
+Create, account, with the pairs, owner colon Grace, points colon 120, and, active colon True.
+Print the values for those three keys on separate labeled f string lines.
+Retrieve every value from the dictionary.

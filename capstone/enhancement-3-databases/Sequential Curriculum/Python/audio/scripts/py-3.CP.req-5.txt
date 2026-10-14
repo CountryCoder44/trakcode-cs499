@@ -1,0 +1,1 @@
+Assign, base greater than 0 and bonus greater than 0, to a variable named, both positive.

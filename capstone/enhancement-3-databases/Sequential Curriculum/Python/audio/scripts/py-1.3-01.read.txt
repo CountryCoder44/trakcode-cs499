@@ -1,0 +1,2 @@
+A development environment is the collection of tools and settings used to create and run software.
+For this course, the essential pieces are an editor, a, dot pie, file, a Python 3 interpreter, and a way to start execution.

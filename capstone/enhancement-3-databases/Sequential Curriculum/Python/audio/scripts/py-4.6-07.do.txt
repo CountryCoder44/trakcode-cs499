@@ -1,0 +1,2 @@
+Read one word.
+Print it right-aligned in a field 10 characters wide.

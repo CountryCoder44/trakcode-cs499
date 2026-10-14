@@ -1,0 +1,4 @@
+Professional projects often use virtual environments to isolate dependencies.
+They also use packages, formatters, linters, tests, and version control.
+Those tools matter, but requiring them now would hide the basic environment model.
+Virtual environments and packages are taught in Topic 12.

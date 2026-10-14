@@ -1,0 +1,1 @@
+open bracket open perren A comma 1 close perren comma open perren Bee comma 2 close perren close bracket.

@@ -1,0 +1,3 @@
+The title must appear before an underline of the same length.
+The program measures the word, title, instead of the stored value and prints the two lines in the wrong order.
+Repair both problems.

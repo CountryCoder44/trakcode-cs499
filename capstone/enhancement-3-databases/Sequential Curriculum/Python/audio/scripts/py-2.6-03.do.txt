@@ -1,0 +1,3 @@
+Assign the string, minus 5, to, temperature text.
+Convert it to an integer, add 2, and print the result.
+Use, int open perren close perren, rather than writing minus 3 directly.

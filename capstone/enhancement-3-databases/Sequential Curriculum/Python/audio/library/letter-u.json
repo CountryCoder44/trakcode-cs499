@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-u",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.743,
+ "sentences": [
+  {
+   "text": "\"u\".",
+   "start": 0,
+   "end": 0.743,
+   "segments": [
+    {
+     "text": "\"u\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

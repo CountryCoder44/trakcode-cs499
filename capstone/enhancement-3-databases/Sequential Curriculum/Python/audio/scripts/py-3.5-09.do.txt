@@ -1,0 +1,3 @@
+The intended rule is: the customer must be a member or have a coupon, and the item must also be available.
+The current expression lets a member buy an unavailable item because and is evaluated first.
+Add the grouping that matches the stated rule.

@@ -1,0 +1,3 @@
+Remove only the first, draft, then pop and report the final item.
+The current code removes the wrong value and pops the wrong position.
+Repair both method calls.

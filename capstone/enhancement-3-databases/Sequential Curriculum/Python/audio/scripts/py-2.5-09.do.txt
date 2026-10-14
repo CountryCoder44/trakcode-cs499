@@ -1,0 +1,2 @@
+The assignments are correct, but, type open perren close perren, is inspecting the variable names written as text.
+Repair both calls without changing the assignments.

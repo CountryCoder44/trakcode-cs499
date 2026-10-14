@@ -1,0 +1,2 @@
+Open a new terminal.
+Run the version command for your branch and paste the result into Track Code.

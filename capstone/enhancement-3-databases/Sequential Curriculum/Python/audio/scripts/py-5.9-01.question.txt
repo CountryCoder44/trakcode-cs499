@@ -1,0 +1,1 @@
+How many items are in the outer list, open bracket open bracket 1 comma 2 close bracket comma open bracket 3 comma 4 close bracket comma open bracket 5 comma 6 close bracket close bracket?

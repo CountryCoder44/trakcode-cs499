@@ -1,0 +1,1 @@
+Do not use loops, comprehensions, dictionaries, sets, branching, or hardcoded finished results.

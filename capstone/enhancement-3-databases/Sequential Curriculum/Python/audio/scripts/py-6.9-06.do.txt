@@ -1,0 +1,3 @@
+Assign, open brace Ada comma Grace comma Linus close brace, to, first, and, open brace Grace comma Guido close brace, to, second.
+Create, everyone, with union, shared, with intersection, and, first only, with difference.
+Print all three results with, sorted open perren close perren, on labeled lines.

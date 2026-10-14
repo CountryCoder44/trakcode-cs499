@@ -1,0 +1,4 @@
+Input line 1 is a name and line 2 is a whole number age.
+The program reads them in the wrong order and leaves the age as text before adding 1.
+Repair the input assignments and the conversion.
+Do not add prompts.

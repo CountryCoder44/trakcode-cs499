@@ -1,0 +1,3 @@
+Unpacking assigns a tuple's values to separate variables in one step.
+With, point equals open perren 3 comma 7 close perren, the instruction, x comma y equals point, assigns 3 to x and 7 to y.
+The number of variables must exactly match the number of tuple values, and the positions stay in order.

@@ -1,0 +1,2 @@
+Convert 1234 to text so its characters can be counted, then convert that text back to a number before adding 1.
+The current conversions point in the wrong directions, repair the program without hardcoding either result.

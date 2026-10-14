@@ -1,0 +1,1 @@
+Convert the age and the favorite number to integers before doing arithmetic.

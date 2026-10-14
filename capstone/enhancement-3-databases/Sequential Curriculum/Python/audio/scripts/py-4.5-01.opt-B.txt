@@ -1,0 +1,1 @@
+word equals Bee plus word open bracket 1 colon close bracket.

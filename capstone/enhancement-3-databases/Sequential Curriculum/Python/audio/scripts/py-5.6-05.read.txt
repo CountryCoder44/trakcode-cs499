@@ -1,0 +1,3 @@
+index open perren value close perren, returns the position of the first matching item.
+With, letters equals open bracket A comma Bee comma A close bracket, letters dot index open perren A close perren, returns 0, not 2.
+Every, index open perren close perren, task here searches for a value that is present; handling a missing value comes after exception handling is introduced.

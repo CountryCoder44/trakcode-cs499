@@ -1,0 +1,5 @@
+Reed one line containing at least one English letter after surrounding whitespace is removed.
+Assign, raw dot strip open perren close perren, to, clean.
+Build, display, from, clean open bracket 0 close bracket dot upper open perren close perren, plus, clean open bracket 1 colon close bracket dot lower open perren close perren, then print, Name colon less than display greater than, with an f string.
+Do not print a prompt.
+Use all three required method calls and build the displayed name from the indexed and sliced parts.

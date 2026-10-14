@@ -1,0 +1,4 @@
+A dictionary connects each key to a value.
+Write it with curly braces, placing a colon between each key and value:, open brace name colon Ada comma score colon 95 close brace.
+Instead of asking for an item by its numbered position, you ask for it by key.
+Here, name, leads to, Ada.

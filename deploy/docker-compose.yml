@@ -1,0 +1,109 @@
+# TrakCode on one server. Run from the repo root on the server:
+#   docker compose -f deploy/docker-compose.yml --env-file /srv/trakcode/env.production up -d --build
+# (deploy/remote-deploy.sh does exactly this.)
+#
+# Networks:
+#   web     — internet-facing; Caddy and the API (the API needs outbound access
+#             for Anthropic, GitHub, Google and LinkedIn).
+#   backend — internal only: API <-> MongoDB. Mongo has no internet access and
+#             no published port.
+#   sandbox — internal only: API <-> execution sandbox. Learner code has no
+#             internet access at all.
+#
+# Logs: web, api and sandbox ship to CloudWatch Logs (/trakcode/<service>,
+# kept 30 days) through Docker's awslogs driver, using the server's IAM role.
+# See deploy/monitoring.md.
+
+name: trakcode
+
+services:
+  web:
+    build: { context: .., dockerfile: deploy/Dockerfile, target: web }
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL}
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on: [api]
+    networks: [web]
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: us-east-2
+        awslogs-group: /trakcode/web
+        # non-blocking: if CloudWatch is slow or down, drop log lines rather
+        # than stall the app. `docker compose logs` still works locally.
+        mode: non-blocking
+        max-buffer-size: 4m
+
+  api:
+    build: { context: .., dockerfile: deploy/Dockerfile, target: api }
+    restart: unless-stopped
+    env_file: /srv/trakcode/env.production
+    environment:
+      NODE_ENV: production
+      PORT: "4000"
+      EXECUTION_SERVICE_URL: http://sandbox:4100
+    depends_on: [mongo, sandbox]
+    mem_limit: 600m
+    networks: [web, backend, sandbox]
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: us-east-2
+        awslogs-group: /trakcode/api
+        # non-blocking: if CloudWatch is slow or down, drop log lines rather
+        # than stall the app. `docker compose logs` still works locally.
+        mode: non-blocking
+        max-buffer-size: 4m
+
+  sandbox:
+    build: { context: .., dockerfile: deploy/Dockerfile, target: sandbox }
+    restart: unless-stopped
+    # Locked down: learner code runs in here.
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m,exec,mode=1777
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 128
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [sandbox]
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: us-east-2
+        awslogs-group: /trakcode/sandbox
+        # non-blocking: if CloudWatch is slow or down, drop log lines rather
+        # than stall the app. `docker compose logs` still works locally.
+        mode: non-blocking
+        max-buffer-size: 4m
+
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    command: ["--wiredTigerCacheSizeGB", "0.25"]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    volumes:
+      # On the server's EBS disk, which gets daily snapshots (backups).
+      - /srv/trakcode/mongo:/data/db
+    mem_limit: 600m
+    networks: [backend]
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  web: {}
+  backend: { internal: true }
+  sandbox: { internal: true }

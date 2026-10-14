@@ -1,0 +1,3 @@
+len open perren close perren, short for "length", gives you the number of characters in a string:, len open perren hello close perren, is 5.
+Spaces count too, so, len open perren a b close perren, comes out to 3.
+And whatever, len open perren close perren, returns is always an int.

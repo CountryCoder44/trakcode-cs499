@@ -1,0 +1,261 @@
+These will be my standing guidelines for every TrakCode course topic moving forward.
+
+1. Strict sequential dependency
+Every item may use only:
+Material explained in that item’s reading
+Concepts explicitly mastered in earlier items
+A later lesson can never justify an earlier question.
+I will check readings, examples, questions, distractors, explanations, exercises, solutions, and hidden tests for forward references.
+Previously seeing a term or code fragment does not automatically mean the learner has mastered it.
+
+A concept counts as covered only when it has been clearly explained and made assessable—not merely mentioned.
+
+2. Atomic concept tracking
+
+Each independently testable behavior will be tracked separately. I will not use broad entries such as:
+
+Strings covered
+Division covered
+Input covered
+
+Instead, concepts will be narrow, such as:
+
+Concatenate two strings with +
+Repeat a string with a positive integer
+Use / with two integers
+Use // with nonnegative integers and a positive divisor
+Convert a valid digit string to int
+Read one complete line with input()
+
+Each concept will internally track:
+
+Concept ID
+Prerequisites
+Where it is introduced
+When it becomes assessable
+Permitted syntax
+Permitted data types and value ranges
+Allowed combinations with other concepts
+Explicitly excluded cases
+Permitted assessment types
+3. Four levels of exposure
+
+I will distinguish between:
+
+Mentioned for orientation
+Introduced and explained
+Practiced by the learner
+Assessable in future questions
+
+A read-only example does not unlock code-writing exercises. An edge case mentioned in passing does not become assessable unless it is deliberately taught.
+
+Only concepts marked assessable may be used by the future practice-question generator.
+
+4. One new conceptual leap at a time
+
+Each item should introduce one central idea or one tightly connected group of ideas.
+
+The normal sequence will be:
+
+Brief reading
+Worked example when needed
+Concept check
+Guided coding exercise
+Less-guided coding exercise
+Later integration with previously mastered concepts
+
+I will avoid requiring the learner to understand several new behaviors simultaneously.
+
+5. Short, explicit readings
+
+Readings will:
+
+Define technical terms when first used
+Use beginner-accessible language
+State behavior directly rather than relying on inference
+Explain limitations where they matter
+Avoid prematurely mentioning advanced alternatives
+Separate conceptual models from implementation details
+Avoid promises that something appears later unless the roadmap confirms it
+
+Ordinary terms such as computer, file, screen, and software may be treated as general vocabulary. Programming-specific terminology must be defined.
+
+6. Question standards
+
+Every question will have:
+
+Exactly one unambiguously correct answer
+A correct answer directly supported by the reading
+Plausible distractors based on real beginner misconceptions
+Options belonging to the same logical category
+No distractor that requires untaught knowledge to eliminate
+No technically defensible “wrong” answer
+A concise explanation of why the answer is correct
+Remediation that addresses all major wrong-answer misconceptions
+
+I will avoid:
+
+Absurd filler answers
+Duplicate distractors expressing the same misconception
+Questions answerable only by copying unfamiliar terminology
+Trick questions
+Ambiguity caused by unusual Python behavior
+“All of the above” and “none of the above” unless genuinely valuable
+
+Correct-answer letter balance will not be forced because the platform shuffles choices.
+
+7. Code-example boundaries
+
+Every code example will be classified as either:
+
+Read-only recognition
+Demonstrated syntax
+Learner-practiced syntax
+Fully assessable syntax
+
+Read-only examples may support tracing or classification only within their stated boundary. They do not authorize generated coding questions.
+
+Examples will not contain incidental syntax that has not been covered unless that syntax is explicitly labeled as non-assessable orientation.
+
+8. Live-coding requirements
+
+Beginning with Topic 2:
+
+At least 50% of required items will be live coding.
+At least roughly 50% of expected learner time will involve writing or modifying code.
+New concepts will receive direct practice before being combined into larger problems.
+Exercises will progress from guided to increasingly independent.
+Multiple valid implementations will be accepted unless a particular technique is the learning objective.
+
+Exercises will clearly distinguish between:
+
+Output requirements
+Behavioral requirements
+Required implementation techniques
+9. Grading rules
+
+Output-only grading will be used when any correct implementation is acceptable.
+
+If an exercise requires a specific technique—such as variables, an f-string, len(), a loop, or a function—the requirement will be:
+
+Stated explicitly
+Verified structurally, preferably through AST inspection
+Not enforced through brittle text matching
+Tested independently from stdout where appropriate
+
+A task will never claim that hardcoded output fails if the grader cannot actually detect it.
+
+10. Hidden-test boundaries
+
+Hidden tests will use only values and cases explicitly authorized by the coverage checklist.
+
+For example, teaching positive floor division does not authorize hidden tests involving:
+
+Negative operands
+Zero divisors
+Float operands
+Unexplained remainder behavior
+
+Hidden tests will not introduce:
+
+New input formats
+New data types
+Untaught edge cases
+Untaught error conditions
+Unexplained whitespace
+Unexpected prompts
+Floating-point precision traps
+
+Every hidden case will be manually recalculated and, where possible, executed before delivery.
+
+11. Combining concepts
+
+A question may combine concepts only when:
+
+Every individual concept is already assessable
+The combination does not create a new behavior
+The learner has had enough direct practice
+No new precedence, coercion, evaluation-order, or edge-case rule is required
+
+Knowing two concepts separately does not automatically mean their interaction is covered. For example, knowing negative integers and knowing floor division does not teach negative floor division behavior.
+
+12. Input and exact-output exercises
+
+For stdin/stdout exercises:
+
+Input order will be stated clearly.
+The type and format of every input line will be specified.
+Prompts will be prohibited when hidden grading expects none.
+Expected output will show exact capitalization, spacing, punctuation, and line breaks.
+Test notation such as \n will remain author-facing unless escape sequences have been taught.
+Invalid input will not appear until error handling is covered.
+13. Solutions and learner guidance
+
+Stored solutions may use only covered concepts.
+
+Hints and incorrect-answer guidance will:
+
+Point the learner toward the relevant concept
+Explain the misconception
+Avoid introducing unrelated material
+Avoid revealing the entire solution prematurely
+Remain compatible with Trak’s contextual tutoring
+
+The curriculum itself will not need to explain that Trak is available; the platform already provides that context.
+
+14. Checkpoints
+
+A checkpoint will never introduce new material.
+
+It may combine only concepts that have already been:
+
+Explained
+Assessed
+Practiced where applicable
+
+Checkpoint requirements will specify:
+
+Inputs
+Outputs
+Required techniques
+Prohibited extra output
+Grading expectations
+
+All checkpoint tests will remain within previously taught ranges and behaviors.
+
+15. Roadmap boundaries
+
+Each topic will explicitly state what it covers and what remains deferred.
+
+Those boundaries will apply to:
+
+Readings
+Examples
+Questions
+Distractors
+Solutions
+Feedback
+Hidden tests
+Generator permissions
+
+A deferred concept may be named only when necessary for orientation and must be marked non-assessable.
+
+16. Final quality-control pass
+
+Before I deliver a topic, I will:
+
+Read every item sequentially.
+Identify the supporting sentence for every correct answer.
+Check every distractor against prior coverage.
+Trace or execute every code example.
+Recalculate every expected output.
+Verify every hidden test.
+Confirm all IDs are unique and sequential.
+Confirm every answer matches an available option.
+Confirm the required concept/practical ratio.
+Confirm no checkpoint introduces new material.
+Check terminology for premature use.
+Check the atomic coverage ledger for overbroad permissions.
+Remove revision notes and deliver only the authoritative curriculum content.
+
+The result for each topic will be one clean, sequential source file—not a mixture of curriculum, audit commentary, and revision reports.

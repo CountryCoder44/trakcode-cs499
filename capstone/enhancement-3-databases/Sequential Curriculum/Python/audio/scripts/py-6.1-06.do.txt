@@ -1,0 +1,3 @@
+Create, book, with, title colon Dune, pages colon 412, and, available colon True.
+Print the title, page count, availability, and number of fields on four labeled f string lines.
+Retrieve every displayed value from the dictionary and use, len open perren book close perren, for the field count.

@@ -1,0 +1,3 @@
+The player should keep the name, Mina, have a score of 25, and gain a new level of 2.
+The current program updates the wrong key and stores the level under the score key.
+Repair both assignments.

@@ -1,0 +1,2 @@
+Print a line made of exactly 20 equals signs (equals), then print the word, REPORT.
+Make the line with, times 20, don't type out twenty, equals, characters.

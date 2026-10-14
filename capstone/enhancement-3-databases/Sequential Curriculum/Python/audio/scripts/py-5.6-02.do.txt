@@ -1,0 +1,3 @@
+Assign, open bracket red comma green comma blue close bracket, to, allowed.
+Assign the result of, green in allowed, to, is allowed, and, orange not in allowed, to, orange missing.
+Print both labeled Boolean results with f strings.

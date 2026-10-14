@@ -1,0 +1,3 @@
+regular, whole, and, remainder, should store the three different results of dividing 17 by 5.
+Their augmented operators are assigned to the wrong variables.
+Repair all three updates.

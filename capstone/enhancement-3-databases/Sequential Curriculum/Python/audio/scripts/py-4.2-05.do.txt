@@ -1,0 +1,1 @@
+Read one line and print how many characters it contains.

@@ -1,0 +1,3 @@
+Assign, open brace title colon Engineer comma remote colon True close brace, to job.
+Store, remote in job, in, has remote, and, salary not in job, in, salary missing.
+Print both labeled Boolean results with f strings.

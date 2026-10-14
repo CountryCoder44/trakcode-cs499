@@ -1,0 +1,2 @@
+Setup errors are evidence.
+A useful order: read the complete message, confirm the command, confirm the interpreter version, confirm the working directory, confirm the exact filename and, dot pie, extension, save the file, and change one thing at a time.

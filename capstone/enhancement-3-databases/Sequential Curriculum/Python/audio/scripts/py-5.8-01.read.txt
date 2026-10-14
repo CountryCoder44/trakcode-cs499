@@ -1,0 +1,4 @@
+A tuple is an ordered collection that cannot be changed after it is created.
+Tuples are commonly written with parentheses and commas, such as, open perren 10 comma 20 close perren.
+Indexing and slicing work as they do with lists, but assigning a new value to, point open bracket 0 close bracket, does not work.
+A tuple fits values that belong together and are not meant to change.

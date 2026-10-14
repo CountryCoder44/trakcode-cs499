@@ -1,0 +1,4 @@
+repple stands for Read Eval Print Loop.
+It lets you type in a small piece of Python code, run it immediately, see a result when there is one, and then type in more.
+Those, triple greater than, symbols you'll see are just the Python prompt, they're not part of the code itself.
+Think of the repple as a place for quick experiments, not somewhere to build up a program over several days or hand finished software to someone else.

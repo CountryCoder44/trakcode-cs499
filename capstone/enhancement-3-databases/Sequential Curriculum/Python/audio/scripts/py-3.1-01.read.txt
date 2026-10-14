@@ -1,0 +1,4 @@
+An expression is just a piece of code that Python works out into a value.
+4 plus 3, is an expression, it works out to 7.
+So is, price times quantity, using whatever, price, and, quantity, currently hold.
+Once you have that value, you can assign it to a variable, hand it to, print open perren close perren, or drop it straight into an f string placeholder.

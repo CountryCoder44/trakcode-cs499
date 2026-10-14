@@ -1,0 +1,3 @@
+Read a key on line 1 and a whole-number value on line 2.
+Build a dictionary with just that one pair, then replace the value with double its amount.
+Print the dictionary.

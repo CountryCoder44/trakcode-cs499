@@ -1,0 +1,1 @@
+Read one line and print every other character, starting from the first (indices 0, 2, 4, …).

@@ -1,0 +1,2 @@
+With a single, print open perren close perren, call and one string literal, display red on one line and, blue, on the next.
+Put, backslash n, between the two words inside the string; do not use two, print open perren close perren, calls.

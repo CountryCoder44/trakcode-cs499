@@ -1,0 +1,2 @@
+Read one line that may have extra spaces around it and mixed case.
+Print it stripped and lowercased.

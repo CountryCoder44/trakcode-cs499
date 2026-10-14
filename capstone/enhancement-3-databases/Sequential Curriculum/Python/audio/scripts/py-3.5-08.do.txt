@@ -1,0 +1,3 @@
+Assign, True, to, is closed, and, False, to, staff override.
+Assign, not is closed or staff override, to, may enter, then print, May enter colon False, with an f string.
+Do not add parentheses; calculate, may enter, with the complete expression shown.

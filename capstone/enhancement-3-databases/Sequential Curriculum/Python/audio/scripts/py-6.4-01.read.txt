@@ -1,0 +1,3 @@
+pop open perren key close perren, removes an existing key value pair and returns its value.
+This is useful when you still need the removed information.
+If, item equals open brace name colon Pen comma price colon 2 close brace, and, old price equals item dot pop open perren price close perren, then, old price, is 2 and, item, keeps only the, name, pair.

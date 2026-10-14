@@ -1,0 +1,3 @@
+Assign 8 to, temperature, and, False, to, is raining.
+Assign, open perren temperature less than 10 close perren or is raining, to, take coat, then print, Take coat colon True, with an f string.
+Use the parenthesized comparison and one or operator to calculate, take coat.

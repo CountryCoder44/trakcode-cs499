@@ -1,0 +1,3 @@
+Assign, open bracket draft comma wrong comma ready close bracket, to, statuses.
+Replace the item at index 1 with, review, then print the complete list.
+Update that list position directly; do not rebuild or print a finished list.

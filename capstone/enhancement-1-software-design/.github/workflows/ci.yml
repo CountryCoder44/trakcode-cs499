@@ -1,0 +1,45 @@
+name: CI
+
+# Type-check + automated tests on every push and pull request — the Module 2
+# code review's Enhancement 1 ("no automated tests anywhere in the project")
+# named this explicitly: type-checking proves types line up, it does not
+# prove gradeCode grades correctly or that the tutor guardrail actually
+# blocks a leaked solution. This is what actually gates that now.
+on:
+  push:
+  pull_request:
+
+jobs:
+  typecheck-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - run: npm run typecheck:server
+      - run: npm run typecheck:sandbox
+      - run: npm run typecheck:client
+
+      # Dummy, non-secret values — server/src/config/env.ts requires these to
+      # be present (zod .min(1)) to boot at all, but neither test suite
+      # actually reaches a real Mongo instance or the Anthropic API through
+      # them: seqGrader/seq.submit tests spin up their own ephemeral
+      # mongodb-memory-server, and the guardrail test mocks the Anthropic
+      # client outright. AI_API_KEY is intentionally left unset — every
+      # AI-touching test mocks it rather than depending on a real key in CI.
+      - name: Run server tests
+        run: npm run test:server
+        env:
+          NODE_ENV: dev
+          MONGODB_URI: memory://ci_placeholder
+          JWT_SECRET: ci-placeholder-secret-value-not-real
+
+      - run: npm run test:sandbox
+
+      - run: npm run build:client

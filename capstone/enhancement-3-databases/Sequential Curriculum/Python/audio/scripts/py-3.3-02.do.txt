@@ -1,0 +1,3 @@
+Assign 12 to both, number1, and, number2.
+Assign the result of, number1 compared to number2, to, result, then print, Equal colon True, with an f string.
+Calculate, result, with, double equals, and insert, open brace result close brace, in the output.

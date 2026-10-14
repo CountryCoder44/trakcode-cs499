@@ -1,0 +1,1 @@
+Which double quoted literal contains the text, Say yes?

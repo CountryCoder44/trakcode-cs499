@@ -1,0 +1,1 @@
+Print exactly these four lines, in this order:, Name colon less than name greater than, Age colon less than age greater than, In 10 years you will be less than age plus 10 greater than, Favorite number doubled colon less than favorite number times 2 greater than.

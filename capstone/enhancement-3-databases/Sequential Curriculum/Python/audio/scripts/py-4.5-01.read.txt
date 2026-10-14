@@ -1,0 +1,4 @@
+Python strings are immutable.
+That just means you can't reach into an existing string and swap out one character.
+An instruction like, word open bracket 0 close bracket equals Bee, simply won't work.
+Instead, build a brand new string out of the pieces you want, something like, Bee plus word open bracket 1 colon close bracket, and assign that new string to a variable.

@@ -1,0 +1,4 @@
+Mix operators in one expression and Python needs a rule for what to do first, that rule is precedence.
+double star, goes before, times, slash, double slash, and, percent sign, and all of those go before, plus, and, minus.
+So, 2 plus 3 times 4, works out the multiplication first, 2 plus 12, then adds, giving 14.
+(We won't chain multiple, double star, together in this lesson.)

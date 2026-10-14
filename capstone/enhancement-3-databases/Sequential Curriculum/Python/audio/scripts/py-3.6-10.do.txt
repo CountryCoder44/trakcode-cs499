@@ -1,0 +1,5 @@
+Input lines contain a starting score, bonus, penalty, and target as whole numbers.
+Update the score by adding the bonus and subtracting the penalty, then compare the final value with the target.
+The current code replaces the score with the bonus, adds the penalty, and compares the starting input instead of the updated score.
+Repair all three problems using augmented assignment.
+Do not add prompts.

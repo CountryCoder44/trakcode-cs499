@@ -1,0 +1,398 @@
+{
+  "_readme": [
+    "Pronunciation rules for lesson narration. Consumed by",
+    "server/src/tts/prepareScript.ts, which turns a lesson's markdown reading",
+    "text into a plain 'spoken script' before it is sent to ElevenLabs.",
+    "",
+    "Apply order per text run:",
+    "  1. regexRules        (in order; a rule with \"spokenOnly\": true is applied",
+    "                        to the spoken form only, so the read-along panel keeps",
+    "                        \"2.3\" / \"ValueError\" / \"__init__\" / \"my_var\" as written)",
+    "  2. codeSymbols       (only inside `inline code` spans; longest literal first)",
+    "  3. proseSymbols      (everywhere; longest literal first)",
+    "  4. words             (whole-word, case-sensitive, everywhere)",
+    "",
+    "This file is meant to be edited. After a change, re-run:",
+    "  npm run tts:scripts   (regenerates the reviewable .txt scripts, no API)",
+    "then, once a voice is configured:",
+    "  npm run tts:generate  (re-generates only the clips whose script changed)"
+  ],
+  "regexRules": [
+    {
+      "pattern": "```[a-zA-Z]*\\n[\\s\\S]*?```",
+      "replace": " (code example follows) ",
+      "flags": "g",
+      "why": "drop fenced code blocks from narration"
+    },
+    {
+      "pattern": "\\*\\*([^*]+)\\*\\*",
+      "replace": "$1",
+      "flags": "g",
+      "why": "strip bold markers, keep the words"
+    },
+    {
+      "pattern": "(\\d)\\.(\\d)",
+      "replace": "$1 point $2",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "3.14 -> three point one four (must run before '.' becomes 'dot'); read-along keeps 3.14 / Lesson 2.3"
+    },
+    {
+      "pattern": "\\b([A-Z][a-zA-Z]*)(Error|Warning|Exception)\\b",
+      "replace": "$1 $2",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "IndexError -> Index Error; read-along keeps IndexError"
+    },
+    {
+      "pattern": "\\b__([a-z]+)__\\b",
+      "replace": "dunder $1",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "__init__ -> dunder init; read-along keeps __init__"
+    },
+    {
+      "pattern": "([a-zA-Z])_([a-zA-Z])",
+      "replace": "$1 $2",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "snake_case -> snake case, read as words; read-along keeps snake_case"
+    },
+    {
+      "pattern": "double slash\\s*,?\\s*and\\s*,?\\s*percent sign\\s*,?\\s*split a division",
+      "replace": "floor division, and, modulo, split a division",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "py-2.3-05's recap sentence ('Together, `//` and `%` split a division...') names the two operators by operation, not by bare-symbol name, even though a bare `//`/`%` elsewhere says 'double slash'/'percent sign' to avoid the Floor-division-Floor-division duplicate; read-along keeps // and % as written"
+    },
+    {
+      "pattern": "slash[\\s,]*double slash[\\s,]*and[\\s,]*percent sign[\\s,]*operators",
+      "replace": "division, floor division, and, modulo, operators",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "py-2.3-06's do field ('Use the `/`, `//`, and `%` operators...') lists the operators by operation name, not by bare-symbol name; read-along keeps /, //, and % as written"
+    },
+    {
+      "pattern": "\\bna\\s+times\\s+4\\b",
+      "replace": "nah times 4",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "py-2.4-03's question (`\"na\" * 4`) reads the bare two-letter 'na' unclearly/with an odd accent; 'nah' is a clearer spoken spelling of the same sound. Scoped to this exact phrase so it doesn't touch 'na na na na' (opt-C, already approved) or the fused 'nananana'/'na4' (no word boundary there anyway); read-along keeps \"na\" * 4 as written"
+    },
+    {
+      "pattern": "\\bbrace y\\b",
+      "replace": "brace why",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "A bare `y` immediately after 'open brace'/'close brace' (e.g. py-2.7-03's `{y}` distractors) gets mispronounced as 'eee' rather than the letter name — respelled 'why' only in this brace-adjacent context. NOT a global `words` respelling: a blanket `y`->`why` would also hit the letter-spelling `P-y-t-h-o-n` elsewhere in Topic 2, breaking an already-correct, locked pronunciation. Scoped narrowly via the literal 'brace' anchor instead. Read-along keeps `{y}` as written."
+    },
+    {
+      "pattern": "\\bbrace a\\b",
+      "replace": "brace ay",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "Same class of bug as the brace-y rule above, for the letter `a`: a bare `a` immediately after 'open brace' (py-2.7-05's `f\"{a} + {b} = {a + b}\"` read) is pronounced as the article 'a' (\"ah\") instead of the letter name. NOT a global `words` respelling — `a` is an ordinary English word and appears constantly as the article elsewhere in every lesson's prose (including this same item's own read: \"A {...} placeholder... not just a name.\"), so a blanket `a`->`ay` would wreck normal sentences. Scoped via the literal 'brace' anchor, same as the y rule. Read-along keeps `{a}` as written."
+    },
+    {
+      "pattern": "\\ba\\s+equals\\b",
+      "replace": "ay equals",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "Companion to the brace-a rule above: py-2.7-05's read also says \"With `a` = 2\" outside any brace (\"a equals 2\"), same mispronunciation. `\\s+` (not a literal single space) because the bare `=` codeSymbol itself expands to \" equals \" with its own surrounding spaces, and the source already has spaces around `=` in `a = 2` — so the assembled text is actually \"a  equals\" (double space) before the final whitespace collapse runs, which happens after regexRules. Scoped to the specific 'a equals' collocation rather than a bare `a`, for the same reason the brace-a rule is scoped narrowly — 'a' alone is the English article and appears throughout ordinary prose."
+    },
+    {
+      "pattern": "^Read\\b",
+      "replace": "Reed",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "'Read' is a homograph — present tense ('reed') vs past tense ('red') — and ElevenLabs picked the past tense for Lesson 2.8's instructional sentences that OPEN with the imperative 'Read one line with `input()`...'/'Read two lines...'/'Read a `quantity`...'. `^` anchors to the START of a sentence specifically (regexRules run per-sentence, not on the whole block), so this only fires on a sentence that BEGINS with 'Read' — never mid-sentence, where a genuine past-tense 'read' could legitimately appear. Checked: zero hits anywhere in Topics 1 or Lessons 2.1-2.6 (all locked) — every sentence-initial 'Read' in the curriculum right now is in Lesson 2.8 / the checkpoint (both freshly narrated, unlocked), and all of them are the imperative sense. Read-along keeps 'Read' as written."
+    },
+    {
+      "pattern": "\\bA\\s+backslash\\s+t\\b",
+      "replace": "Ay backslash t",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "Same class of bug as the brace-a/a-equals rules above, for a capital `A`: py-4.1-03's read has the inline code `\"A\\tB\"`, which assembles to 'A backslash t B' — ElevenLabs reads the standalone 'A' as the English article ('ah') instead of the letter name. Scoped to the capital `A` immediately before 'backslash t' specifically (not a bare `\\bA\\b`, which would also hit any ordinary sentence-starting 'A' used as the article, e.g. 'A tab moves...' two sentences earlier in this same item) — checked via a direct prepareTtsScript() harness run, confirmed this exact collocation ('A backslash t') doesn't occur anywhere else in the curriculum (`A\\t` appears exactly once in the source .md, in this one item). Read-along keeps `\"A\\tB\"` as written."
+    },
+    {
+      "pattern": "\\bFirst an colon\\b",
+      "replace": "First A. En. colon",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "py-4.8-04's do: field literally shows the program's printed output as `First an: 1` (unquoted — it's real stdout text, not a Python string, so it never goes through the quote-anchored SPELL_OUT_RUNS spelling-out mechanism in prepareScript.ts, which fixed the OTHER two `\"an\"` occurrences in this same item). Left as bare 'an' it read unclear/smooshed, same failure as every other bare rendering tried for this word (see prepareScript.ts's SPELL_OUT_RUNS comment for the fuller history — a plain word swap and a spliced-audio version were both tried and rejected first). Scoped to the exact 'First an colon' collocation, not a bare `\\ban\\b` — the SAME sentence also legitimately says 'with an f string' (the ordinary English article), which must stay untouched. Checked: 'First an colon' occurs nowhere else in the curriculum. Read-along keeps `First an: 1` exactly as written."
+    },
+    {
+      "pattern": "\\bA\\.\\s+En\\s+close paren\\b",
+      "replace": "A. En, close paren",
+      "flags": "g",
+      "spokenOnly": true,
+      "why": "py-4.8-04's `word.find(\"an\")` — SPELL_OUT_RUNS correctly spells the quoted \"an\" out as 'A. En', but this specific occurrence sits mid-expression with no natural pause afterward (unlike the item's OTHER `\"an\"` occurrence, `the substring \"an\"`, which is a whole code span on its own and already gets a natural comma from the smooth/comma-wrap logic) — 'En' ran straight into 'close paren' with no break. Adds the same kind of pause a comma-wrap would have given it. Pattern matches BEFORE the `words` map's `paren`->`perren` respelling runs (regexRules apply first, per this file's own documented apply order), so it targets 'close paren', not 'close perren', even though 'perren' is what actually reaches ElevenLabs. Scoped to this exact collocation (the only place in the curriculum a spelled-out run currently ends right before a close-paren) rather than changing spellOutRun() globally, which would risk reintroducing the double-punctuation bug spellOutRun's 'no trailing separator' design was built to avoid (see prepareScript.ts)."
+    }
+  ],
+  "codeSymbols": [
+    [
+      ">>>",
+      " triple greater-than "
+    ],
+    [
+      "<<<",
+      " triple less-than "
+    ],
+    [
+      "**=",
+      " power equals "
+    ],
+    [
+      "//=",
+      " floor divide equals "
+    ],
+    [
+      "!=",
+      " not equal to "
+    ],
+    [
+      "==",
+      " double equals "
+    ],
+    [
+      "<=",
+      " less than or equal to "
+    ],
+    [
+      ">=",
+      " greater than or equal to "
+    ],
+    [
+      "+=",
+      " plus equals "
+    ],
+    [
+      "-=",
+      " minus equals "
+    ],
+    [
+      "*=",
+      " times equals "
+    ],
+    [
+      "/=",
+      " divide equals "
+    ],
+    [
+      "%=",
+      " modulo equals "
+    ],
+    [
+      "->",
+      " arrow "
+    ],
+    [
+      "//",
+      " double slash "
+    ],
+    [
+      "**",
+      " double star "
+    ],
+    [
+      "(",
+      " open paren "
+    ],
+    [
+      ")",
+      " close paren "
+    ],
+    [
+      "[",
+      " open bracket "
+    ],
+    [
+      "]",
+      " close bracket "
+    ],
+    [
+      "{",
+      " open brace "
+    ],
+    [
+      "}",
+      " close brace "
+    ],
+    [
+      ":",
+      " colon "
+    ],
+    [
+      ",",
+      " comma "
+    ],
+    [
+      ".",
+      " dot "
+    ],
+    [
+      "@",
+      " at "
+    ],
+    [
+      "=",
+      " equals "
+    ],
+    [
+      "+",
+      " plus "
+    ],
+    [
+      "-",
+      " minus "
+    ],
+    [
+      "*",
+      " times "
+    ],
+    [
+      "/",
+      " slash "
+    ],
+    [
+      "%",
+      " percent sign "
+    ],
+    [
+      "<",
+      " less than "
+    ],
+    [
+      ">",
+      " greater than "
+    ],
+    [
+      "&",
+      " ampersand "
+    ],
+    [
+      "|",
+      " pipe "
+    ],
+    [
+      "^",
+      " caret "
+    ],
+    [
+      "!",
+      " exclamation point "
+    ],
+    [
+      "#",
+      " hash "
+    ],
+    [
+      "_",
+      " underscore "
+    ],
+    [
+      "\\n",
+      " backslash n "
+    ],
+    [
+      "\\t",
+      " backslash t "
+    ],
+    [
+      "\\\"",
+      " backslash quote "
+    ],
+    [
+      "\\\\",
+      " double backslash "
+    ],
+    [
+      "\\",
+      " backslash "
+    ],
+    [
+      "\"",
+      " "
+    ],
+    [
+      "'",
+      " "
+    ],
+    [
+      "`",
+      " "
+    ]
+  ],
+  "proseSymbols": [
+    [
+      "!=",
+      " not equal to "
+    ],
+    [
+      "==",
+      " double equals "
+    ],
+    [
+      "<=",
+      " less than or equal to "
+    ],
+    [
+      ">=",
+      " greater than or equal to "
+    ],
+    [
+      "->",
+      " arrow "
+    ],
+    [
+      "...",
+      " and so on "
+    ],
+    [
+      "\\n",
+      " backslash n "
+    ],
+    [
+      "\\t",
+      " backslash t "
+    ],
+    [
+      "\\\"",
+      " backslash quote "
+    ],
+    [
+      "\\\\",
+      " double backslash "
+    ],
+    [
+      ">>>",
+      " triple greater-than "
+    ],
+    [
+      "&",
+      " and "
+    ]
+  ],
+  "words": {
+    "str": "string",
+    "dict": "dictionary",
+    "elif": "else if",
+    "bool": "boolean",
+    "NoneType": "none type",
+    "isinstance": "is instance",
+    "stdin": "standard input",
+    "stdout": "standard output",
+    "stderr": "standard error",
+    "REPL": "repple",
+    "repl": "repple",
+    "PEP": "pep",
+    "kwargs": "keyword arguments",
+    "kwarg": "keyword argument",
+    "args": "arguments",
+    "py": "pie",
+    "TrakCode": "Track Code",
+    "Trak": "Track",
+    "paren": "perren",
+    "Lima": "Leema"
+  }
+}

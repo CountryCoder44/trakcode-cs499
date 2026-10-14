@@ -1,0 +1,4 @@
+Input lines 1 and 2 are whole number width and height values.
+The second input stays text, and the program adds instead of multiplying.
+Repair the program so it calculates the area.
+Do not add prompts.

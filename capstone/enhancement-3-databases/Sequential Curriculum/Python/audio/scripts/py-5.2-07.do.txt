@@ -1,0 +1,3 @@
+The second task should become, review, and the program should report the final task after that update.
+It currently replaces the wrong item and then prints the first task.
+Repair both indexes.

@@ -1,0 +1,2 @@
+Inside an f-string, open brace value colon dot 2f close brace, shows, value, with exactly two digits after the decimal point, rounding if needed.
+f open brace 3 point 1 colon dot 2f close brace, is, 3 point 10;, f open brace 2 point 005 colon dot 2f close brace, is, 2 point 00, or, 2 point 01, depending on the underlying float, so use it for display, not for exact money maths.

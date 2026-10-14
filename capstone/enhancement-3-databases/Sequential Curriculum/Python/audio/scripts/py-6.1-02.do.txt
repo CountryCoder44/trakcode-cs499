@@ -1,0 +1,2 @@
+Assign, open brace name colon Ada comma city colon London close brace, to, profile.
+Print the complete dictionary, then print the value connected to, name, by using, profile open bracket name close bracket.

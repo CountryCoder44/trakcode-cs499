@@ -1,0 +1,3 @@
+When arithmetic, comparisons, and Boolean operators are all mixed together, Python works through them in that order, arithmetic first, then comparisons, then Boolean logic.
+Among the Boolean operators themselves, not goes before and, and and goes before or.
+So, 4 less than 7 and 9 compared to 9, first turns into, True and True, then just, True.

@@ -1,0 +1,1 @@
+With, qty equals 4, and, price equals 3, what does, f Total colon open brace qty times price close brace, produce?

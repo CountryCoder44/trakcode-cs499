@@ -1,0 +1,4 @@
+len open perren text close perren, tells you how many characters a string has.
+There's one small catch worth knowing: length counts how many characters there are, while indexes start at 0, which means the last positive index is always, len open perren text close perren minus 1.
+A five character string, for instance, has indexes 0 through 4.
+Ask for a position outside that valid range and Python stops with an error, so it's worth checking before you index.

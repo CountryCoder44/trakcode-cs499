@@ -1,0 +1,2 @@
+boolean open paren value close paren, converts any value to, True, or, False, using the same truthiness rules.
+boolean open paren close paren, is, False;, boolean open paren hello close paren, is, True;, boolean open paren 0 close paren, is, False.

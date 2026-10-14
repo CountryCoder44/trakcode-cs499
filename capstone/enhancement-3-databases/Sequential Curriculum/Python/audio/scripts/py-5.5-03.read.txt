@@ -1,0 +1,4 @@
+pop open perren index close perren, removes the item at a valid index and gives that item back as a value.
+This lets you save what was removed:, chosen equals items dot pop open perren 1 close perren.
+Calling, pop open perren close perren, without an index removes and returns the final item.
+The remaining items close the gap.

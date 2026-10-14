@@ -1,0 +1,3 @@
+Assign, INV minus 2048, to, code.
+Assign, code dot startswith open perren INV minus close perren, to, is invoice, then print, Invoice colon True, with an f string.
+Call, startswith open perren close perren, on, code, with the exact prefix, INV minus.

@@ -1,0 +1,2 @@
+The, times, operator repeats a string when the string comes first and a positive int comes second.
+So, ab times 3, gives you, ababab, and, minus times 10, gives you a line of ten dashes.

@@ -1,0 +1,1171 @@
+================================================================================
+TOPIC 2 — Variables, Data Types, Type Conversion & Input
+================================================================================
+
+The learner writes their first real Python: displaying values with `print()`,
+naming values with variables, the core built-in types (`int`, `float`, `str`,
+`bool`, `NoneType`), inspecting a type with `type()`, converting deliberately
+between types, formatting output with f-strings, and reading a line of input.
+**Scope boundaries.** Arithmetic is limited to simple expressions using one
+operator at a time. Operator precedence and comparison/logical operators are
+Topic 3. String methods and slicing are Topic 4. `if`/`else` is Topic 7, so
+nothing here branches on a value. Invalid-input recovery with `try`/`except` is
+Topic 10; every conversion in this topic uses valid input. **Live coding.** At
+least half of every lesson's required items and expected learner time is live
+coding. Lessons 2.1–2.7 use fixed values; Lesson 2.8 and the checkpoint read
+`input()` and are graded against hidden input/output cases. When a task requires
+a particular technique, that technique must be checked structurally rather than
+inferred from matching output alone. This topic teaches calls to provided
+built-in functions; defining new functions is deferred until Topic 9.
+
+
+--------------------------------------------------------------------------------
+LESSON 2.1 — Printing Values
+--------------------------------------------------------------------------------
+Objective: Use `print()` to display text and numbers — one value, several values
+on a line, and output across multiple lines.
+
+  py-2.1-01 · print() Shows a Value   [concept]
+
+  READING:
+    `print()` is a built-in Python function, meaning it is provided by Python.
+    It displays information. Using a function is called making a **function
+    call**. In `print("Denver")`, the parentheses contain the value to display.
+    Text is written between quotes — `"Denver"` or `'Denver'` — and the quotes
+    mark where the text begins and ends; they are not shown in the output. A
+    number like `42` is written **without** quotes. `print("Denver")` displays
+    `Denver` and then moves to a new line.
+
+  QUESTION:
+    What does `print("hello")` display?
+      A. `"hello"` (with the quotes)
+      B. `hello`
+      C. `print("hello")`
+      D. nothing
+
+  ANSWER: B — `hello`
+  WHY:
+    The quotes only delimit the text in your code; the output is the text
+    itself, `hello`.
+  IF WRONG:
+    Separate the code you write from what appears on screen — the quotes are
+    punctuation for Python, not characters to display.
+
+
+  py-2.1-02 · Print Some Text   [practical]
+
+  TASK:
+    Write one line that prints the text: `Hello, world`
+
+  SOLUTION:
+    print("Hello, world")
+
+  EXPECTED OUTPUT:
+    Hello, world
+
+
+  py-2.1-03 · Print a Number   [practical]
+
+  TASK:
+    Write one line that prints the number `42`. Numbers are written **without**
+    quotes. The quotes are what tell Python "this is text — treat it exactly as
+    written." A bare `42` is a number, while `"42"` is text. Their types are
+    introduced in Lessons 2.3 and 2.4. **Write `42` as a bare number, not `"42"`
+    in quotes.**
+
+  SOLUTION:
+    print(42)
+
+  EXPECTED OUTPUT:
+    42
+
+
+  py-2.1-04 · print() Moves to a New Line   [concept]
+
+  READING:
+    Each `print(...)` call ends by moving to a new line, so two `print` calls
+    put their output on two separate lines. `print()` with nothing between the
+    parentheses prints an empty line.
+
+  QUESTION:
+    How many lines of output do `print("a")` and `print("b")` produce?
+      A. 1
+      B. 2
+      C. 0
+      D. 3
+
+  ANSWER: B — 2
+  WHY:
+    Each `print` call writes its value and then a line break, so two calls make
+    two lines.
+  IF WRONG:
+    Every `print` ends its own line — count the `print` calls.
+
+
+  py-2.1-05 · Two Lines   [practical]
+
+  TASK:
+    Print `first` on one line and `second` on the next line, using two separate
+    `print` calls. **Use one `print` call for each line.**
+
+  SOLUTION:
+    print("first")
+    print("second")
+
+  EXPECTED OUTPUT:
+    first
+    second
+
+
+  py-2.1-06 · print() Can Show Several Values   [concept]
+
+  READING:
+    A `print()` call can contain several values separated by commas. Python
+    displays the values on the same line with one space between them. The commas
+    are separators in the code and are not displayed. For example,
+    `print("score", 100)` displays `score 100`.
+
+  QUESTION:
+    What does `print("Total:", 15)` display?
+      A. `Total:15`
+      B. `Total: 15`
+      C. `Total:, 15`
+      D. `"Total:" 15`
+
+  ANSWER: B — `Total: 15`
+  WHY:
+    `print` puts one space between the values and shows neither the commas nor
+    the quotes.
+  IF WRONG:
+    In `print("Total:", 15)`, the comma separates the two values in the code.
+    Python displays one space between them and does not display the comma.
+
+
+  py-2.1-07 · Values on One Line   [practical]
+
+  TASK:
+    With a **single** `print` call, display: `Total: 15` — the word `Total:` and
+    the number `15`, separated by one space. **Pass the two values to one
+    `print` call separated by a comma; `15` stays a bare number.**
+
+  SOLUTION:
+    print("Total:", 15)
+
+  EXPECTED OUTPUT:
+    Total: 15
+
+
+
+--------------------------------------------------------------------------------
+LESSON 2.2 — Variables and Assignment
+--------------------------------------------------------------------------------
+Objective: Assign a value to a name with `=`, reuse it, reassign it, and choose
+valid, readable names.
+
+  py-2.2-01 · A Variable Names a Value   [concept]
+
+  READING:
+    A variable is a name connected to a value. The instruction `city = "Denver"`
+    assigns the text `Denver` to the variable `city`. After that, using `city`
+    means using its assigned value. The single `=` means **assign**; the
+    variable name goes on the left and the value goes on the right.
+
+  QUESTION:
+    After `n = 4`, what value is assigned to `n`?
+      A. The text `n`
+      B. `4`
+      C. The complete instruction `n = 4`
+      D. No value
+
+  ANSWER: B — `4`
+  WHY:
+    The value on the right side of `=` is assigned to the name on the left.
+  IF WRONG:
+    In `n = 4`, `n` is the variable name and `4` is the value assigned to it.
+
+
+  py-2.2-02 · Assign and Print   [practical]
+
+  TASK:
+    Assign the text `Denver` to a variable named `city`, then print the
+    variable. **Your solution must assign the value first and pass `city` to
+    `print()` rather than printing the text directly.**
+
+  SOLUTION:
+    city = "Denver"
+    print(city)
+
+  EXPECTED OUTPUT:
+    Denver
+
+
+  py-2.2-03 · Reuse a Name   [practical]
+
+  TASK:
+    Assign the text `echo` to `word`, then print it twice on separate lines —
+    using the variable both times. **Both `print` calls must print the variable,
+    not the text `echo` retyped.**
+
+  SOLUTION:
+    word = "echo"
+    print(word)
+    print(word)
+
+  EXPECTED OUTPUT:
+    echo
+    echo
+
+
+  py-2.2-04 · Reassigning Repoints the Name   [concept]
+
+  READING:
+    A variable can be assigned again. After `x = 1` and then `x = 9`, the name
+    `x` refers to `9`; the value `1` is simply no longer named by `x`. The most
+    recent assignment wins.
+
+  QUESTION:
+    After `x = 1` then `x = 9`, what does `print(x)` show?
+      A. `1`
+      B. `9`
+      C. `1 9`
+      D. `19`
+
+  ANSWER: B — `9`
+  WHY:
+    The second assignment repoints `x`; only its current value, `9`, is printed.
+  IF WRONG:
+    A variable holds one value at a time — the latest one assigned.
+
+
+  py-2.2-05 · Change a Variable   [practical]
+
+  TASK:
+    Assign `3` to `count` and print it. Then reassign `10` to `count` and print
+    it again. **Both `print` calls must print the `count` variable, and the `10`
+    must come from a second assignment — don't just print `3` and `10`
+    directly.**
+
+  SOLUTION:
+    count = 3
+    print(count)
+    count = 10
+    print(count)
+
+  EXPECTED OUTPUT:
+    3
+    10
+
+
+  py-2.2-06 · Naming Rules   [concept]
+
+  READING:
+    A variable name may contain letters, digits, and underscores, but it
+    **cannot start with a digit** and cannot contain spaces or hyphens. Names
+    are case-sensitive: `age` and `Age` are different variables. Python also
+    reserves certain words for the language itself; reserved words such as
+    `class`, `for`, and `if` cannot be variable names. You do not need to know
+    what those words do yet. The Python convention is lowercase words joined by
+    underscores (`first_name`), and a descriptive name is usually clearer than a
+    single letter.
+
+  QUESTION:
+    Which of these is a valid variable name?
+      A. `2nd_place`
+      B. `total-price`
+      C. `first_name`
+      D. `class`
+
+  ANSWER: C — `first_name`
+  WHY:
+    `first_name` contains only letters and an underscore, begins with a letter,
+    and is not a reserved word.
+  IF WRONG:
+    A name cannot start with a digit (A), contain a hyphen (B), or use a
+    reserved word such as `class` (D).
+
+
+  py-2.2-07 · Well-Named Variables   [practical]
+
+  TASK:
+    Store the text `Ada` in a variable named `first_name` and the number `36` in
+    a variable named `age`. Then print them on one line, separated by a space,
+    with a single `print` call. **Both values must come from your variables
+    inside the `print` call** — `print("Ada 36")` won't pass.
+
+  SOLUTION:
+    first_name = "Ada"
+    age = 36
+    print(first_name, age)
+
+  EXPECTED OUTPUT:
+    Ada 36
+
+
+
+--------------------------------------------------------------------------------
+LESSON 2.3 — Numbers: int and float
+--------------------------------------------------------------------------------
+Objective: Tell `int` from `float`, do basic arithmetic, and use `/`, `//`, and
+`%` correctly.
+
+  py-2.3-01 · Whole Numbers and Decimals   [concept]
+
+  READING:
+    A value written directly in code is called a **literal**. Python has two
+    number types in this lesson. `int` represents whole numbers, such as `5`,
+    `-2`, and `1000`. A number literal written with a decimal point, such as
+    `3.14`, `0.5`, or `2.0`, is a `float`. Writing `2.0` makes a `float` even
+    though it represents a whole amount. Symbols that perform calculations are
+    called **operators**: `+`, `-`, and `*` add, subtract, and multiply numbers.
+
+  QUESTION:
+    Which literal is a `float`?
+      A. `42`
+      B. `-7`
+      C. `3.0`
+      D. `1000`
+
+  ANSWER: C — `3.0`
+  WHY:
+    The decimal point makes `3.0` a `float`. The other choices are whole-number
+    `int` literals.
+  IF WRONG:
+    Among these choices, `3.0` is the only literal written with a decimal point.
+
+
+  py-2.3-02 · Add and Multiply   [practical]
+
+  TASK:
+    Assign `7` to `a` and `6` to `b`. Print their sum on one line, then their
+    product on the next line. **Compute the sum and product with `+` and `*`
+    inside the `print` calls — don’t print `13` and `42` directly.**
+
+  SOLUTION:
+    a = 7
+    b = 6
+    print(a + b)
+    print(a * b)
+
+  EXPECTED OUTPUT:
+    13
+    42
+
+
+  py-2.3-03 · Division: /, //, and %   [concept]
+
+  READING:
+    The `/` operator **always** produces a `float`, even when the result is
+    whole: `8 / 4` is `2.0`, not `2`. For nonnegative integers with a positive,
+    nonzero divisor, `//` gives the whole-number quotient: `17 // 5` is `3`. The
+    `%` operator gives the remainder: `17 % 5` is `2`. In this topic, all three
+    operators use nonnegative `int` operands and a positive, nonzero divisor.
+    Negative operands, zero divisors, and `float` operands are outside this
+    topic's division exercises.
+
+  QUESTION:
+    What does `8 / 4` produce?
+      A. `2`
+      B. `2.0`
+      C. `"2"`
+      D. `4`
+
+  ANSWER: B — `2.0`
+  WHY:
+    `/` returns a `float`, so the result is `2.0`.
+  IF WRONG:
+    `8 / 4` has the numeric value two, and `/` represents its result as the
+    `float` `2.0`.
+
+
+  py-2.3-04 · Three Kinds of Division   [practical]
+
+  TASK:
+    For `17` and `5`, print `17 / 5`, then `17 // 5`, then `17 % 5`, each on its
+    own line. **Use the `/`, `//`, and `%` operators — don’t print `3.4`, `3`,
+    `2` directly.**
+
+  SOLUTION:
+    print(17 / 5)
+    print(17 // 5)
+    print(17 % 5)
+
+  EXPECTED OUTPUT:
+    3.4
+    3
+    2
+
+
+  py-2.3-05 · Compute, Store, Print   [practical]
+
+  TASK:
+    A rectangle is `4` wide and `6` tall. Store the width and height in
+    variables, compute the area (width times height) into a variable named
+    `area`, and print `area`. **Store the product in `area` and print that
+    variable — don’t print `24` directly.**
+
+  SOLUTION:
+    width = 4
+    height = 6
+    area = width * height
+    print(area)
+
+  EXPECTED OUTPUT:
+    24
+
+
+  py-2.3-06 · Calculated Reassignment   [concept]
+
+  READING:
+    A variable can appear on the right side of its own reassignment. In `x = x +
+    1`, Python first uses the current value of `x`, adds `1`, and then assigns
+    the result back to `x`. If `x` starts as `4`, this instruction changes it to
+    `5`.
+
+  QUESTION:
+    If `score` is `10`, what value does `score = score - 3` assign to `score`?
+      A. `3`
+      B. `7`
+      C. `10`
+      D. `13`
+
+  ANSWER: B — `7`
+  WHY:
+    Python subtracts `3` from the current value `10`, then assigns the result
+    `7` back to `score`.
+  IF WRONG:
+    Use the current value on the right first: `10 - 3` is `7`. The assignment
+    then replaces the old value with that result.
+
+
+  py-2.3-07 · Going Negative   [practical]
+
+  TASK:
+    Assign `20` to `balance`. Then use `balance = balance - 35` to reassign it
+    and print the new value. **Use `balance` on the right side of the second
+    assignment rather than printing `-15` directly.**
+
+  SOLUTION:
+    balance = 20
+    balance = balance - 35
+    print(balance)
+
+  EXPECTED OUTPUT:
+    -15
+
+
+
+--------------------------------------------------------------------------------
+LESSON 2.4 — Text: the str Type
+--------------------------------------------------------------------------------
+Objective: Work with `str` values: join with `+`, repeat with `*`, and measure
+with `len()`.
+
+  py-2.4-01 · Text Is the str Type, Joined with +   [concept]
+
+  READING:
+    A text value like `"hello"` has the type `str` ("string"). A string can hold
+    letters, digits, spaces, and punctuation — `"Room 3B"` is one string, and
+    `"42"` in quotes is a string, not a number. The `+` operator joins, or
+    **concatenates**, two strings end to end: `"cat" + "dog"` is `"catdog"`. It
+    adds **no** space — you include one yourself: `"cat" + " " + "dog"`. `+`
+    only joins a string with another string.
+
+  QUESTION:
+    What is `"good" + "bye"`?
+      A. `"good bye"`
+      B. `"goodbye"`
+      C. `"good + bye"`
+      D. an error
+
+  ANSWER: B — `"goodbye"`
+  WHY:
+    `+` concatenates with nothing added between, so the result is `goodbye`.
+  IF WRONG:
+    `+` on strings glues them directly — any space has to be part of one of the
+    strings.
+
+
+  py-2.4-02 · Build a Greeting   [practical]
+
+  TASK:
+    Assign `Grace` to `name`. Using `+`, build and print the string `Hello,
+    Grace!` — note the comma-and-space after `Hello` and the `!` at the end.
+    **Build the string with `+` — printing the finished `Hello, Grace!` literal
+    won’t pass.**
+
+  SOLUTION:
+    name = "Grace"
+    print("Hello, " + name + "!")
+
+  EXPECTED OUTPUT:
+    Hello, Grace!
+
+
+  py-2.4-03 · Repeating a String with *   [concept]
+
+  READING:
+    The `*` operator repeats a string when the string is on the left and a
+    positive `int` is on the right. For example, `"ab" * 3` is `"ababab"`, and
+    `"-" * 10` is a line of ten dashes.
+
+  QUESTION:
+    What is `"na" * 4`?
+      A. `"nananana"`
+      B. `"na4"`
+      C. `"na na na na"`
+      D. `8`
+
+  ANSWER: A — `"nananana"`
+  WHY:
+    `*` with a string repeats it that many times, with nothing inserted between
+    copies.
+  IF WRONG:
+    String `*` number = the string written out that many times, back to back.
+
+
+  py-2.4-04 · A Divider Line   [practical]
+
+  TASK:
+    Print a line made of exactly `20` equals signs (`=`), then print the word
+    `REPORT`. **Make the line with `* 20` — don’t type out twenty `=`
+    characters.**
+
+  SOLUTION:
+    print("=" * 20)
+    print("REPORT")
+
+  EXPECTED OUTPUT:
+    ====================
+    REPORT
+
+
+  py-2.4-05 · len() Counts Characters   [concept]
+
+  READING:
+    `len()` produces the number of characters in a string: `len("hello")` is
+    `5`. Spaces count, so `len("a b")` is `3`. The result from `len()` is an
+    `int`.
+
+  QUESTION:
+    What is `len("Python")`?
+      A. `5`
+      B. `6`
+      C. `7`
+      D. `"Python"`
+
+  ANSWER: B — `6`
+  WHY:
+    `P-y-t-h-o-n` is six characters.
+  IF WRONG:
+    Count every character, including any spaces or punctuation.
+
+
+  py-2.4-06 · Measure a Word   [practical]
+
+  TASK:
+    Assign `elephant` to `word`. Print the word, then on the next line print how
+    many characters it has. **Get the length with `len()` and print the `word`
+    variable — don’t print `elephant` and `8` directly.**
+
+  SOLUTION:
+    word = "elephant"
+    print(word)
+    print(len(word))
+
+  EXPECTED OUTPUT:
+    elephant
+    8
+
+
+  py-2.4-07 · Underline a Title   [practical]
+
+  TASK:
+    Assign `Menu` to `title`. Print the title, then print a line of dashes (`-`)
+    exactly as long as the title. **Size the dash line with `* len(title)` —
+    don’t type the dashes out.**
+
+  SOLUTION:
+    title = "Menu"
+    print(title)
+    print("-" * len(title))
+
+  EXPECTED OUTPUT:
+    Menu
+    ----
+
+
+
+--------------------------------------------------------------------------------
+LESSON 2.5 — Booleans, None, and type()
+--------------------------------------------------------------------------------
+Objective: Use the `bool` values `True`/`False`, the `None` value, and `type()`
+to inspect any value's type.
+
+  py-2.5-01 · True and False Are Booleans   [concept]
+
+  READING:
+    Python has a type `bool` with exactly two values: `True` and `False` —
+    capital first letter, no quotes. They represent yes/no or on/off facts.
+    `is_active = True` stores a boolean.
+
+  QUESTION:
+    Which is the boolean value meaning "yes"?
+      A. `"True"`
+      B. `true`
+      C. `True`
+      D. `1`
+
+  ANSWER: C — `True`
+  WHY:
+    `True` (capitalized, unquoted) is the `bool`. `"True"` is a string, `true`
+    is an undefined name, and `1` is an `int`.
+  IF WRONG:
+    The boolean is `True` with a capital `T` and no quotes. Quotes make it a
+    string (A), lowercase `true` is not the boolean literal (B), and `1` is an
+    `int` rather than a `bool` (D).
+
+
+  py-2.5-02 · Store Some Facts   [practical]
+
+  TASK:
+    Assign `True` to `is_logged_in` and `False` to `has_premium`. Print each on
+    its own line. **Assign the two booleans to variables and print each variable
+    — don’t print `True`/`False` directly.**
+
+  SOLUTION:
+    is_logged_in = True
+    has_premium = False
+    print(is_logged_in)
+    print(has_premium)
+
+  EXPECTED OUTPUT:
+    True
+    False
+
+
+  py-2.5-03 · None Means "No Value"   [concept]
+
+  READING:
+    `None` is a special value meaning "nothing here" or "not set yet". Its type
+    is `NoneType`. `print(None)` displays `None`. It is **not** the same as `0`
+    or the empty string `""`.
+
+  QUESTION:
+    What does `None` represent?
+      A. the number zero
+      B. an empty string
+      C. the absence of a value
+      D. a syntax error
+
+  ANSWER: C — the absence of a value
+  WHY:
+    `None` is Python's stand-in for "no value" — distinct from `0` and `""`,
+    which are real values.
+  IF WRONG:
+    `None` is a value that means *nothing is here* — zero and empty text are
+    still something.
+
+
+  py-2.5-04 · An Unset Value   [practical]
+
+  TASK:
+    Assign `None` to `middle_name` and print it. **Use the variable in `print()`
+    rather than printing `None` directly.**
+
+  SOLUTION:
+    middle_name = None
+    print(middle_name)
+
+  EXPECTED OUTPUT:
+    None
+
+
+  py-2.5-05 · type() Reveals a Value's Type   [concept]
+
+  READING:
+    `type()` produces the type of the value placed inside its parentheses.
+    `print(type(5))` shows `<class 'int'>`, `print(type("hi"))` shows `<class
+    'str'>`, and `print(type(True))` shows `<class 'bool'>`. The surrounding
+    `<class '...'>` text is simply how Python displays the type here; focus on
+    the type name inside the quotation marks.
+
+  QUESTION:
+    What does `print(type(3.5))` display?
+      A. `float`
+      B. `<class 'float'>`
+      C. `3.5`
+      D. `<class 'int'>`
+
+  ANSWER: B — `<class 'float'>`
+  WHY:
+    `type(3.5)` is the `float` type, and printing it shows `<class 'float'>`.
+  IF WRONG:
+    `print(type(...))` always shows the `<class '...'>` form, and `3.5` is a
+    `float`.
+
+
+  py-2.5-06 · Inspect Three Types   [practical]
+
+  TASK:
+    Print the type of `10`, then the type of `"10"`, then the type of `True`,
+    each on its own line. **Use `type(...)` for all three — don’t type the class
+    lines out yourself.**
+
+  SOLUTION:
+    print(type(10))
+    print(type("10"))
+    print(type(True))
+
+  EXPECTED OUTPUT:
+    <class 'int'>
+    <class 'str'>
+    <class 'bool'>
+
+
+  py-2.5-07 · Type of a Calculation   [practical]
+
+  TASK:
+    A calculation's result has a type too. Print the value of `8 / 2`, then on
+    the next line print its type. **Compute `8 / 2` and its `type(...)` — don’t
+    print `4.0` and the class line directly.**
+
+  SOLUTION:
+    print(8 / 2)
+    print(type(8 / 2))
+
+  EXPECTED OUTPUT:
+    4.0
+    <class 'float'>
+
+
+
+--------------------------------------------------------------------------------
+LESSON 2.6 — Type Conversion
+--------------------------------------------------------------------------------
+Objective: Convert deliberately between `str`, `int`, and `float`, and know what
+`int()` does to a decimal value.
+
+  py-2.6-01 · Converting Between Types   [concept]
+
+  READING:
+    `int()`, `float()`, and `str()` produce a **new** value of that type from an
+    existing value. `int("42")` is the number `42`, `int("-7")` is the number
+    `-7`, `float("3.5")` is `3.5`, and `float(3)` is `3.0`. `str(42)` is the
+    text `"42"`, and `str(3.5)` is the text `"3.5"`. The original value is
+    unchanged.
+
+  QUESTION:
+    What is `int("7") + 1`?
+      A. `"71"`
+      B. `8`
+      C. `"8"`
+      D. an error
+
+  ANSWER: B — `8`
+  WHY:
+    `int("7")` is the number `7`, and `7 + 1` is `8`.
+  IF WRONG:
+    Once `int()` has converted `"7"` to `7`, ordinary arithmetic applies.
+
+
+  py-2.6-02 · Text to Number   [practical]
+
+  TASK:
+    Assign the string `"12"` to `quantity_text`. Convert it to an `int`, add
+    `3`, and print the result. **Convert with `int()` and add `3` in code —
+    don’t print `15` directly.**
+
+  SOLUTION:
+    quantity_text = "12"
+    print(int(quantity_text) + 3)
+
+  EXPECTED OUTPUT:
+    15
+
+
+  py-2.6-03 · Convert Signed Text   [practical]
+
+  TASK:
+    Assign the string `"-5"` to `temperature_text`. Convert it to an `int`, add
+    `2`, and print the result. **Use `int()` rather than writing `-3`
+    directly.**
+
+  SOLUTION:
+    temperature_text = "-5"
+    print(int(temperature_text) + 2)
+
+  EXPECTED OUTPUT:
+    -3
+
+
+  py-2.6-04 · You Can't Join str and int with +   [concept]
+
+  READING:
+    `"Age: " + 42` raises an error, because `+` will not join a string and a
+    number. Convert the number to text first: `"Age: " + str(42)` gives `"Age:
+    42"`.
+
+  QUESTION:
+    `"Age: " + 42` raises an error. Which version fixes it?
+      A. `"Age: " + str(42)`
+      B. `"Age: " + int(42)`
+      C. `str("Age: ") + 42`
+      D. `"Age: " - 42`
+
+  ANSWER: A — `"Age: " + str(42)`
+  WHY:
+    The number must become a string. `int(42)` is still a number (B); `str()` on
+    a string changes nothing (C); `-` on text is meaningless (D).
+  IF WRONG:
+    To join with `+`, both sides must be strings — convert the number with
+    `str()`.
+
+
+  py-2.6-05 · Label a Number   [practical]
+
+  TASK:
+    Assign the `int` `95` to `score`. Print the string `Your score is 95` by
+    converting `score` to text and joining with `+` (use `str()` and `+`, not
+    commas). **Join with `str()` and `+` — printing the finished literal won’t
+    pass.**
+
+  SOLUTION:
+    score = 95
+    print("Your score is " + str(score))
+
+  EXPECTED OUTPUT:
+    Your score is 95
+
+
+  py-2.6-06 · int() Drops the Decimal Part   [concept]
+
+  READING:
+    Converting a `float` to an `int` with `int()` throws away everything after
+    the decimal point — it does **not** round: `int(3.9)` is `3`, and
+    `int(-2.7)` is `-2`. This is called truncating toward zero. Every conversion
+    in this topic uses a valid numeric value.
+
+  QUESTION:
+    What is `int(4.8)`?
+      A. `5`
+      B. `4`
+      C. `4.8`
+      D. `"4"`
+
+  ANSWER: B — `4`
+  WHY:
+    `int()` truncates toward zero, discarding the `.8`.
+  IF WRONG:
+    `int()` does not round to the nearest whole number. It removes the
+    fractional part and moves the result toward zero.
+
+
+  py-2.6-07 · Whole Dollars   [practical]
+
+  TASK:
+    Assign the `float` `19.99` to `price`. Print only the whole-dollar part (the
+    number before the decimal) by converting to an `int`. **Convert `price` with
+    `int()` — don’t print `19` directly.**
+
+  SOLUTION:
+    price = 19.99
+    print(int(price))
+
+  EXPECTED OUTPUT:
+    19
+
+
+  py-2.6-08 · Round Trip   [practical]
+
+  TASK:
+    Start with the `int` `7`. Convert it to a string and print that string's
+    length. Then convert it back to an `int`, add `1`, and print the result.
+    **Use `str()`, `len()`, and `int()` — don’t print `1` and `8` directly.**
+
+  SOLUTION:
+    n = 7
+    text = str(n)
+    print(len(text))
+    print(int(text) + 1)
+
+  EXPECTED OUTPUT:
+    1
+    8
+
+
+  py-2.6-09 · Make Float Values   [practical]
+
+  TASK:
+    Assign the `int` `6` to `whole` and the string `"2.5"` to `decimal_text`.
+    Convert each value with `float()` and print the results on separate lines.
+    **Use `float()` in both `print()` calls.**
+
+  SOLUTION:
+    whole = 6
+    decimal_text = "2.5"
+    print(float(whole))
+    print(float(decimal_text))
+
+  EXPECTED OUTPUT:
+    6.0
+    2.5
+
+
+
+--------------------------------------------------------------------------------
+LESSON 2.7 — f-strings
+--------------------------------------------------------------------------------
+Objective: Build output that mixes text and values using f-strings and `{...}`
+placeholders.
+
+  py-2.7-01 · f-strings Insert Values into Text   [concept]
+
+  READING:
+    Putting `f` before a string's opening quote lets you drop `{...}`
+    placeholders inside it. Python replaces each `{name}` with that variable's
+    value: with `name = "Ada"`, the f-string `f"Hi, {name}"` becomes `"Hi,
+    Ada"`. No `str()` or `+` needed — the conversion happens automatically.
+
+  QUESTION:
+    With `city = "Denver"`, what does `f"Welcome to {city}"` produce?
+      A. `"Welcome to {city}"`
+      B. `"Welcome to city"`
+      C. `"Welcome to Denver"`
+      D. an error
+
+  ANSWER: C — `"Welcome to Denver"`
+  WHY:
+    The `f` makes Python replace `{city}` with the variable's value, `Denver`.
+  IF WRONG:
+    `{city}` inside an f-string means "put the value of `city` here," not the
+    letters `city`.
+
+
+  py-2.7-02 · Greet by Name   [practical]
+
+  TASK:
+    Assign `Kai` to `name`. Use an f-string to print `Hello, Kai!`. **It must be
+    an f-string with a `{name}` placeholder — the plain `Hello, Kai!` literal
+    won’t pass.**
+
+  SOLUTION:
+    name = "Kai"
+    print(f"Hello, {name}!")
+
+  EXPECTED OUTPUT:
+    Hello, Kai!
+
+
+  py-2.7-03 · Placeholders Can Hold an Expression   [concept]
+
+  READING:
+    A `{...}` placeholder can contain a calculation, not just a name. With `a =
+    2` and `b = 3`, the f-string `f"{a} + {b} = {a + b}"` becomes `"2 + 3 = 5"`.
+    Numbers are converted to text automatically inside the braces.
+
+  QUESTION:
+    With `qty = 4` and `price = 3`, what does `f"Total: {qty * price}"` produce?
+      A. `"Total: qty * price"`
+      B. `"Total: 12"`
+      C. `"Total: 4 * 3"`
+      D. `"Total: {12}"`
+
+  ANSWER: B — `"Total: 12"`
+  WHY:
+    The braces evaluate `qty * price` to `12` and drop it in as text.
+  IF WRONG:
+    Whatever is inside `{...}` is computed first, then its result replaces the
+    placeholder.
+
+
+  py-2.7-04 · A Computed Line   [practical]
+
+  TASK:
+    Assign `5` to `width` and `3` to `height`. With a single f-string, print
+    `Area of 5 by 3 is 15`. **The `15` must come from a `{width * height}`
+    placeholder — no hardcoded numbers in the text.**
+
+  SOLUTION:
+    width = 5
+    height = 3
+    print(f"Area of {width} by {height} is {width * height}")
+
+  EXPECTED OUTPUT:
+    Area of 5 by 3 is 15
+
+
+  py-2.7-05 · A Small Report   [practical]
+
+  TASK:
+    Assign `Coffee` to `item` and `3` to `count`. Use f-strings to print exactly
+    two lines: `Item: Coffee` on the first line and `Count: 3` on the second.
+    **Both lines must use placeholders for the variable values.**
+
+  SOLUTION:
+    item = "Coffee"
+    count = 3
+    print(f"Item: {item}")
+    print(f"Count: {count}")
+
+  EXPECTED OUTPUT:
+    Item: Coffee
+    Count: 3
+
+
+
+--------------------------------------------------------------------------------
+LESSON 2.8 — Reading Input
+--------------------------------------------------------------------------------
+Objective: Read a line with `input()`, know it is always a `str`, and convert it
+to do arithmetic.
+
+  py-2.8-01 · input() Reads a Line of Text   [concept]
+
+  READING:
+    `input()` pauses the program, waits for the user to type a line and press
+    Enter, and produces what they typed **as a `str`**. `name = input()` stores
+    that text. A value produced by a function call is called its **return
+    value**, so we say that `input()` returns a string. Even when the user types
+    digits, `input()` still returns a string. The exercises in this topic use
+    `input()` without prompt text so their output can be graded exactly.
+
+  QUESTION:
+    What type does `input()` return?
+      A. `int`
+      B. `str`
+      C. `float`
+      D. it depends on what the user typed
+
+  ANSWER: B — `str`
+  WHY:
+    `input()` always hands back a `str`, even if the user typed digits.
+  IF WRONG:
+    `input()` never guesses the type — it is always text until you convert it.
+
+
+  py-2.8-02 · Echo a Name   [practical]
+
+  TASK:
+    Read one line with `input()`, then print `Hello, ` followed by that name and
+    a `!`, using an f-string.
+
+  SOLUTION:
+    name = input()
+    print(f"Hello, {name}!")
+
+  HIDDEN TESTS (input -> output):
+    in : "Ada"
+    out: "Hello, Ada!"
+    in : "Grace Hopper"
+    out: "Hello, Grace Hopper!"
+
+
+  py-2.8-03 · input() Text Won't Do Math   [concept]
+
+  READING:
+    Separate `input()` instructions run from top to bottom. In the example
+    below, the first typed line is assigned to `first` and the second to
+    `second`. Both values are strings, so `+` joins them instead of adding
+    numbers. To do arithmetic, convert each value with `int()`. The compact form
+    `int(input())` converts a line as soon as it is read.
+
+  CODE SHOWN WITH THE QUESTION:
+    first = input()
+    second = input()
+    print(first + second)
+
+  QUESTION:
+    If the user types `5` and then `3`, what does the shown program display?
+      A. `8`
+      B. `53`
+      C. `5 + 3`
+      D. an error
+
+  ANSWER: B — `53`
+  WHY:
+    The variables contain the strings `"5"` and `"3"`, so `+` joins them into
+    `"53"`.
+  IF WRONG:
+    `input()` produces strings. String `+` joins `"5"` and `"3"`; it does not
+    perform numeric addition until the values are converted.
+
+
+  py-2.8-04 · Add Two Numbers   [practical]
+
+  TASK:
+    Read two lines, each a whole number. Print their sum.
+
+  SOLUTION:
+    a = int(input())
+    b = int(input())
+    print(a + b)
+
+  HIDDEN TESTS (input -> output):
+    in : "4\n10"
+    out: "14"
+    in : "100\n-30"
+    out: "70"
+    in : "0\n0"
+    out: "0"
+
+
+  py-2.8-05 · Order Total   [practical]
+
+  TASK:
+    Read a `quantity` (line 1) and a `unit_price` in whole dollars (line 2).
+    Print `Total: $<quantity times unit_price>` using an f-string.
+
+  SOLUTION:
+    quantity = int(input())
+    unit_price = int(input())
+    print(f"Total: ${quantity * unit_price}")
+
+  HIDDEN TESTS (input -> output):
+    in : "3\n4"
+    out: "Total: $12"
+    in : "10\n2"
+    out: "Total: $20"
+    in : "1\n99"
+    out: "Total: $99"
+
+
+
+--------------------------------------------------------------------------------
+CHECKPOINT — py-2.CP
+--------------------------------------------------------------------------------
+
+  py-2.CP · Checkpoint   [checkpoint]
+
+  BRIEF:
+    Write a program that reads a person's name, their current age, and a
+    favorite number (each on its own line), then prints a four-line summary.
+
+  REQUIREMENTS:
+    - Read three lines with `input()`: a name as text, a current age as a whole
+    number, and a favorite number as a whole number.
+    - Print exactly these four lines, in this order: `Name: <name>`, `Age:
+    <age>`, `In 10 years you will be <age + 10>`, `Favorite number doubled:
+    <favorite number * 2>`.
+    - Convert the age and the favorite number to `int` before doing arithmetic.
+    - Use f-strings for all four output lines.
+    - Do not print prompts, labels beyond those shown, or extra blank lines.
+    - The program must run successfully.
+
+  SOLUTION:
+    name = input()
+    age = int(input())
+    favorite = int(input())
+    print(f"Name: {name}")
+    print(f"Age: {age}")
+    print(f"In 10 years you will be {age + 10}")
+    print(f"Favorite number doubled: {favorite * 2}")
+
+  HIDDEN TESTS (input -> output):
+    in : "Ada Lovelace\n36\n7"
+    out: "Name: Ada Lovelace\nAge: 36\nIn 10 years you will be 46\nFavorite number doubled: 14"
+    in : "Grace\n45\n3"
+    out: "Name: Grace\nAge: 45\nIn 10 years you will be 55\nFavorite number doubled: 6"
+    in : "Sam\n8\n100"
+    out: "Name: Sam\nAge: 8\nIn 10 years you will be 18\nFavorite number doubled: 200"
+
+

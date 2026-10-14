@@ -1,0 +1,3 @@
+Assign, False, to, is member, True, to, has coupon, and, True, to, item available.
+Assign, open perren is member or has coupon close perren and item available, to, can buy, then print, Can buy colon True, with an f string.
+Keep the parentheses around the or expression and calculate, can buy, from all three Boolean variables.

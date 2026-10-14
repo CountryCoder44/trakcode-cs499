@@ -1,0 +1,2 @@
+Read five integers, one per line.
+Print the sorted list (ascending) on line 1 and the largest value on line 2.

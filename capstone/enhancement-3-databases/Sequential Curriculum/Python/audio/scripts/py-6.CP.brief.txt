@@ -1,0 +1,2 @@
+Reed a learner's name, location, and three skill entries.
+Build and update a dictionary, use a set to remove repeated skills, compare those skills with a core set, and organize the finished values in a nested record.

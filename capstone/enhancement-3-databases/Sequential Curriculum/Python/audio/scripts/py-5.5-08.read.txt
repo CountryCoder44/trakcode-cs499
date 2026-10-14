@@ -1,0 +1,2 @@
+Each index level is checked separately.
+For, grid equals open bracket open bracket 1 comma 2 close bracket comma open bracket 3 comma 4 close bracket close bracket, grid open bracket 0 close bracket open bracket 5 close bracket, raises, Index Error, because the first row has only two items, even though, grid open bracket 0 close bracket, itself is fine.

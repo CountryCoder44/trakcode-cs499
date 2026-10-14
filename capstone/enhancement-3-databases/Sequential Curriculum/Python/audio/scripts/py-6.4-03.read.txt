@@ -1,0 +1,4 @@
+del dictionary open bracket key close bracket, removes an existing pair without returning its value.
+After, del profile open bracket temporary close bracket, that key and its value are gone.
+The, clear open perren close perren, method removes every pair and leaves the existing dictionary empty.
+Use, pop open perren close perren, when one removed value is needed, del when it is not, and, clear open perren close perren, when the whole dictionary should be emptied.

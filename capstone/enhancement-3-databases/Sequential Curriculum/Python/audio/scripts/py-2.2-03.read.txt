@@ -1,0 +1,2 @@
+Count, count, and, COUNT, are three different names to Python.
+Referring to a name that was never bound raises, Name Error.

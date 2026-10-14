@@ -1,0 +1,4 @@
+Python gives strings their own useful built in functions, called methods.
+To use one, you write the string, a dot, the method name, and parentheses.
+For example, word dot upper open perren close perren, calls the, upper, method on, word, and hands you back a new string with uppercase letters.
+It doesn't rewrite, word, itself, strings are immutable, so, word, only changes if you assign it a new value.

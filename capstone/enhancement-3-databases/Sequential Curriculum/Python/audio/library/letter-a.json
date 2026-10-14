@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-a",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.464,
+ "sentences": [
+  {
+   "text": "\"a\".",
+   "start": 0,
+   "end": 0.464,
+   "segments": [
+    {
+     "text": "\"a\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

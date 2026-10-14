@@ -1,0 +1,3 @@
+Negative indexes also work the same way they do with strings.
+Index minus 1 retrieves the last item, minus 2 retrieves the item before it, and so on.
+With, days equals open bracket Mon comma Tue comma Wed close bracket, days open bracket minus 1 close bracket, is, Wed.

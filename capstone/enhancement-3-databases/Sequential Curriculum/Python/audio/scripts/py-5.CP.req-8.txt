@@ -1,0 +1,1 @@
+Use f strings to print exactly these six lines:, Original colon less than history open bracket 0 close bracket greater than, Updated colon less than history open bracket 1 close bracket greater than, Removed colon less than removed greater than, Lowest colon less than lowest greater than, Highest colon less than highest greater than, Summary colon less than summary greater than.

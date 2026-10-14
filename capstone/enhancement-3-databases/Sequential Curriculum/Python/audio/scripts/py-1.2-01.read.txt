@@ -1,0 +1,2 @@
+Source code is just the human readable text of a program, the actual instructions a programmer writes out.
+It's not the result the program produces when it runs, it's not the language's own rules, and it's not the editor you typed it into.

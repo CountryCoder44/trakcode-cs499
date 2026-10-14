@@ -1,0 +1,4 @@
+Start with, player equals open brace name colon Mina comma score colon 10 close brace.
+Update the score to 25, add a new level of 2, and add, active colon True.
+Print the finished dictionary and, Fields colon 4.
+Use three square bracket assignments after the original dictionary is created.

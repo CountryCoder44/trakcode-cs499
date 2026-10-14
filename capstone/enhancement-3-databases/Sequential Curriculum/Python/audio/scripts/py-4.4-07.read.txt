@@ -1,0 +1,3 @@
+s dot split open paren close paren, with no argument breaks s on any run of whitespace and returns the pieces.
+a b c dot split open paren close paren, gives, open bracket a comma b comma c close bracket.
+Access a piece by position:, a b c dot split open paren close paren open bracket 0 close bracket, is, a.

@@ -1,0 +1,2 @@
+Assign, open bracket red comma blue comma red comma green comma red close bracket, to, colors.
+Print, f red appears open brace colors dot count open perren red close perren close brace times comma first at index open brace colors dot index open perren red close perren close brace.

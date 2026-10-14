@@ -1,0 +1,5 @@
+A variable name can contain letters, digits, and underscores, but it can't start with a digit, and it can't contain spaces or hyphens.
+Names are also case sensitive, so age and Age are actually two different variables.
+On top of that, Python reserves certain words to build the language itself, words like, class, for, and if can't be used as variable names.
+You don't need to know what those words actually do yet, just that they're off limits as names.
+The usual Python convention is lowercase words joined by underscores, like, first name, and a descriptive name is almost always clearer than a single letter.

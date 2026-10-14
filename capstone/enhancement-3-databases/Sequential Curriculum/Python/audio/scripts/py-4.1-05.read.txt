@@ -1,0 +1,4 @@
+Quotes can get awkward when the quote you want to display matches the one wrapped around the string, normally, that matching quote would end the string right there.
+Put a backslash before it, and Python keeps it as part of the text instead.
+She said backslash quote Go exclamation point backslash quote, includes the double quotes around, Go exclamation point.
+You could also just wrap the whole thing in single quotes instead, but here we're practicing the escape sequence, backslash quote.

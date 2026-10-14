@@ -1,0 +1,2 @@
+Three items cost 8 each.
+The total is calculated with the wrong operator, and the output prints the unit price instead of the calculated total, repair both lines while keeping the result in, total.

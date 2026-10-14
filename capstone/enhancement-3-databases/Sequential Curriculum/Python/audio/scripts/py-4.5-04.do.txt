@@ -1,0 +1,4 @@
+Assign, play, to, original.
+Assign, original plus ful, to, expanded.
+Print, original, and then, expanded, on separate lines.
+Build, expanded, with concatenation and print both variables.

@@ -1,0 +1,4 @@
+Text from a person or a file often shows up with extra spacing around it.
+Spaces, tabs, and line breaks are all kinds of whitespace.
+The, strip open perren close perren, method removes whitespace from both ends of a string and hands you back the cleaned result.
+It leaves spacing inside the text alone, so, red fox dot strip open perren close perren, becomes, red fox, the middle space stays right where it is.

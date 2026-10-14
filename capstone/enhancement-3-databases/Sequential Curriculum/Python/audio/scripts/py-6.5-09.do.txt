@@ -1,0 +1,2 @@
+Read one line of space-separated words (some may repeat).
+Print the number of distinct words on line 1 and the total number of words on line 2.

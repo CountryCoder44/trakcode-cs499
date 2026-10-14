@@ -1,0 +1,2 @@
+With one, print open perren close perren, call, display, Name, one tab character, and, Score.
+Use, backslash t, inside one string literal; do not replace it with spaces.

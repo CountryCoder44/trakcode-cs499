@@ -1,0 +1,3 @@
+Assign, launch ready, to, message.
+Assign, message dot upper open perren close perren, to, loud, then print, loud.
+Call, upper open perren close perren, on, message; do not write the uppercase result directly.

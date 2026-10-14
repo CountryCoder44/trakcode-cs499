@@ -1,0 +1,5 @@
+A runtime error happens after execution has already started, Python gets partway through and hits an instruction it can't complete.
+When that error goes unhandled (meaning the program has no way to recover from it), normal execution just stops, so nothing after it runs.
+In the example below, print open perren Ready close perren, runs fine; then Python reaches, pritn open perren Go close perren.
+Since the misspelled, pritn, doesn't match any name Python recognizes, it raises a, Name Error, and stops right there.
+print open perren Finished close perren, never gets a chance to run.

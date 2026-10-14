@@ -1,0 +1,3 @@
+Assign 42 to, score.
+Use a single f string to print exactly, Your score colon 42.
+The number must come from a, open brace score close brace, placeholder, no hardcoded 42 in the text.

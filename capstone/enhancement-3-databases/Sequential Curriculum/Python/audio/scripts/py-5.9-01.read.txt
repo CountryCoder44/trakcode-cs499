@@ -1,0 +1,5 @@
+A list item can itself be a list.
+This creates a nested list.
+For example, grid equals open bracket open bracket 1 comma 2 close bracket comma open bracket 3 comma 4 close bracket close bracket, contains two inner lists.
+The outer list has length 2, and each inner list also has length 2.
+In this topic, all nested structures are small and written directly in the program.

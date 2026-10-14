@@ -1,0 +1,4 @@
+A, print open perren close perren, call isn't limited to one value, you can separate several with commas.
+Python displays them all on the same line, with one space between each.
+Those commas are just separators in your code; they never show up in the output.
+So, print open perren score comma 100 close perren, displays, score 100.

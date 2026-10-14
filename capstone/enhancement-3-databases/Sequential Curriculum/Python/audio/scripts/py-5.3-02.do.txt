@@ -1,0 +1,3 @@
+Assign, open bracket 5 comma 10 comma 15 comma 20 comma 25 close bracket, to, numbers.
+Assign, numbers open bracket 1 colon 4 close bracket, to, middle, then print, middle, and, numbers, on separate lines.
+Use the required slice and keep the original list unchanged.

@@ -1,0 +1,2 @@
+Read a name on line 1 and an age (whole number) on line 2.
+Using one f-string, print, less than name greater than is less than age greater than years old.

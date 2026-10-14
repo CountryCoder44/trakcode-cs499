@@ -1,0 +1,5 @@
+input open perren close perren, pauses your program, waits for the user to type a line and hit Enter, and hands back whatever they typed as a string.
+So, name equals input open perren close perren, just stores that text.
+A value handed back by a function call is called its return value, which is why we say, input open perren close perren, returns a string.
+And that's true even when the user types digits;, input open perren close perren, still returns a string either way.
+The exercises in this topic use, input open perren close perren, without any prompt text, so the output can be graded exactly.

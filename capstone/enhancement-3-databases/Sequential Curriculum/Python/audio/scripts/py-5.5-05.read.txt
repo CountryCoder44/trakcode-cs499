@@ -1,0 +1,3 @@
+When an item is removed, everything after it shifts one position left.
+If, open bracket A comma Bee comma See close bracket, loses the item at index 0, then Bee becomes the new item at index 0.
+Always reason about indexes using the list's current contents, not its earlier state.

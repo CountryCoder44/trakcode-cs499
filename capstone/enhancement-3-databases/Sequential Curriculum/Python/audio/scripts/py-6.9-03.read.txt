@@ -1,0 +1,3 @@
+An intersection keeps only values found in both sets.
+Use the, ampersand, operator.
+With, first equals open brace 1 comma 2 comma 3 close brace, and, second equals open brace 2 comma 3 comma 4 close brace, the expression, first ampersand second, contains 2 and 3.

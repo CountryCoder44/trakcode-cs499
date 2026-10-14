@@ -1,0 +1,3 @@
+first minus second, keeps members found in, first, but not, second.
+Order matters: reversing the sets may change the result.
+The, caret, operator creates a symmetric difference, keeping members found in exactly one of the two sets and leaving out their shared members.

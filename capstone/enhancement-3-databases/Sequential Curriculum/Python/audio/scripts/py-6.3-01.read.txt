@@ -1,0 +1,2 @@
+With a dictionary, in and, not in, check the keys.
+For, profile equals open brace name colon Ada comma city colon London close brace, city in profile, is, True, but, London in profile, is, False, because, London, is a value, not a key.

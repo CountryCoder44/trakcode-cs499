@@ -1,0 +1,3 @@
+A general purpose language can be put to work across a huge range of categories.
+Python shows up in automation, web backends, data analysis, artificial intelligence, testing, scientific computing, and developer tools, among other things.
+It's flexible, but flexible doesn't mean it's automatically the best choice for every situation.

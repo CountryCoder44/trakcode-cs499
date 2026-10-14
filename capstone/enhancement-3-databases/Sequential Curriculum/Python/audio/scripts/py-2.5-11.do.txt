@@ -1,0 +1,3 @@
+The report should show the result of ordinary division and its type.
+The program currently uses whole number division and inspects the original integer instead of the result.
+Repair both expressions.

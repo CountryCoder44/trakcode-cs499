@@ -1,0 +1,2 @@
+The division operator, slash, always produces a, float, even when the result comes out whole, 8 divided by 4, is, 2 point 0, not 2.
+In this topic, division works on nonnegative int operands with a positive, nonzero divisor, negative operands, zero divisors, and, float, operands are outside what these exercises cover.

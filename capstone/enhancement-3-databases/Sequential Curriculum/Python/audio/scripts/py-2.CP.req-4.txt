@@ -1,0 +1,1 @@
+Do not print prompts, labels beyond those shown, or extra blank lines.

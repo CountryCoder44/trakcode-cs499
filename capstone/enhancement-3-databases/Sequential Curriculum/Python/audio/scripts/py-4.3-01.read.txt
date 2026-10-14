@@ -1,0 +1,5 @@
+Indexing gets you one character.
+A slice gets you a whole section of a string.
+Write it as, text open bracket start colon stop close bracket.
+Python includes the, start, position but stops before the, stop, position.
+So if, text equals python, the slice, text open bracket 1 colon 4 close bracket, uses indexes 1, 2, and 3 and gives you, yth.

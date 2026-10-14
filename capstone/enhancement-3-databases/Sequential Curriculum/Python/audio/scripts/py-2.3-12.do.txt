@@ -1,0 +1,3 @@
+A balance starts at 50.
+A purchase removes 20, then a refund adds 5.
+The program uses the wrong operation for both changes, repair the calculated reassignments while continuing to use, balance, on their right sides.

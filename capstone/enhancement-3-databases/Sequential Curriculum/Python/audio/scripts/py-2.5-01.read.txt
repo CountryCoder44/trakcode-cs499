@@ -1,0 +1,3 @@
+Python has a type called, boolean, with exactly two possible values:, True, and, False, capital first letter, no quotes around either.
+They represent yes/no or on/off facts.
+So, is active equals True, is just storing a boolean.

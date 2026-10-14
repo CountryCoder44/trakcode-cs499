@@ -1,0 +1,1 @@
+Normalize the message with, message dot strip open perren close perren dot lower open perren close perren, and assign the result to, message clean.

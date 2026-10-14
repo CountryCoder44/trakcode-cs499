@@ -1,0 +1,2 @@
+Read a unit price (may have decimals) on line 1 and a whole-number quantity on line 2.
+Print, Total colon $ less than amount greater than, where, less than amount greater than, is, price times quantity, shown to two decimal places.

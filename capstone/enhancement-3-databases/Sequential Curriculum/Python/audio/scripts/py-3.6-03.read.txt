@@ -1,0 +1,2 @@
+The rest of the augmented assignments work exactly the same way.
+balance minus equals 6, means, balance equals balance minus 6, and, size times equals 3, means, size equals size times 3, take the current value, do the operation, save it back.

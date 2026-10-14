@@ -1,0 +1,4 @@
+The score starts at 10 and gains 5.
+The first line should show the original score and the second should calculate the updated score.
+The program changes the value too early, and the first line isn't even an f string.
+Repair the order and both output lines.

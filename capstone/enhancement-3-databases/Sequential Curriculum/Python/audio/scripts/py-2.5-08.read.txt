@@ -1,0 +1,3 @@
+To check a value's type, prefer, is instance open paren value comma int close paren, over, type open paren value close paren double equals int.
+is instance open paren close paren, reads clearly and also accepts subtypes.
+It returns a boolean.

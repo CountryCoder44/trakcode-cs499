@@ -1,0 +1,2 @@
+Python style writes multi-word variable names in lowercase with underscores between words —, user age, total price.
+This is a convention, not a rule Python enforces, but consistent code follows it.

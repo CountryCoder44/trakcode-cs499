@@ -1,0 +1,2 @@
+Age colon plus 25, raises, Type Error, because, plus, needs both sides to be the same kind of thing — two numbers, or two strings.
+Convert the number first with, string open paren close paren:, Age colon plus string open paren 25 close paren.

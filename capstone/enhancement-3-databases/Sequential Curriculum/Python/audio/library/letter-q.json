@@ -1,0 +1,22 @@
+{
+ "libraryKey": "letter-q",
+ "voiceId": "4R9DT5a9pfG2K65quYVp",
+ "durationSec": 0.697,
+ "sentences": [
+  {
+   "text": "\"q\".",
+   "start": 0,
+   "end": 0.697,
+   "segments": [
+    {
+     "text": "\"q\"",
+     "code": true
+    },
+    {
+     "text": ".",
+     "code": false
+    }
+   ]
+  }
+ ]
+}

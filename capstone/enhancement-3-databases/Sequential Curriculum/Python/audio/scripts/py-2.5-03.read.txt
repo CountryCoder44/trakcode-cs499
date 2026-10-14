@@ -1,0 +1,2 @@
+None, is a special value that basically means "nothing here" or "not set yet." Its type is, none type, and, print open perren None close perren, displays the word, None.
+Worth noting: it's not the same thing as 0 or the empty string.

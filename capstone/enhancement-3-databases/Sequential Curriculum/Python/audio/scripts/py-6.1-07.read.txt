@@ -1,0 +1,2 @@
+d open bracket key close bracket, raises, Key Error, when the key is absent.
+Checking, key in d, first, or using, dot get open paren close paren, (next lesson), avoids the crash.

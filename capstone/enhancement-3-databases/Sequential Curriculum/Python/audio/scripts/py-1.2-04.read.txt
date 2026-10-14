@@ -1,0 +1,3 @@
+In a simple, straight line program like the one below, Python starts at the first instruction and works its way down, one after another.
+The order things run in is the order the results show up in.
+Just for reading this example: each, print open perren close perren, instruction displays the text between its quotation marks, you'll get to write, print, yourself in Topic 2.

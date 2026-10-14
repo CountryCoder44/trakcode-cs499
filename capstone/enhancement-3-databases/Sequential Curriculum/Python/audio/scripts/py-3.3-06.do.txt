@@ -1,0 +1,4 @@
+Reed an age as a whole number from one line.
+Assign the result of, age greater than or equal to 18, to, at least underscore 18, then print, At least 18 colon less than at least underscore 18 greater than, with an f string.
+Do not print a prompt.
+Convert the input to int, perform the, greater than or equal to, comparison, and insert the, at least underscore 18, variable in the output.

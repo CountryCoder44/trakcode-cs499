@@ -1,0 +1,4 @@
+replace open perren old comma new close perren, hands you back a new string with every copy of old swapped for new.
+For example, one one dot replace open perren one comma two close perren, gives you, two two.
+The original string stays unchanged unless you assign the new result back to its variable.
+We'll stick to the simple two value form shown here.

@@ -1,0 +1,1 @@
+A terminal is a text interface that can start Python.

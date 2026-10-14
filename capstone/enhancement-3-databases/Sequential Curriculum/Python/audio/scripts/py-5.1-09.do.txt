@@ -1,0 +1,1 @@
+With, a equals open bracket 1 comma 2 close bracket, and, b equals open bracket 3 comma 4 comma 5 close bracket, defined, print the single list that is a followed by b.

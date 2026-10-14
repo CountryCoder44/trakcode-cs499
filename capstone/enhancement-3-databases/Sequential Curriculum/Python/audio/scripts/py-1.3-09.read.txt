@@ -1,0 +1,3 @@
+The working directory is the folder the terminal or process currently treats as its location.
+A relative filename such as, environment check dot pie, is searched for from that folder.
+Being in the wrong folder can make an existing file appear missing.

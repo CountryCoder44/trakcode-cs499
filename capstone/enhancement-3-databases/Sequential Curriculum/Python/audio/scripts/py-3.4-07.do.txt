@@ -1,0 +1,4 @@
+A visitor may enter only when they are at least 18 and have a ticket.
+The program uses or, so one successful check is enough, and then it prints the ticket value instead of the combined result.
+Repair both mistakes.
+Keep the comparison parenthesized.

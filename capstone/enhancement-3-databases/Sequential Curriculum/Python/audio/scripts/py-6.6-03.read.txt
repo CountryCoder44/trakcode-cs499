@@ -1,0 +1,3 @@
+Lists also work as dictionary values.
+With, course equals open brace title colon Python comma lessons colon open bracket Basics comma Strings close bracket close brace, course open bracket lessons close bracket, retrieves the complete list and, course open bracket lessons close bracket open bracket 0 close bracket, retrieves, Basics.
+The key selects the list; the index then selects an item inside it.

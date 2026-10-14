@@ -1,0 +1,1 @@
+Reed four whole numbers, preserve their original order, transform a working list, summarize the result with a tuple, and store both list versions in a nested history.

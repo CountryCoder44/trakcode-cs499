@@ -1,0 +1,3 @@
+Assign, Menu, to, title.
+Print the title, then print a line of equals signs exactly as long as the title.
+Size the line with, times len open perren title close perren, don't type the equals signs out.

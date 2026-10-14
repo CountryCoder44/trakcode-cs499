@@ -1,0 +1,3 @@
+The stored price should become a whole dollar integer and then be joined to the label as text.
+The program keeps it as a, float, and tries to concatenate that number directly.
+Repair both conversions.

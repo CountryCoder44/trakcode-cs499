@@ -1,0 +1,1 @@
+Output can be displayed text, a file, or another produced result.

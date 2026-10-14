@@ -1,0 +1,3 @@
+remove open perren value close perren, deletes a value that is known to be present.
+discard open perren value close perren, also deletes a present value, but it quietly leaves the set unchanged when that value is absent.
+Every required, remove open perren close perren, call in this topic uses a value that exists.

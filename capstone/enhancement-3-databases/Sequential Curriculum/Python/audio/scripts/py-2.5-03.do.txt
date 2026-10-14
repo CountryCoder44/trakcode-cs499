@@ -1,0 +1,2 @@
+This line raises a, Type Error.
+Convert the number to a string so it prints, Total colon 42.

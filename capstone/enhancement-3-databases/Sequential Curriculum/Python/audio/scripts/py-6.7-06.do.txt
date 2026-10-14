@@ -1,0 +1,4 @@
+Assign, open bracket Mina comma Ada comma Mina comma Grace close bracket, to, guests.
+Convert it to a set named, unique guests.
+Print the number of unique names and the names in predictable alphabetical order.
+Use, set open perren close perren, and, sorted open perren close perren.

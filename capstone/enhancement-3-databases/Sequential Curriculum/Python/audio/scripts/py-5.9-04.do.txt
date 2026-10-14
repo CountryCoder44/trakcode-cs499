@@ -1,0 +1,3 @@
+Assign, open bracket open bracket 10 comma 20 comma 30 close bracket comma open bracket 40 comma 50 comma 60 close bracket close bracket, to, grid.
+Assign, grid open bracket 1 close bracket open bracket 2 close bracket, to, value, then print, Value colon 60, with an f string.
+Use both indexes to retrieve the value.

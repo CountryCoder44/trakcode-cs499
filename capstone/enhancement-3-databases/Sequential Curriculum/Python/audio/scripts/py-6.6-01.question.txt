@@ -1,0 +1,1 @@
+With, data equals open brace player colon open brace score colon 40 close brace close brace, what does, data open bracket player close bracket open bracket score close bracket, produce?

@@ -1,0 +1,3 @@
+is active, and, has premium, should both hold Boolean values.
+The first is stored as text and the second has the wrong Boolean value.
+Repair both assignments so the values and their types match the required output.

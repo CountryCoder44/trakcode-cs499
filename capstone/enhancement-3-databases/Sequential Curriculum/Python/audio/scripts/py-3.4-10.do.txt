@@ -1,0 +1,6 @@
+Input line 1 is a whole number age.
+Input line 2 is a whole number ticket flag: 1 means the person has a ticket and 0 means they do not.
+A person qualifies only when they are at least 18 and the flag equals 1.
+The current program omits the age conversion and uses or.
+Repair both problems.
+Do not add prompts.

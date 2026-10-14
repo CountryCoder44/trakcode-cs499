@@ -1,0 +1,2 @@
+Assign the expression, True or False and False, to, result, then print, result.
+Write the expression without parentheses so Python's default and -before- or precedence determines the result.

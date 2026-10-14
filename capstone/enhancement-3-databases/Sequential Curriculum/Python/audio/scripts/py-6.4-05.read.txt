@@ -1,0 +1,3 @@
+clear open perren close perren, removes every pair from an existing dictionary.
+The dictionary remains a dictionary, but it becomes empty:, open brace close brace.
+This differs from, pop open perren close perren, and del, which target one pair at a time.

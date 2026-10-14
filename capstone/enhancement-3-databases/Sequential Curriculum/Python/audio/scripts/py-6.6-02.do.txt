@@ -1,0 +1,3 @@
+Assign, open brace name colon Ada comma contact colon open brace city colon London comma country colon UK close brace close brace, to, profile.
+Retrieve and print the name, city, and country on separate labeled f string lines.
+Use both dictionary levels for city and country.

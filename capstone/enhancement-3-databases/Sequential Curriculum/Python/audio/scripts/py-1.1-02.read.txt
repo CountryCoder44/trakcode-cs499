@@ -1,0 +1,3 @@
+A programming language gives you vocabulary, a set of structural rules called *syntax*, and a way to express instructions with real meaning.
+A program, on the other hand, is a specific set of instructions written using that language.
+Python is the language; a file that adds up a total is a Python program.

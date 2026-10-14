@@ -1,0 +1,4 @@
+dictionary dot keys open perren close perren, provides the dictionary's keys.
+For straightforward output in this topic, wrap that result in, list open perren close perren:, list open perren profile dot keys open perren close perren close perren.
+The keys appear in the order they were added.
+With, profile equals open brace name colon Ada comma city colon London close brace, the result is, open bracket name comma city close bracket.

@@ -1,0 +1,4 @@
+set open perren list value close perren, creates a set from the list's items.
+Duplicate values collapse into one set member.
+With, names equals open bracket Ada comma Grace comma Ada close bracket, set open perren names close perren, contains only, Ada, and, Grace.
+Use, sorted open perren close perren, when you need to display the resulting members in a predictable order.

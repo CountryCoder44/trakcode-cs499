@@ -1,0 +1,2 @@
+Open a terminal in, python foundations.
+Run, environment check dot pie, with the verified interpreter command and paste the output into Track Code.

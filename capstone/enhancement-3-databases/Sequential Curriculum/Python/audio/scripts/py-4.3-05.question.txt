@@ -1,0 +1,1 @@
+After, text equals window, and, part equals text open bracket colon 3 close bracket, what is the value of, text?

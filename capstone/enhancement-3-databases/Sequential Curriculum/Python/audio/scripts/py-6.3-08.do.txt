@@ -1,0 +1,1 @@
+With, d equals open brace apple colon 3 comma banana colon 0 comma cherry colon 7 close brace, defined, read a fruit name and print, d dot get open paren fruit comma unknown close paren.
