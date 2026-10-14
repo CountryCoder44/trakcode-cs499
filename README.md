@@ -1,9 +1,16 @@
-# TrakCode — CS-499 Capstone Submission
+# TrakCode: CS-499 Capstone Submission
 
 TrakCode is a coding education web app. Learners work through short, ordered
 lessons (Learn), solve practice assignments that are graded by running their
 code against real test cases (Practice), and can ask an AI tutor named Trak for
 help along the way.
+
+- **ePortfolio:** [countrycoder44.github.io](https://countrycoder44.github.io),
+  with the professional self-assessment, the code review video, and a page for
+  each enhancement.
+- **Capstone materials:** [`capstone/`](capstone/) holds the original code,
+  the code as submitted for each enhancement, and the narratives.
+- **Contributing:** see [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 This copy was prepared for a college capstone. It runs entirely on your own
 machine. Payments, social sign-in and other paid services are switched off, and
